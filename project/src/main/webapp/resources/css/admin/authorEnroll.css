@@ -1,50 +1,50 @@
 @charset "UTF-8";
 *{
-    margin: 0;
-    padding:0;
+	margin: 0;
+	padding:0;
 }
 a{
-    text-decoration: none;
+	text-decoration: none;
 }
 ul{
     list-style: none;
 }
 /* 화면 전체 렙 */
 .wrapper{
-    width: 100%;
+	width: 100%;
 }
 /* content 랩 */
 .wrap{
-    width : 1080px;
-    margin: auto;
+	width : 1080px;
+	margin: auto;
 }
 /* 홈페이지 기능 네비 */ 
 .top_gnb_area{
-    width: 100%;
+	width: 100%;
     height: 50px;
     background-color: #f0f0f1;
     position:relative;
 }
 .top_gnb_area .list{
-    position: absolute;
+	position: absolute;
     top: 0px;
     right: 0;
     
 }
 .top_gnb_area .list li{
-    list-style: none;    
+	list-style: none;	
     float : left;
     padding: 13px 15px 0 10px;
     font-weight: 900;
     cursor: pointer;
 }
- 
+
 /* 관리제 페이지 상단 현페이지 정보 */
 .admin_top_wrap{
     height:110px;
     line-height: 110px;
-    margin-bottom: 15px;
     background-color: #5080bd;
+    margin-bottom: 15px;
 }
 .admin_top_wrap>span{
     margin-left: 30px;
@@ -58,7 +58,7 @@ ul{
     
     
 }
- 
+
 /* 관리자페이지 네비 영역 */
 .admin_navi_wrap{
     width: 20%;
@@ -86,30 +86,91 @@ ul{
 .admin_navi_wrap li a:active {color: black;}
 .admin_navi_wrap li a:hover {color: black;}
 .admin_navi_wrap li a {text-decoration: none;}
-/* 
-.admin_list_01{
+ 
+.admin_list_03{
     background-color: #c8c8c8;
-} */
- 
- 
+} 
+
+
 /* 관리자페이지 컨텐츠 영역 */
 .admin_content_wrap{
     width: 80%;
     float:left;
     min-height: 700px;
-    
+
 }
-.admin_content_wrap div{
-    margin-top: 280px;
-    text-align: center;
-    font-size: 50px;
+/* 관리자 컨텐츠 제목 영역 */
+.admin_content_subject{	
+    font-size: 40px;
     font-weight: bolder;
+    padding-left: 15px;
+    background-color: #6AAFE6;
+    height: 80px;
+    line-height: 80px;
+    color: white;	
 }
- 
- 
- 
- 
+/* 관리자 컨텐츠 메인 영역 */
+.form_section{
+	width: 95%;
+    margin-left: 2%;
+    margin-top: 20px;
+    border: 1px solid #dbdde2;
+    background-color: #efefef;	
+}
+.form_section_title{
+	padding: 20px 35px;	
+}
+.form_section_title label{
+	display: block;
+    font-size: 20px;
+    font-weight: 800;
+}
+.form_section_content{
+	padding: 20px 35px;
+    border-top: 1px solid #dbdde2;	
+}
+.form_section_content input{
+	width: 98%;
+    height: 35px;
+    font-size: 20px;
+    padding: 5px 1%;
+}
+.form_section_content select{
+	width: 98%;
+    height: 35px;
+    font-size: 17px;
+    text-align-last: center;
+}
+
+/* 입력란 공란 경고 태그 */
+.form_section_content span{    
+    display: none;
+    padding-top: 10px;
+    text-align: center;
+    color: #e05757;
+    font-weight: 300;    
+}
+
+
+/* 버튼 영역 */
+.btn_section{
+	text-align: center;
+	margin: 40px 0;
+}
+.btn{
+    min-width: 180px;
+    padding: 4px 30px;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 40px;
+}
+.enroll_btn{
+	background-color: #dbdde2;
+	margin-left:15px;
+}
+
+
 /* float 속성 해제 */
 .clearfix{
-    clear: both;
+	clear: both;
 }

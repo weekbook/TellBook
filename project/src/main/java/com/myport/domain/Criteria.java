@@ -18,7 +18,7 @@ public class Criteria {
 	private String keyword; // 검색어(검색 키워드)
 
 	public Criteria() { // 페이징 디폴트값
-		this(1, 15);
+		this(1, 10);
 	}
 
 	public Criteria(int pageNum, int amount) { // 달라지는 값

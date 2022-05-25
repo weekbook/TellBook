@@ -15,7 +15,7 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class test {
+public class MemberMappertests {
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper mapper;
 
