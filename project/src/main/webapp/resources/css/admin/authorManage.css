@@ -43,8 +43,8 @@ ul{
 .admin_top_wrap{
     height:110px;
     line-height: 110px;
-    margin-bottom: 15px;
     background-color: #5080bd;
+    margin-bottom:15px;
 }
 .admin_top_wrap>span{
     margin-left: 30px;
@@ -86,12 +86,68 @@ ul{
 .admin_navi_wrap li a:active {color: black;}
 .admin_navi_wrap li a:hover {color: black;}
 .admin_navi_wrap li a {text-decoration: none;}
-/* 
-.admin_list_01{
+ 
+.admin_list_04{
     background-color: #c8c8c8;
-} */
- 
- 
+} 
+
+/* 작가 목록 영역 */
+.author_table_wrap{
+	padding: 20px 35px
+}
+.author_table{
+	width: 100%;
+    border: 1px solid #d3d8e1;
+    text-align: center;
+    border-collapse: collapse;
+}
+.author_table td{
+	padding: 10px 5px;
+	border : 1px solid #e9ebf0;
+}
+.author_table thead{
+	font-weight: bold;
+}
+.th_column_1{
+	width:120px;
+}
+.th_column_3{
+	width:110px;
+}
+.th_column_4{
+	width:140px;
+}
+.th_column_5{
+	width:140px;
+}
+
+.table_empty{
+	height: 50px;
+    text-align: center;
+    margin: 200px 0 215px 0px;
+    font-size: 25px;
+}
+
+.author_table a{
+	color:#1088ed;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/* 페이지 버튼 인터페이스 */
+.pagination{
+	justify-content: center;
+}
+
+/* 검색 영역  */
+.search_input{
+	position: relative;
+}
+.search_btn{
+	margin-bottom: 20px;
+	margin-left: 10px;
+}
+
 /* 관리자페이지 컨텐츠 영역 */
 .admin_content_wrap{
     width: 80%;
@@ -99,15 +155,15 @@ ul{
     min-height: 700px;
     
 }
-.admin_content_wrap div{
-    margin-top: 280px;
-    text-align: center;
-    font-size: 50px;
+.admin_content_subject{            /* 관리자 컨텐츠 제목 영역 */
+    font-size: 40px;
     font-weight: bolder;
+    padding-left: 15px;
+    background-color: #6AAFE6;
+    height: 80px;
+    line-height: 80px;
+    color: white;    
 }
- 
- 
- 
  
 /* float 속성 해제 */
 .clearfix{

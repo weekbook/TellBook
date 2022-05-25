@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myport.domain.ComuBoVO;
-import com.myport.domain.ComuPageDTO;
+import com.myport.domain.PageDTO;
 import com.myport.domain.Criteria;
 import com.myport.service.ComuBoService;
 
@@ -31,7 +31,7 @@ public class ComuBoController {
 		model.addAttribute("list",service.getList(cri));
 		
 		int total = service.getTotal(cri);
-		model.addAttribute("pageMaker", new ComuPageDTO(cri, total));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
 	@GetMapping("/register")
