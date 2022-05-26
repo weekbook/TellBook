@@ -81,10 +81,8 @@
 				<!-- 페이지 번호 -->
 				<c:forEach begin="${pageMaker.pageStart}" end="${pageMaker.pageEnd}"
 					var="num">
-					<li
-						class="page-item pageMaker_btn ${pageMaker.cri.pageNum == num ? "active":""}">
-						<a href="${num}" class="page-link">${num}</a>
-					</li>
+					<li class='page-item pageMaker_btn ${pageMaker.cri.pageNum==num?"active":"" }'>
+					<a href="${num}" class="page-link">${num}</a>
 				</c:forEach>
 
 				<!-- 다음 버튼 -->
@@ -107,11 +105,14 @@
 	<script>
 	let moveForm = $('#moveForm');
 	let searchForm = $("#searchForm");
+	
 
  	$(document).ready(function(){
  		let result = '<c:out value="${enroll_result}"/>';
+ 		let mresult = '<c:out value="${modify_result}"/>';
  		
  		checkResult(result);
+ 		checkmResult(mresult);
  		
  		function checkResult(result){
  			if(result === ''){
@@ -120,14 +121,26 @@
  			
  			alert("작가'${enroll_result}' 을 등록하였습니다.");
  		}
+ 		
+ 		function checkmResult(mresult){
+ 			if(mresult === '1'){
+ 				alert("작가 정부 수정을 완료하였습니다.");
+ 			} else if(mresult === '0'){
+ 				alert("작가 정부 수정을 하지 못하였습니다.")
+ 			}
+ 		}
+ 		
  	});
  	
  	// 페이지 이동 버튼
- 	$(".pageMaker_btn a").on("click", function (e) {
+	 $(".pageMaker_btn a").on("click", function (e) {
 		e.preventDefault();
+			
 		moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+		moveForm.attr("action", "/admin/authorManage");
 		moveForm.submit();
 	});
+ 	
  	
  	$("#searchForm button").on("click", function(e) {
 		e.preventDefault();
@@ -145,6 +158,12 @@
  	//  작가 상세 페이지 이동
  	$(".move").on("click", function(e){
  		e.preventDefault();
+ 		
+ 		var authorId = moveForm.find("input[name='authorId']").val();
+		// 게시물 읽고 뒤로가기 버튼했을때 같은 게시물에 들어가지는 오류 해결
+		if(authorId != ''){
+			moveForm.find("input[name='authorId']").remove();
+		}
  		
  		moveForm.append("<input type='hidden' name='authorId' value='" + $(this).attr("href") + "'>");
  		moveForm.attr("action", "/admin/authorDetail");

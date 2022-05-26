@@ -1,4 +1,4 @@
-package com.myport.test;
+package com.myport.mapper;
 
 import java.util.Iterator;
 import java.util.List;
@@ -58,14 +58,28 @@ public class AuthorMapperTests {
 //		System.out.println("total....." + total);
 //	}
 	
+//	@Test
+//	public void authorGetDetailTest() {
+//		int authorId = 30;
+//		AuthorVO author = mapper.authorGetDetail(authorId);
+//		System.out.println("author....." + author);
+//	}
+	
+
 	@Test
-	public void authorGetDetailTest() {
-		int authorId = 30;
-		AuthorVO author = mapper.authorGetDetail(authorId);
-		System.out.println("author....." + author);
+	public void authorModifyTest() {
+		AuthorVO author = new AuthorVO();
+		
+		author.setAuthorId(226);
+		System.out.println("수정 전...." + mapper.authorGetDetail(author.getAuthorId()));
+		
+		author.setAuthorName("수정");
+		author.setNationId("01");
+		author.setAuthorIntro("소개 수정 하였습니다.");
+		
+		mapper.authorModify(author);
+		System.out.println("수정 후 ... "  + mapper.authorGetDetail(author.getAuthorId()));
 	}
-	
-	
 	
 	
 	

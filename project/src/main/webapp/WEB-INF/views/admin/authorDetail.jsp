@@ -78,20 +78,21 @@
 					<input class="input_block form-control" type="text" readonly="readonly"
 						value="<fmt:formatDate value="${authorInfo.updateDate}" pattern="yyyy-MM-dd"/>">
 				</div>
-			</div>
+			</div>	
 			<div class="btn_section">
-				<button id="cancelBtn" class="btn">작가 목록</button>
-				<button id="modifyBtn" class="btn modify_btn">수 정</button>
+				<button id="cancelBtn" class="btn btn-primary">작가 목록</button>
+				<button id="modifyBtn" class="btn modify_btn btn-warning">수 정</button>
 			</div>
 		</div>
+		<form id="moveForm" method="get">
+			<input type="hidden" name="authorId" value='<c:out value="${authorInfo.authorId }"/>'> 
+			<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>'>
+			<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>'> 
+			<input type="hidden" name="keyword" value='<c:out value="${cri.keyword }"/>'>
+		</form>
 	</div>
 
-	<form id="moveForm" method="get">
-		<input type="hidden" name="authorId" value='<c:out value="${authorInfo.authorId }"/>'> 
-		<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>'>
-		<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>'> 
-		<input type="hidden" name="keyword" value='<c:out value="${cri.keyword }"/>'>
-	</form>
+	
 	<%@include file="../includes/footer.jsp"%>
 
 <script>

@@ -41,6 +41,27 @@
 	
 	<!-- 작가 상세 페이지 -->
 	<select id="authorGetDetail" resultType="com.myport.domain.AuthorVO">
-		select * from book_author where authorid = #{authorId}
+		select * from book_author where authorId = #{authorId}
 	</select>
+	
+	
+	<!-- 작가 정보 수정 -->
+	<update id="authorModify">
+		update book_author set authorName=#{authorName}, nationId=#{nationId}, authorIntro=#{authorIntro}, 
+		updatedate=sysdate where authorId = #{authorId}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>
