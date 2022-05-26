@@ -1,44 +1,44 @@
 @charset "UTF-8";
 *{
-    margin: 0;
-    padding:0;
+	margin: 0;
+	padding:0;
 }
 a{
-    text-decoration: none;
+	text-decoration: none;
 }
 ul{
     list-style: none;
 }
 /* 화면 전체 렙 */
 .wrapper{
-    width: 100%;
+	width: 100%;
 }
 /* content 랩 */
 .wrap{
-    width : 1080px;
-    margin: auto;
+	width : 1080px;
+	margin: auto;
 }
 /* 홈페이지 기능 네비 */ 
 .top_gnb_area{
-    width: 100%;
+	width: 100%;
     height: 50px;
     background-color: #f0f0f1;
     position:relative;
 }
 .top_gnb_area .list{
-    position: absolute;
+	position: absolute;
     top: 0px;
     right: 0;
     
 }
 .top_gnb_area .list li{
-    list-style: none;    
+	list-style: none;	
     float : left;
     padding: 13px 15px 0 10px;
     font-weight: 900;
     cursor: pointer;
 }
- 
+
 /* 관리제 페이지 상단 현페이지 정보 */
 .admin_top_wrap{
     height:110px;
@@ -58,7 +58,7 @@ ul{
     
     
 }
- 
+
 /* 관리자페이지 네비 영역 */
 .admin_navi_wrap{
     width: 20%;
@@ -86,30 +86,29 @@ ul{
 .admin_navi_wrap li a:active {color: black;}
 .admin_navi_wrap li a:hover {color: black;}
 .admin_navi_wrap li a {text-decoration: none;}
- 
-.admin_list_01{
+
+.admin_list_04{
     background-color: #c8c8c8;
 } 
- 
- 
+
+
 /* 관리자페이지 컨텐츠 영역 */
 .admin_content_wrap{
     width: 80%;
     float:left;
-    min-height: 700px;
-    
+    min-height:700px;
 }
-.admin_content_subject{            /* 관리자 컨텐츠 제목 영역 */
+/* 관리자 컨텐츠 제목 영역 */
+.admin_content_subject{	
     font-size: 40px;
     font-weight: bolder;
     padding-left: 15px;
     background-color: #6AAFE6;
     height: 80px;
     line-height: 80px;
-    color: white;    
+    color: white;	
 }
- 
- /* 관리자 컨텐츠 메인 영역 */
+/* 관리자 컨텐츠 메인 영역 */
 .form_section{
 	width: 95%;
     margin-left: 2%;
@@ -135,94 +134,49 @@ ul{
     font-size: 20px;
     padding: 5px 1%;
 }
+.form_section_content textarea{
+    width: 98%;
+    height: 170px;
+    font-size: 20px;	
+}
 .form_section_content select{
 	width: 98%;
     height: 35px;
-    font-size: 20px;
+    font-size: 17px;
     text-align-last: center;
 }
-
-/* ckeditor 높이 */
-.ck-content {
-    height: 170px;
-}
-
-/* 캘린더 css 설정 */
-.ui-datepicker-trigger {						
-    margin-left: 25px;
-    width: 14%;
-    height: 38px;
-    font-weight: 600;
-    background-color: #dfe8f5;
-    font-size: 15px;
-    cursor:pointer;
-}
-input[name='publeYear'] {
-    width: 80%;
-    text-align: center;
-}
-
-/* 작가 선택 css 설정 */
-.authorId_btn {						
-    margin-left: 20px;
-    width: 14%;
-    height: 38px;
-    font-weight: 600;
-    background-color: #dfe8f5;
-    font-size: 15px;
-    cursor:pointer;
-}
-#authorName_input {
-    width: 80%;
-    text-align: center;
-}
-
-/* 카테고리 css 설정 */
-.form_section_content select {		
-    width: 92%;
-    height: 35px;
-    font-size: 20px;
-    text-align-last: center;
-    margin-left: 5px;
-}
-.cate_wrap span {
-    font-weight: 600;
-}
-.cate_wrap:not(:first-child) {
-    margin-top: 20px;
+.input_block{
+	background-color:#f9f9f9;	
 }
 
 /* 입력란 공란 경고 태그 */
-.ck_warn{						
+.form_section_content span{	
 	display: none;
     padding-top: 10px;
     text-align: center;
     color: #e05757;
     font-weight: 300;    
 }
-
+	
 /* 버튼 영역 */
 .btn_section{
 	text-align: center;
 	margin: 40px 0;
 }
 .btn{
-    min-width: 180px;
+    min-width: 180px; 
     padding: 4px 30px;
     font-size: 25px;
     font-weight: 600;
     line-height: 40px;
 }
-.enroll_btn{
-	background-color: #dbdde2;
+.modify_btn{
 	margin-left:15px;
 }
-#enrollBtn:hover {
-    background-color: #c9cbd0;
-}
- 
- 
+
+
+
 /* float 속성 해제 */
 .clearfix{
-    clear: both;
+	clear: both;
 }
