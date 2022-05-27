@@ -51,8 +51,10 @@
 		updatedate=sysdate where authorId = #{authorId}
 	</update>
 	
-	
-	
+	<!-- 작가 삭제 -->
+	<delete id="authorDelete">
+		delete from book_author where authorId = #{authorId}
+	</delete>
 	
 	
 	

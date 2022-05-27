@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myport.domain.AuthorVO;
 import com.myport.domain.BookVO;
@@ -21,6 +22,7 @@ import com.myport.service.AuthorService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Log4j
 @Controller
@@ -40,8 +42,18 @@ public class AdminController {
 
 	// 상품 관리 페이지 접속
 	@GetMapping("/goodsManage")
-	public void goodsManageGET() throws Exception {
+	public void goodsManageGET(@ModelAttribute("cri") Criteria cri, Model model) throws Exception {
 		log.info("상품 관리 페이지 접속");
+		
+		List<BookVO> list = adminService.goodsGetList(cri);
+		
+		if (!list.isEmpty()) {
+			model.addAttribute("list", list);
+		} else {
+			model.addAttribute("listCheck", "empty");
+			return;
+		}
+		model.addAttribute("pageMaker", new PageDTO(cri, adminService.goodsGetTotal(cri)));
 	}
 
 	// 상품 등록 페이지 접속
@@ -61,6 +73,51 @@ public class AdminController {
 		
 //		log.info("변경 전" + list);
 //		log.info("변경 후" + cateList);
+	}
+	
+	// 상품 조회 페이지
+	@GetMapping({"/goodsDetail","/goodsModify"})
+	public void goodsGetInfoGET(int bookId, @ModelAttribute("cri") Criteria cri, Model model) throws JsonProcessingException {
+		log.info("goodsGetInfo..." + bookId);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		// 카테고리 리스트 데이터
+		model.addAttribute("cateList", mapper.writeValueAsString(adminService.cateList()));
+		
+//		model.addAttribute("cri",cri);
+		
+		model.addAttribute("goodsInfo", adminService.goodsGetDetail(bookId));
+	}
+	
+	// 상품 등록
+		@PostMapping("/goodsEnroll")
+		public String authorModifyPOST(BookVO book, RedirectAttributes rttr) throws Exception {
+			log.info("goodsEnrollPOST...." + book);
+
+			adminService.bookEnroll(book);
+
+			rttr.addFlashAttribute("enroll_result", book.getBookName());
+
+			return "redirect:/admin/goodsManage";
+		}
+	
+	// 상품 수정
+	@PostMapping("/goodsModify")
+	public String goodsModifyPOST(BookVO vo, RedirectAttributes rttr) {
+		log.info("goodsModifyPOST .." + vo);
+		int result = adminService.goodsModify(vo);
+		rttr.addFlashAttribute("modify_result", result);
+		return "redirect:/admin/goodsManage";
+	}
+	
+	// 상품 삭제
+	@PostMapping("/goodsDelete")
+	public String goodsDeletePOST(int bookId, RedirectAttributes rttr) {
+		log.info("goodsDelete..." + bookId);
+		int result = adminService.goodsDelete(bookId);
+		rttr.addFlashAttribute("delete_result", result);
+		return "redirect:/admin/goodsManage";
 	}
 
 	// 작가 등록 페이지 접속
@@ -125,16 +182,23 @@ public class AdminController {
 		return "redirect:/admin/authorManage";
 	}
 
-	// 상품 등록
-	@PostMapping("/goodsEnroll")
-	public String authorModifyPOST(BookVO book, RedirectAttributes rttr) throws Exception {
-		log.info("goodsEnrollPOST...." + book);
-
-		adminService.bookEnroll(book);
-
-		rttr.addFlashAttribute("enroll_result", book.getBookName());
-
-		return "redirect:/admin/goodsManage";
+	// 작가 삭제
+	@PostMapping("/authorDelete")
+	public String authorDeletePOST(int authorId, RedirectAttributes rttr) throws Exception{
+		log.info("authorDeletePOST..");
+		int result = 0;
+		try {
+			result = authorService.authorDelete(authorId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = 2;
+			rttr.addFlashAttribute("delete_result", result);
+			
+			return "redirect:/admin/authorManage";
+		}
+		
+		rttr.addFlashAttribute("delete_result",result);
+		return "redirect:/admin/authorManage";
 	}
 
 	// 작가 검색 팝업창

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="../resources/css/admin/authorManage.css?ver1">
+	href="../resources/css/admin/authorManage.css?ver2">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
@@ -114,6 +114,7 @@
  		checkResult(result);
  		checkmResult(mresult);
  		
+ 		// 작가 등록 결과
  		function checkResult(result){
  			if(result === ''){
  				return;
@@ -122,6 +123,7 @@
  			alert("작가'${enroll_result}' 을 등록하였습니다.");
  		}
  		
+ 		// 작가 수정 결과
  		function checkmResult(mresult){
  			if(mresult === '1'){
  				alert("작가 정부 수정을 완료하였습니다.");
@@ -129,6 +131,15 @@
  				alert("작가 정부 수정을 하지 못하였습니다.")
  			}
  		}
+ 		
+ 		/* 삭제 결과 경고창 */
+ 		let delete_result = '${delete_result}';
+ 		
+ 		if(delete_result == 1){
+ 			alert("삭제 완료");
+ 		} else if(delete_result == 2){
+ 			alert("해당 작가 데이터를 사용하고 있는 데이터가 있어서 삭제 할 수 없습니다.")
+ 		}	
  		
  	});
  	

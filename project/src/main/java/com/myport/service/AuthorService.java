@@ -17,4 +17,6 @@ public interface AuthorService {
 	
 	public int authorModify(AuthorVO author) throws Exception;
 	
+	public int authorDelete(int authorId) throws Exception;
+	
 }
