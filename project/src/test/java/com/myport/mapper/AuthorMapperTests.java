@@ -66,21 +66,31 @@ public class AuthorMapperTests {
 //	}
 	
 
-	@Test
-	public void authorModifyTest() {
-		AuthorVO author = new AuthorVO();
-		
-		author.setAuthorId(226);
-		System.out.println("수정 전...." + mapper.authorGetDetail(author.getAuthorId()));
-		
-		author.setAuthorName("수정");
-		author.setNationId("01");
-		author.setAuthorIntro("소개 수정 하였습니다.");
-		
-		mapper.authorModify(author);
-		System.out.println("수정 후 ... "  + mapper.authorGetDetail(author.getAuthorId()));
-	}
+//	@Test
+//	public void authorModifyTest() {
+//		AuthorVO author = new AuthorVO();
+//		
+//		author.setAuthorId(226);
+//		System.out.println("수정 전...." + mapper.authorGetDetail(author.getAuthorId()));
+//		
+//		author.setAuthorName("수정");
+//		author.setNationId("01");
+//		author.setAuthorIntro("소개 수정 하였습니다.");
+//		
+//		mapper.authorModify(author);
+//		System.out.println("수정 후 ... "  + mapper.authorGetDetail(author.getAuthorId()));
+//	}
 	
+	@Test
+	public void authorDeleteTest() {
+		int authorId = 226;
+		
+		int result = mapper.authorDelete(authorId);
+		
+		if(result == 1) {
+			System.out.println("삭제 성공");
+		}
+	}
 	
 	
 	

@@ -109,6 +109,65 @@ ul{
     color: white;    
 }
  
+ /* 상품 목록 영역 */
+.goods_table_wrap{
+	padding: 20px 35px
+}
+.goods_table{
+	width: 100%;
+    border: 1px solid #d3d8e1;
+    text-align: center;
+    border-collapse: collapse;
+}
+.goods_table td{
+	padding: 10px 5px;
+	border : 1px solid #e9ebf0;
+}
+.goods_table thead{
+	font-weight: bold;
+}
+.goods_table a{
+	color:#1088ed;
+	font-weight: bold;
+	text-decoration: none;
+}
+.th_column_1{
+	width:120px;
+}
+.th_column_3{
+	width:110px;
+}
+.th_column_4{
+	width:140px;
+}
+.th_column_5{
+	width:140px;
+}
+.th_column_6{
+	
+}
+	
+.table_empty{
+	height: 50px;
+    text-align: center;
+    margin: 200px 0 215px 0px;
+    font-size: 25px;
+}
+
+/* 검색 영역  */
+.search_input{
+	position: relative;
+}
+.search_btn{
+	margin-bottom: 20px;
+	margin-left: 10px;
+}
+
+
+/* 페이지 버튼 인터페이스 */
+.pagination{
+	justify-content: center;
+}
  
  
 /* float 속성 해제 */

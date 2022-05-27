@@ -41,7 +41,7 @@
 					<label>소속 국가</label>
 				</div>
 				<div class="form_section_content">
-					<select class="input_block form-select" name="nationId">
+					<select class="input_block form-select" name="nationId" disabled>
 						<option value="none" selected disabled="disabled">=== 선택
 							===</option>
 						<option value="01" disabled="disabled"

@@ -16,4 +16,54 @@
   	<select id="cateList" resultType="com.myport.domain.CateVO">
   		select * from book_category order by catecode
   	</select>
+  	
+  	<!-- 상품 리스트 -->
+  	<select id="goodsGetList" resultType="com.myport.domain.BookVO">
+  		<![CDATA[
+  			select * from(
+  				select /*+INDEX_DESC(book_product SYS_C008434)*/ rownum as rn, bookId, bookName,
+  				(select authorName from book_author where book_product.authorId = book_author.authorId) authorName,
+  				(select cateName from book_category where book_product.cateCode = book_category.cateCode) cateName,bookStock,regDate
+  				from book_product
+  				where
+  		]]>
+  			<if test="keyword != null">
+  				bookName like '%' || #{keyword} || '%' and
+  			</if>
+  		<![CDATA[
+  			rownum <= #{pageNum} * #{amount}
+  			)
+  			where rn > (#{pageNum} - 1) * #{amount}
+  		]]>
+  	</select>
+  	
+  	<!-- 상품 총 개수 -->
+  	<select id="goodsGetTotal" resultType="int">
+  		select count(*) from book_product
+  		<if test="keyword != null">
+  			where bookName like '%' || #{keyword} || '%'
+  		</if>
+  	</select>
+  	
+  	<!-- 상품 상세 -->
+  	<select id="goodsGetDetail" resultType="com.myport.domain.BookVO">
+  		select bookId, bookName, (select authorName from book_author where authorId = book_product.authorId) authorName,
+  		authorId, publeYear, publisher, cateCode, bookPrice, bookStock, bookDiscount, bookIntro, bookContents, regDate, updateDate
+  		from book_product where bookId = #{bookId}
+  	</select>
+  	
+  	<!-- 상품 수정 -->
+  	<update id="goodsModify">
+		update book_product set bookName = #{bookName}, authorId = #{authorId}, publeYear = #{publeYear}, publisher = #{publisher}, cateCode = ${cateCode}, 
+		bookPrice = #{bookPrice}, bookStock = #{bookStock}, bookDiscount = #{bookDiscount}, bookIntro = #{bookIntro}, bookContents = #{bookContents}, updateDate = sysdate
+		where bookId = ${bookId}
+	</update>
+  	
+  	<!-- 상품 삭제 -->
+  	<delete id="goodsDelete">
+  		delete from book_product where bookId = #{bookId}
+  	</delete>
+  	
+  	
+  	
 </mapper>

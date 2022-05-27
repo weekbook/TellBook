@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/admin/goodsEnroll.css?ver2">
+<link rel="stylesheet" href="../resources/css/admin/goodsEnroll.css?ver1">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <!-- 위지윅스크립트 -->
@@ -71,19 +71,19 @@
 					<div class="form_section_content">
 						<div class="cate_wrap">
 							<span>대분류</span>
-							<select class="cate1">
+							<select class="cate1 form-select" style="display: inline-block;">
 								<option selected value="none">선택</option>
 							</select>
 						</div>
 						<div class="cate_wrap">
 							<span>중분류</span>
-							<select class="cate2">
+							<select class="cate2 form-select" style="display: inline-block;">
 								<option selected value="none">선택</option>
 							</select>
 						</div>
 						<div class="cate_wrap">
 							<span>소분류</span>
-							<select class="cate3" name="cateCode">
+							<select class="cate3 form-select" name="cateCode" style="display: inline-block;">
 								<option selected value="none">선택</option>
 							</select>
 						</div> 
@@ -113,8 +113,10 @@
 						<label>상품 할인율</label>
 					</div>
 					<div class="form_section_content">
-						<input name="bookDiscount" value="0" class="form-control">
-						<span class="ck_warn bookDiscount_warn">상품 할인율을 입력해주세요.</span>
+						<input id="discount_interface" maxlength="2" value="0" class="form-control">
+						<input name="bookDiscount" type="hidden" value="0">
+						<span class="step_val">할인 가격 : <span class="span_discount"></span></span>
+						<span class="ck_warn bookDiscount_warn">0~99 숫자를 입력하세요</span>
 					</div>
 				</div>
 				<div class="form_section">
@@ -177,7 +179,7 @@
 		let cateCode = $("select[name='cateCode']").val();
 		let bookPrice = $("input[name='bookPrice']").val();
 		let bookStock = $("input[name='bookStock']").val();
-		let bookDiscount = $("input[name='bookDiscount']").val();
+		let bookDiscount = $("#discount_interface").val();
 		let bookIntro = $(".bit p").html();
 		let bookContents = $(".bct p").html();
 		
@@ -238,7 +240,7 @@
 			stockCk = false;
 		}		
 		
-		if(bookDiscount < 1 && bookDiscount != ''){
+		if(!isNaN(bookDiscount)){
 			$(".bookDiscount_warn").css('display','none');
 			discountCk = true;
 		} else {
@@ -400,6 +402,38 @@
 			if(selectVal2 === cate3Array[i].cateParent){
 				cateSelect3.append("<option value='"+cate3Array[i].cateCode+"'>" + cate3Array[i].cateName + "</option>");
 			}
+		}
+	});
+	
+	// 할인률 Input 설정
+	$("#discount_interface").on("propertychange change keyup paste input", function(){
+		
+		let userInput = $("#discount_interface");
+		let discountInput = $("input[name='bookDiscount']");
+		
+		let discountRate = userInput.val(); // 사용자가 입력한 할인값
+		let sendDiscountRate = discountRate / 100; // 서버에 전송할 할인률 계산
+		let goodsPrice = $("input[name='bookPrice']").val(); // 원가
+		let discountPrice = goodsPrice * (1 - sendDiscountRate); // 할인가격
+		
+		if(!isNaN(discountRate)){
+			$(".span_discount").html(discountPrice);
+			discountInput.val(sendDiscountRate);
+		}
+		
+	});
+	$("input[name='bookPrice']").on("change", function(){
+		
+		let userInput = $("#discount_interface");
+		let discountInput = $("input[name='bookDiscount']");
+		
+		let discountRate = userInput.val(); // 사용자가 입력한 할인값
+		let sendDiscountRate = discountRate / 100; // 서버에 전송할 할인률 계산
+		let goodsPrice = $("input[name='bookPrice']").val(); // 원가
+		let discountPrice = goodsPrice * (1 - sendDiscountRate); // 할인가격
+		
+		if(!isNaN(discountRate)){
+			$(".span_discount").html(discountPrice);
 		}
 	});
 	
