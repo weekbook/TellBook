@@ -15,8 +15,9 @@
    <!-- Application Loggers -->
    <!-- TRACE > DEBUG > INFO > WARN > ERROR > FATAL -->
    <logger name="jdbc.audit">
-      <level value="fatal" />
+      <level value="error" />
    </logger>
+   
 
    <logger name="jdbc.resultset">
       <level value="warn" />

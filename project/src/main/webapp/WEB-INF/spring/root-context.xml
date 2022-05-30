@@ -31,6 +31,8 @@
     	<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
+	<tx:annotation-driven/>
+	
 	<!-- navermail설정 -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
      <property name="host" value="smtp.naver.com"/> <!-- 메이서버 호스트 -->
@@ -51,8 +53,6 @@
      </property>
     </bean>
 	
-
-
 	<mybatis-spring:scan
 		base-package="com.myport.mapper" />
 	<!-- 특정 패키지를 스캔하여 필용한 내용은 메모리에 업로드 -->

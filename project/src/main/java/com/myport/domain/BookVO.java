@@ -1,6 +1,7 @@
 package com.myport.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -55,4 +56,8 @@ public class BookVO {
 	
 	/* 수정 날짜 */
 	private Date updateDate;
+	
+	// 이미지 정보
+	private List<AttachImageVO> imageList;
+	
 }

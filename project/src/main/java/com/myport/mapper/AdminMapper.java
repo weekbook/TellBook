@@ -2,6 +2,7 @@ package com.myport.mapper;
 
 import java.util.List;
 
+import com.myport.domain.AttachImageVO;
 import com.myport.domain.BookVO;
 import com.myport.domain.CateVO;
 import com.myport.domain.Criteria;
@@ -30,4 +31,6 @@ public interface AdminMapper {
 	// 상품 삭제
 	public int goodsDelete(int bookId);
 
+	// 이미지 등록
+	public void imageEnroll(AttachImageVO vo);
 }

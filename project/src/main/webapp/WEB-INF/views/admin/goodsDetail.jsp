@@ -7,10 +7,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/admin/goodsDetail.css?ver1">
+<link rel="stylesheet"
+	href="../resources/css/admin/goodsDetail.css?ver1">
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/classic/ckeditor.js"></script>
+<style type="text/css">
+	#result_card img{
+		max-width: 100%;
+	    height: auto;
+	    display: block;
+	    padding: 5px;
+	    margin-top: 10px;
+	    margin: auto;	
+	}
+</style>
 </head>
 <body>
 	<%@include file="../includes/header.jsp"%>
@@ -55,8 +66,8 @@
 					<label>작가</label>
 				</div>
 				<div class="form_section_content">
-					<input class="form-control" id="authorName_input" readonly="readonly"
-						value="${goodsInfo.authorName }" disabled>
+					<input class="form-control" id="authorName_input"
+						readonly="readonly" value="${goodsInfo.authorName }" disabled>
 
 				</div>
 			</div>
@@ -65,7 +76,8 @@
 					<label>출판일</label>
 				</div>
 				<div class="form_section_content">
-					<input class="form-control" name="publeYear" autocomplete="off" readonly="readonly"
+					<input class="form-control" name="publeYear" autocomplete="off"
+						readonly="readonly"
 						value="<c:out value="${goodsInfo.publeYear}"/>" disabled>
 				</div>
 			</div>
@@ -84,17 +96,20 @@
 				</div>
 				<div class="form_section_content">
 					<div class="cate_wrap">
-						<span>대분류</span> <select class="cate1 form-select"  style="display: inline-block;" disabled>
+						<span>대분류</span> <select class="cate1 form-select"
+							style="display: inline-block;" disabled>
 							<option value="none">선택</option>
 						</select>
 					</div>
 					<div class="cate_wrap">
-						<span>중분류</span> <select class="cate2 form-select" style="display: inline-block;"  disabled>
+						<span>중분류</span> <select class="cate2 form-select"
+							style="display: inline-block;" disabled>
 							<option value="none">선택</option>
 						</select>
 					</div>
 					<div class="cate_wrap">
-						<span>소분류</span> <select class="cate3 form-select" style="display: inline-block;"  name="cateCode" disabled>
+						<span>소분류</span> <select class="cate3 form-select"
+							style="display: inline-block;" name="cateCode" disabled>
 							<option value="none">선택</option>
 						</select>
 					</div>
@@ -123,7 +138,8 @@
 					<label>상품 할인율</label>
 				</div>
 				<div class="form_section_content">
-					<input class="form-control" id="discount_interface" maxlength="2" disabled>
+					<input class="form-control" id="discount_interface" maxlength="2"
+						disabled>
 				</div>
 			</div>
 			<div class="form_section">
@@ -142,6 +158,18 @@
 					<textarea name="bookContents" id="bookContents_textarea" disabled>${goodsInfo.bookContents}</textarea>
 				</div>
 			</div>
+			
+			<div class="form_section">
+				<div class="form_section_title">
+					<label>상품 이미지</label>
+				</div>
+				<div class="form_section_content">
+
+					<div id="uploadResult">
+					
+					</div>
+				</div>
+			</div>
 
 			<div class="btn_section">
 				<button id="cancelBtn" class="btn btn-primary">상품 목록</button>
@@ -151,9 +179,9 @@
 
 
 		<form id="moveForm" action="/admin/goodsManage" method="get">
-			<input type="hidden" name="pageNum" value="${cri.pageNum}">
-			<input type="hidden" name="amount" value="${cri.amount}">
-			<input type="hidden" name="keyword" value="${cri.keyword}">
+			<input type="hidden" name="pageNum" value="${cri.pageNum}"> <input
+				type="hidden" name="amount" value="${cri.amount}"> <input
+				type="hidden" name="keyword" value="${cri.keyword}">
 		</form>
 
 	</div>
@@ -283,6 +311,35 @@
 			if(targetCate2.cateParent === obj.value){
 				$(obj).attr("selected", "selected");
 			}
+		});
+		
+		// 이미지 정보 호출
+		let bookId = '<c:out value="${goodsInfo.bookId}"/>';
+		let uploadResult = $("#uploadResult");
+		
+		$.getJSON("/getAttachList", {bookId : bookId}, function(arr) {
+			
+			if(arr.length === 0 ){
+				let str = "";
+				str += "<div id='result_card'>";
+				str += "<img src='/resources/img/goodsNoImage.png'>";
+				str += "</div>";
+				
+				uploadResult.html(str);	
+				
+				return;
+			}
+			
+			let str = "";
+			let obj = arr[0];
+			
+			let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+			str += "<div id='result_card'";
+			str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'";
+			str += ">";
+			str += "<img src='/display?fileName=" + fileCallPath +"'>";
+			str += "</div>";
+			uploadResult.html(str);
 		});
 		
 		// 목록 이동 버튼
