@@ -3,6 +3,7 @@ package com.myport.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.myport.domain.BookVO;
 import com.myport.domain.CateVO;
@@ -19,10 +20,20 @@ public class AdminServiceImpl implements AdminService{
 	
 	private AdminMapper adminmapper;
 
+	@Transactional
 	@Override
 	public void bookEnroll(BookVO book) {
 		log.info("service bookEnroll");
 		adminmapper.bookEnroll(book);
+		
+		if(book.getImageList() == null || book.getImageList().size() <= 0 ) {
+			return;
+		}
+		
+		book.getImageList().forEach(attach ->{
+			attach.setBookId(book.getBookId());
+			adminmapper.imageEnroll(attach);
+		});
 	}
 
 	@Override
