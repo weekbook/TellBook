@@ -12,10 +12,13 @@ import lombok.ToString;
 public class Criteria {
 	private int pageNum; // 현재 페이지
 	private int amount; // 한 페이지에 보여지는 페이징 개수
-	// 페이징 필드값
-
+	
 	private String type; // 검색 타입(내용, 제목, 작성자)
 	private String keyword; // 검색어(검색 키워드)
+	
+	private String[] authorArr; // 작가 리스트
+	private String cateCode; // 카테고리 코드
+	
 
 	public Criteria() { // 페이징 디폴트값
 		this(1, 10);

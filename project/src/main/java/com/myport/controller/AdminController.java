@@ -1,11 +1,14 @@
 package com.myport.controller;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,15 +17,21 @@ import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -40,7 +49,6 @@ import com.myport.service.AuthorService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnails;
-import oracle.jdbc.proxy.annotation.Post;
 
 @Log4j
 @Controller
@@ -133,6 +141,26 @@ public class AdminController {
 	@PostMapping("/goodsDelete")
 	public String goodsDeletePOST(int bookId, RedirectAttributes rttr) {
 		log.info("goodsDelete..." + bookId);
+		
+		List<AttachImageVO> fileList = adminService.getAttachInfo(bookId);
+		if(fileList != null) {
+			List<Path> pathList = new ArrayList();
+			
+			fileList.forEach(vo ->{
+				// 원본 이미지
+				Path path = Paths.get("C:\\upload", vo.getUploadPath(), vo.getUuid() + "_" + vo.getFileName());
+				pathList.add(path);
+				
+				// 섬네일 이미지
+				path = Paths.get("C:\\upload", vo.getUploadPath(), "s_" + vo.getUuid() + "_" + vo.getFileName());
+				pathList.add(path);
+			});
+			
+			pathList.forEach(path ->{
+				path.toFile().delete();
+			});
+		}
+		
 		int result = adminService.goodsDelete(bookId);
 		rttr.addFlashAttribute("delete_result", result);
 		return "redirect:/admin/goodsManage";
@@ -237,7 +265,7 @@ public class AdminController {
 	}
 
 	// 첨부 파일 업로드
-	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AttachImageVO>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {
 		log.info("uploadAjaxActionPOST..");
 		
@@ -275,7 +303,7 @@ public class AdminController {
 		}
 		
 		// 이미지 정보 담는 객체
-		List<AttachImageVO> list = new ArrayList();
+		List<AttachImageVO> list = new ArrayList<>();
 		
 		for(MultipartFile multipartFile : uploadFile) {
 			// 이미지 정보 객체
@@ -291,11 +319,11 @@ public class AdminController {
 			vo.setUuid(uuid);
 			uploadFileName = uuid + "_" + uploadFileName;
 			
-			// 파일 위치, 파일 이름을 합친 File 객체
-			File saveFile = new File(uploadPath, uploadFileName);
 			
 			// 파일 저장
 			try {
+				// 파일 위치, 파일 이름을 합친 File 객체
+				File saveFile = new File(uploadPath, uploadFileName);
 				multipartFile.transferTo(saveFile);
 				
 				// 썸네일 생성(ImageIO)
@@ -366,15 +394,6 @@ public class AdminController {
 		
 		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

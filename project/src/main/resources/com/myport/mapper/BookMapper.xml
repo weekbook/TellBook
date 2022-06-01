@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myport.mapper.BookMapper">
+
+	<!-- criteria(검색조건) -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="AND">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="AND">
+					<choose>
+						<when test="type == 'A'.toString()">
+							<trim prefixOverrides="or">
+								<foreach collection="authorArr" item="authorId">
+									<trim prefix="or">
+										authorId = #{authorId}
+									</trim>
+								</foreach>
+							</trim>
+						</when>
+						<when test="type == 'C'.toString()">
+							cateCode like '%' || #{cateCode} || '%'
+						</when>
+						<when test="type == 'T'.toString()">
+							bookName like '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+
+	<!-- 상품 검색 -->
+	<select id="getGoodsList" resultType="com.myport.domain.BookVO">
+	
+		<![CDATA[
+		    select * from(
+		        select /*+INDEX_DESC(book_product SYS_C008434)*/ rownum as rn, bookId, bookName,
+		            (select authorName from book_author where book_product.authorId = book_author.authorId) authorName, authorId,
+		            (select cateName from book_category where book_product.cateCode = book_category.cateCode) cateName,cateCode, publisher, publeYear, bookPrice, bookDiscount
+		        from book_product
+		        where 
+	    ]]>
+
+		<include refid="criteria"></include>
+	    
+	    <![CDATA[
+	    		        
+		        rownum <= #{pageNum} * #{amount} 
+	        	)
+	        where rn > (#{pageNum} -1) * #{amount}
+		]]>
+
+	</select>
+
+	<!-- 상품 총 개수 -->
+	<select id="goodsGetTotal" resultType="int">
+		select count(*) from book_product
+		where
+		<include refid="criteria"></include>
+		bookId > 0
+	</select>
+
+	<!-- 작가 id 리스트 요청 -->
+	<select id="getAuthorIdList" resultType="String">
+		select authorid from
+		book_author where authorName like '%' || #{keyword} || '%'
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
