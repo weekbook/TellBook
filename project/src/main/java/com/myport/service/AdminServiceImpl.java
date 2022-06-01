@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.myport.domain.AttachImageVO;
 import com.myport.domain.BookVO;
 import com.myport.domain.CateVO;
 import com.myport.domain.Criteria;
@@ -60,16 +61,37 @@ public class AdminServiceImpl implements AdminService{
 		return adminmapper.goodsGetDetail(bookId);
 	}
 
+	@Transactional
 	@Override
 	public int goodsModify(BookVO book) {
-		log.info("service modify");
-		return adminmapper.goodsModify(book);
+		int result = adminmapper.goodsModify(book);
+		
+		if(result == 1 && book.getImageList() != null && book.getImageList().size() > 0) {
+			adminmapper.deleteImageAll(book.getBookId());
+			
+			book.getImageList().forEach(attach -> {
+				attach.setBookId(book.getBookId());
+				adminmapper.imageEnroll(attach);
+			});
+		}
+		
+		return result;
 	}
 
 	@Override
+	@Transactional
 	public int goodsDelete(int bookId) {
 		log.info("service delete");
+		
+		adminmapper.deleteImageAll(bookId);
+		
 		return adminmapper.goodsDelete(bookId);
+	}
+
+	@Override
+	public List<AttachImageVO> getAttachInfo(int bookId) {
+		log.info("getAttachInfo..");
+		return adminmapper.getAttachInfo(bookId);
 	}
 	
 	
