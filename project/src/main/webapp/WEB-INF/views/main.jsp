@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Welcome BookMall</title>
+<link rel="stylesheet" href="resources/css/main.css?ver2">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" href="resources/css/main.css">
 </head>
 <body>
 
@@ -40,10 +40,9 @@
 						<form id="searchForm" action="/search" method="get">
 							<div class="search_input">
 								<select class="form-select" name="type">
-                					<option value="T">책 제목</option>
-                					<option value="A">작가</option>
-                				</select>
-								<input type="text" name="keyword" class="form-control">
+									<option value="T">책 제목</option>
+									<option value="A">작가</option>
+								</select> <input type="text" name="keyword" class="form-control">
 								<button class='btn search_btn btn-success'>검 색</button>
 							</div>
 						</form>
@@ -72,14 +71,32 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="navi_bar_area">
-				<h1>navi area</h1>
+				<div class="dropdown">
+				    <button class="dropbtn">국내 
+				      <i class="fa fa-caret-down"></i>
+				    </button>
+				    <div class="dropdown-content">
+				    	<c:forEach items="${cate1}" var="cate"> 
+				    		<a href="search?type=C&cateCode=${cate.cateCode}">${cate.cateName}</a>
+				    	</c:forEach> 
+				    </div>			
+				</div>
+				<div class="dropdown">
+				    <button class="dropbtn">국외 
+				      <i class="fa fa-caret-down"></i>
+				    </button>
+				    <div class="dropdown-content">
+				    	<c:forEach items="${cate2}" var="cate"> 
+				    		<a href="search?type=C&cateCode=${cate.cateCode}">${cate.cateName}</a>
+				    	</c:forEach>      		      		      
+				    </div>			
+				</div>
 			</div>
 			<div class="content_area">
 				<h1>content area</h1>
 			</div>
-
-			<%@ include file="includes/footer.jsp"%>
 		</div>
+		<%-- <%@ include file="includes/footer.jsp"%> --%>
 	</div>
 
 	<script>

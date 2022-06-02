@@ -521,7 +521,7 @@
 	
 	// 파일 체크
 	let regex = new RegExp("(.*?)\.(jpg|png)$");
-	let maxSize = 1048576; // 1MB
+	let maxSize = 2097152; // 1MB
 	
 	function fileCheck(fileName, fileSize) {
 		if(fileSize >= maxSize){

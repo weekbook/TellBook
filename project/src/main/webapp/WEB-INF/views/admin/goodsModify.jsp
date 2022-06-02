@@ -594,7 +594,7 @@
 		
 	/* var, method related with attachFile */
 	let regex = new RegExp("(.*?)\.(jpg|png)$");
-	let maxSize = 1048576; //1MB	
+	let maxSize = 2097152; //1MB	
 	
 	function fileCheck(fileName, fileSize){
 
@@ -624,9 +624,9 @@
 		
 		let str = "";
 		
-		let fileCallPath = encodeURIComponent(obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName);
+		//let fileCallPath = encodeURIComponent(obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName);
 		//replace 적용 하지 않아도 가능
-		//let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+		let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
 		
 		str += "<div id='result_card'>";
 		str += "<img src='/display?fileName=" + fileCallPath +"'>";
