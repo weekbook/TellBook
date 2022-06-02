@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.myport.domain.AttachImageVO;
 import com.myport.domain.BookVO;
+import com.myport.domain.CateFilterDTO;
+import com.myport.domain.CateVO;
 import com.myport.domain.Criteria;
 import com.myport.mapper.AttachMapper;
 import com.myport.mapper.BookMapper;
@@ -20,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 public class BookServiceImpl implements BookService {
 
 	private BookMapper bookMapper;
-	
+
 	private AttachMapper attachMapper;
 
 	// 상품 검색
@@ -31,7 +33,7 @@ public class BookServiceImpl implements BookService {
 		String type = cri.getType();
 		String[] typeArr = type.split("");
 		String[] authorArr = bookMapper.getAuthorIdList(cri.getKeyword());
-		
+
 		log.info("authorArr : " + authorArr);
 
 		if (type.equals("A") || type.equals("AC") || type.equals("AT") || type.equals("ACT")) {
@@ -47,16 +49,15 @@ public class BookServiceImpl implements BookService {
 		}
 
 		List<BookVO> list = bookMapper.getGoodsList(cri);
-		
+
 		list.forEach(book -> {
 			int bookId = book.getBookId();
-			
+
 			List<AttachImageVO> imageList = attachMapper.getAttachList(bookId);
-			
+
 			book.setImageList(imageList);
 		});
-		
-		
+
 		return list;
 	}
 
@@ -65,5 +66,50 @@ public class BookServiceImpl implements BookService {
 	public int goodsGetTotal(Criteria cri) {
 		log.info("getGoodsTotal");
 		return bookMapper.goodsGetTotal(cri);
+	}
+
+	@Override
+	public List<CateVO> getCateCode1() {
+		log.info("getCateCode");
+		return bookMapper.getCateCode1();
+	}
+
+	@Override
+	public List<CateVO> getCateCode2() {
+		log.info("getCateCode210");
+		return bookMapper.getCateCode2();
+	}
+
+	@Override
+	public List<CateFilterDTO> getCateInfoList(Criteria cri) {
+		log.info("getCateInfoList..");
+		List<CateFilterDTO> filterInfoList = new ArrayList<CateFilterDTO>();
+
+		String[] typeArr = cri.getType().split("");
+		String[] authorArr;
+
+		for (String type : typeArr) {
+			if (type.equals("A")) {
+				authorArr = bookMapper.getAuthorIdList(cri.getKeyword());
+				if(authorArr.length == 0) {
+					return filterInfoList;
+				}
+				cri.setAuthorArr(authorArr);
+			}
+		}
+
+		String[] cateList = bookMapper.getCateList(cri);
+
+		String tempCateCode = cri.getCateCode();
+
+		for (String cateCode : cateList) {
+			cri.setCateCode(cateCode);
+			CateFilterDTO filterInfo = bookMapper.getCateInfo(cri);
+			filterInfoList.add(filterInfo);
+		}
+
+		cri.setCateCode(tempCateCode);
+
+		return filterInfoList;
 	}
 }

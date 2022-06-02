@@ -46,26 +46,26 @@ public class BookMapperTests {
 //	}
 	
 	/* 검색 (동적 쿼리 적용) - 작가*/
-	@Test 
-	public void getGoodsListTest1() {
-		//
-		Criteria cri = new Criteria();
-		String type = "A";
-		//String keyword = "수정123";		// DB에 등록된 작가 데이터
-		String keyword = "없음";		// DB에 등록된 작가 데이터
-		String catecode = "";
-		
-		cri.setType(type);
-		cri.setKeyword(keyword);
-		cri.setAuthorArr(mapper.getAuthorIdList(keyword));
-		cri.setCateCode(catecode);
-		
-		List<BookVO> list = mapper.getGoodsList(cri);
-		
-		System.out.println("cri : " + cri);
-		System.out.println("list : " + list);
-		
-	}
+//	@Test 
+//	public void getGoodsListTest1() {
+//		//
+//		Criteria cri = new Criteria();
+//		String type = "A";
+//		//String keyword = "수정123";		// DB에 등록된 작가 데이터
+//		String keyword = "없음";		// DB에 등록된 작가 데이터
+//		String catecode = "";
+//		
+//		cri.setType(type);
+//		cri.setKeyword(keyword);
+//		cri.setAuthorArr(mapper.getAuthorIdList(keyword));
+//		cri.setCateCode(catecode);
+//		
+//		List<BookVO> list = mapper.getGoodsList(cri);
+//		
+//		System.out.println("cri : " + cri);
+//		System.out.println("list : " + list);
+//		
+//	}
 	
 	
 	/* 검색 (동적 쿼리 적용) - 책제목*/
@@ -157,10 +157,47 @@ public class BookMapperTests {
 //	}
 	
 	
+	/* 카테고리 리스트 */
+//	@Test
+//	public void getCateListTest1() {
+//		
+//		Criteria cri = new Criteria();
+//		
+//		String type = "TC";
+//		String keyword = "셜록";
+//		//String type = "A";
+//		//String keyword = "유홍준";		
+//
+//		cri.setType(type);
+//		cri.setKeyword(keyword);
+//		//cri.setAuthorArr(mapper.getAuthorIdList(keyword));		
+//		
+//		String[] cateList = mapper.getCateList(cri)		;
+//		for(String codeNum : cateList) {
+//			System.out.println("codeNum ::::: " + codeNum);
+//		}
+//		
+//		
+//	}
 	
 	
-	
-	
+	/* 카테고리 정보 얻기 */	
+	@Test
+	public void getCateInfoTest1() {
+		
+		Criteria cri = new Criteria();
+		
+		String type = "TC";
+		String keyword = "셜록";	
+		String cateCode="201001";
+
+		cri.setType(type);
+		cri.setKeyword(keyword);
+		cri.setCateCode(cateCode);
+		
+		mapper.getCateInfo(cri);
+		
+	}
 	
 	
 	
