@@ -2,6 +2,7 @@ package com.myport.controller;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -298,6 +299,7 @@ public class AdminController {
 		
 		// 폴더 생성
 		File uploadPath = new File(uploadFolder, datePath);
+		log.info(uploadPath);
 		if(uploadPath.exists()== false) {
 			uploadPath.mkdir();
 		}
@@ -325,6 +327,8 @@ public class AdminController {
 				// 파일 위치, 파일 이름을 합친 File 객체
 				File saveFile = new File(uploadPath, uploadFileName);
 				multipartFile.transferTo(saveFile);
+				log.info("test" + uploadPath);
+				log.info("test" + uploadFileName);
 				
 				// 썸네일 생성(ImageIO)
 //				File thumbnailFile = new File(uploadPath, "s_" + uploadFileName);
@@ -357,7 +361,9 @@ public class AdminController {
 				
 				Thumbnails.of(saveFile).size(width, height).toFile(thumbnailFile);
 				
-			} catch (Exception e) {
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			list.add(vo);
