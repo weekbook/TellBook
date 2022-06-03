@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myport.mapper.AdminMapper">
+	
+	<!-- 작가 등록 -->
+  	<insert id="bookEnroll">
+  		
+  		<!-- 등록 메서드 수행 후 등록한 bookID 컬럼 값을 파라미터로 전달된 BookVO객체의 bookId 뱐수에 반환하기 위해 사용 -->
+  		<selectKey resultType="int" keyProperty="bookId" order="AFTER">
+  			SELECT ISEQ$$_81894.CURRVAL FROM DUAL
+  		</selectKey>
+  	
+  		insert into book_product(bookName, authorId, publeYear, publisher, cateCode, bookPrice, bookStock, bookDiscount, bookIntro, bookContents)
+		values(#{bookName},#{authorId}, #{publeYear},#{publisher},#{cateCode},#{bookPrice},#{bookStock},#{bookDiscount},#{bookIntro},#{bookContents})
+
+  	</insert>
+  	
+  	<!-- 카테고리 리스트 -->
+  	<select id="cateList" resultType="com.myport.domain.CateVO">
+  		select * from book_category order by catecode
+  	</select>
+  	
+  	<!-- 상품 리스트 -->
+  	<select id="goodsGetList" resultType="com.myport.domain.BookVO">
+  		<![CDATA[
+  			select * from(
+  				select /*+INDEX_DESC(book_product SYS_C008434)*/ rownum as rn, bookId, bookName,
+  				(select authorName from book_author where book_product.authorId = book_author.authorId) authorName,
+  				(select cateName from book_category where book_product.cateCode = book_category.cateCode) cateName,bookStock,regDate
+  				from book_product
+  				where
+  		]]>
+  			<if test="keyword != null">
+  				bookName like '%' || #{keyword} || '%' and
+  			</if>
+  		<![CDATA[
+  			rownum <= #{pageNum} * #{amount}
+  			)
+  			where rn > (#{pageNum} - 1) * #{amount}
+  		]]>
+  	</select>
+  	
+  	<!-- 상품 총 개수 -->
+  	<select id="goodsGetTotal" resultType="int">
+  		select count(*) from book_product
+  		<if test="keyword != null">
+  			where bookName like '%' || #{keyword} || '%'
+  		</if>
+  	</select>
+  	
+  	<!-- 상품 상세 -->
+  	<select id="goodsGetDetail" resultType="com.myport.domain.BookVO">
+  		select bookId, bookName, (select authorName from book_author where authorId = book_product.authorId) authorName,
+  		authorId, publeYear, publisher, cateCode, bookPrice, bookStock, bookDiscount, bookIntro, bookContents, regDate, updateDate
+  		from book_product where bookId = #{bookId}
+  	</select>
+  	
+  	<!-- 상품 수정 -->
+  	<update id="goodsModify">
+		update book_product set bookName = #{bookName}, authorId = #{authorId}, publeYear = #{publeYear}, publisher = #{publisher}, cateCode = ${cateCode}, 
+		bookPrice = #{bookPrice}, bookStock = #{bookStock}, bookDiscount = #{bookDiscount}, bookIntro = #{bookIntro}, bookContents = #{bookContents}, updateDate = sysdate
+		where bookId = ${bookId}
+	</update>
+  	
+  	<!-- 상품 삭제 -->
+  	<delete id="goodsDelete">
+  		delete from book_product where bookId = #{bookId}
+  	</delete>
+  	
+  	<!-- 이미지 등록  -->
+  	<insert id="imageEnroll">
+  		insert into book_image(bookId, fileName, uploadPath, uuid) values (#{bookId},#{fileName},#{uploadPath},#{uuid})
+  	</insert>
+  	
+  	<!-- 지정 상품 이미지 전체 삭제 --> 
+	<delete id="deleteImageAll">
+		delete FROM book_image where bookId = #{bookId}
+	</delete>
+	
+	<!-- 어제자 날자 이미지 리스트 -->
+	<select id="checkFileList" resultType="com.myport.domain.AttachImageVO">
+		select * from book_image where uploadpath = to_char(sysdate -1, 'yyyy\mm\dd')	
+	</select>
+	
+	<!-- 지정 상품 이미지 정보 얻기 -->
+	<select id="getAttachInfo" resultType="com.myport.domain.AttachImageVO">
+		select * from book_image where bookId = #{bookId}
+	</select>
+  	
+</mapper>

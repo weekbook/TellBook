@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myport.mapper.AuthorMapper">
+	<!-- 작가 등록 -->
+	<insert id="authorEnroll">
+		insert into book_author(authorName, nationId, authorIntro)
+		values(#{authorName},#{nationId}, #{authorIntro})
+	</insert>
+
+	<!-- 작가 목록 -->
+	<select id="authorGetList"
+		resultType="com.myport.domain.AuthorVO">
+ 		<![CDATA[
+          select * from (
+              select /*+INDEX_DESC(book_author SYS_C008426) */ 
+                  rownum as rn, authorid, authorname, nationid, regdate, updatedate
+            from book_author 
+            where
+             
+    ]]>
+		<if test="keyword != null">
+			authorname like '%'||#{keyword}||'%' and
+		</if>
+            
+    <![CDATA[        
+             rownum <= #{pageNum}*#{amount}
+            )
+        where rn > (#{pageNum} - 1) * #{amount}
+      ]]>
+	</select>
+	
+	<!-- 작가 total -->
+	<select id="authorGetTotal" resultType="int">
+		select count(*) from book_author
+		<if test="keyword != null">
+			where authorname like '%' || #{keyword} || '%'
+		</if>
+	</select>
+	
+	<!-- 작가 상세 페이지 -->
+	<select id="authorGetDetail" resultType="com.myport.domain.AuthorVO">
+		select * from book_author where authorId = #{authorId}
+	</select>
+	
+	
+	<!-- 작가 정보 수정 -->
+	<update id="authorModify">
+		update book_author set authorName=#{authorName}, nationId=#{nationId}, authorIntro=#{authorIntro}, 
+		updatedate=sysdate where authorId = #{authorId}
+	</update>
+	
+	<!-- 작가 삭제 -->
+	<delete id="authorDelete">
+		delete from book_author where authorId = #{authorId}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
