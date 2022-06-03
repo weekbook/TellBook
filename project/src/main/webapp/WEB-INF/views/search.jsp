@@ -25,7 +25,9 @@
 						</c:if>
 						<li><a id="gnb_logout_button">로그아웃</a></li>
 						<li>마이룸</li>
-						<li>장바구니</li>
+						<li>
+							<a href="/cart/${member.memberId}">장바구니</a>
+						</li>
 					</c:if>
 					<li>고객센터</li>
 				</ul>
@@ -120,7 +122,11 @@
 										</td>
 										<td class="detail">
 											<div class="category">[${list.cateName}]</div>
-											<div class="title">${list.bookName}</div>
+											<div class="title">
+												<a href="/goodsDetail/${list.bookId }">
+													${list.bookName}
+												</a>
+											</div>
 											<div class="author">
 												<fmt:parseDate var="publeYear" value="${list.publeYear}" pattern="yyyy-MM-dd" />
 											${list.authorName}지음| ${list.publisher} | <fmt:formatDate value="${publeYear}" pattern="yyyy-MM-dd"/>

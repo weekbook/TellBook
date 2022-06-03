@@ -10,6 +10,7 @@ import com.myport.domain.BookVO;
 import com.myport.domain.CateFilterDTO;
 import com.myport.domain.CateVO;
 import com.myport.domain.Criteria;
+import com.myport.mapper.AdminMapper;
 import com.myport.mapper.AttachMapper;
 import com.myport.mapper.BookMapper;
 
@@ -24,6 +25,8 @@ public class BookServiceImpl implements BookService {
 	private BookMapper bookMapper;
 
 	private AttachMapper attachMapper;
+	
+	private AdminMapper adminMapper;
 
 	// 상품 검색
 	@Override
@@ -76,7 +79,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<CateVO> getCateCode2() {
-		log.info("getCateCode210");
+		log.info("getCateCode2");
 		return bookMapper.getCateCode2();
 	}
 
@@ -111,5 +114,13 @@ public class BookServiceImpl implements BookService {
 		cri.setCateCode(tempCateCode);
 
 		return filterInfoList;
+	}
+
+	@Override
+	public BookVO getGoodsInfo(int bookId) {
+		BookVO goodsInfo = bookMapper.getGoodsInfo(bookId);
+		goodsInfo.setImageList(adminMapper.getAttachInfo(bookId));
+		
+		return goodsInfo;
 	}
 }

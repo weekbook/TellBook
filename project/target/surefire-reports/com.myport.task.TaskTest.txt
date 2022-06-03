@@ -1,35 +1,22 @@
 -------------------------------------------------------------------------------
 Test set: com.myport.task.TaskTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.706 sec <<< FAILURE!
-taskTests(com.myport.task.TaskTest)  Time elapsed: 0.149 sec  <<< ERROR!
-org.springframework.jdbc.BadSqlGrammarException: 
-### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-### The error may exist in com/myport/mapper/AdminMapper.xml
-### The error may involve defaultParameterMap
-### The error occurred while setting parameters
-### SQL: select * from book_image where uploadpath = to_char(sysdate -1, 'yyyy\mm\dd')
-### Cause: java.sql.SQLSyntaxErrorException: ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:239)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
-	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:91)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:441)
-	at jdk.proxy2/jdk.proxy2.$Proxy36.selectList(Unknown Source)
-	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224)
-	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147)
-	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80)
-	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:145)
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.642 sec <<< FAILURE!
+taskTests(com.myport.task.TaskTest)  Time elapsed: 0.017 sec  <<< ERROR!
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.myport.mapper.AdminMapper.checkFileList
+	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:235)
+	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53)
+	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:108)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1705)
+	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:35)
+	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:95)
 	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy2/jdk.proxy2.$Proxy37.checkFileList(Unknown Source)
+	at com.sun.proxy.$Proxy37.checkFileList(Unknown Source)
 	at com.myport.task.TaskTest.taskTests(TaskTest.java:43)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
@@ -55,52 +42,12 @@ org.springframework.jdbc.BadSqlGrammarException:
 	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
 	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
 	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
 	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: java.sql.SQLSyntaxErrorException: ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:628)
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:562)
-	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1145)
-	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:726)
-	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:291)
-	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:492)
-	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:148)
-	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:928)
-	at oracle.jdbc.driver.OracleStatement.prepareDefineBufferAndExecute(OracleStatement.java:1158)
-	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:1093)
-	at oracle.jdbc.driver.OracleStatement.executeSQLSelect(OracleStatement.java:1402)
-	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1285)
-	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3735)
-	at oracle.jdbc.driver.OraclePreparedStatement.execute(OraclePreparedStatement.java:3933)
-	at oracle.jdbc.driver.OraclePreparedStatementWrapper.execute(OraclePreparedStatementWrapper.java:1010)
-	at net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy.execute(PreparedStatementSpy.java:443)
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64)
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
-	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
-	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
-	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:89)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:151)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:145)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
-	... 45 more
-Caused by: Error : 942, Position : 14, Sql = select * from book_image where uploadpath = to_char(sysdate -1, 'yyyy\mm\dd'), OriginalSql = select * from book_image where uploadpath = to_char(sysdate -1, 'yyyy\mm\dd'), Error Msg = ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:632)
-	... 77 more
 

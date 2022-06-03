@@ -9,7 +9,7 @@
   		
   		<!-- 등록 메서드 수행 후 등록한 bookID 컬럼 값을 파라미터로 전달된 BookVO객체의 bookId 뱐수에 반환하기 위해 사용 -->
   		<selectKey resultType="int" keyProperty="bookId" order="AFTER">
-  			SELECT ISEQ$$_81894.CURRVAL FROM DUAL
+  			SELECT ISEQ$$_80092.CURRVAL FROM DUAL
   		</selectKey>
   	
   		insert into book_product(bookName, authorId, publeYear, publisher, cateCode, bookPrice, bookStock, bookDiscount, bookIntro, bookContents)

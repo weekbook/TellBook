@@ -131,7 +131,14 @@
   		</foreach>
   		group by a.cateCode, b.cateName
 	</select>
-
+	
+	<!-- 상품 정보 -->
+	<select id="getGoodsInfo" resultType="com.myport.domain.BookVO">
+			select a.BOOKID, a.BOOKNAME, a.AUTHORID, b.AUTHORNAME, a.PUBLEYEAR, a.PUBLISHER, a.CATECODE, c.CATENAME, a.BOOKPRICE, a.BOOKSTOCK, a.BOOKDISCOUNT, a.BOOKINTRO, a.BOOKCONTENTS
+			from book_product a left outer join book_author b on a.authorId = b.authorId
+			left outer join book_category c on a.catecode = c.catecode
+			where bookid = #{bookId}	
+	</select>
 
 
 

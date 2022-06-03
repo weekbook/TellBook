@@ -33,6 +33,11 @@
 			<mapping path="/admin/**"/>
 			<beans:bean id="AdminInterceptor" class="com.myport.interceptor.AdminInterceptor"></beans:bean>
 		</interceptor>
+		<interceptor>
+			<mapping path="/cart/**"/>
+			<exclude-mapping path="/cart/add"/>
+			<beans:bean id="CartIntreceptor" class="com.myport.interceptor.AdminInterceptor"></beans:bean>
+		</interceptor>
 	</interceptors>
 	
 	<beans:bean id="multipartResolver"

@@ -301,7 +301,7 @@ public class AdminController {
 		File uploadPath = new File(uploadFolder, datePath);
 		log.info(uploadPath);
 		if(uploadPath.exists()== false) {
-			uploadPath.mkdir();
+			uploadPath.mkdirs();
 		}
 		
 		// 이미지 정보 담는 객체
