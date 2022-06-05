@@ -24,6 +24,7 @@ public class CartController {
 	
 	private CartService cartService;
 	
+	// 상품 장바구니에 추가
 	@PostMapping("/cart/add")
 	@ResponseBody
 	public String addCartPOST(CartDTO cart, HttpServletRequest request) {
@@ -39,6 +40,7 @@ public class CartController {
 		return result + "";
 	}
 
+	// 장바구니 페이지
 	@GetMapping("/cart/{memberId}")
 	public String cartPageGET(@PathVariable("memberId") String memberId, Model model) {
 		
@@ -47,11 +49,21 @@ public class CartController {
 		return "/cart";
 	}
 	
+	// 장바구니 수량 수정
+	@PostMapping("/cart/update")
+	public String updateCartPOST(CartDTO cart) {
+		cartService.modifyCount(cart);
+		return "redirect:/cart/" + cart.getMemberId();
+	}
 	
 	
-	
-	
-	
+	// 장바구니 상품 삭제
+	@PostMapping("/cart/delete")
+	public String deleteCartPOST(CartDTO cart) {
+		cartService.deleteCart(cart.getCartId());
+		
+		return "redirect:/cart/" + cart.getMemberId();
+	}
 	
 	
 	

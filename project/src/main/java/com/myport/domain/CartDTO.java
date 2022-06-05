@@ -1,5 +1,7 @@
 package com.myport.domain;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -29,6 +31,8 @@ public class CartDTO {
 	private int point;
 	
 	private int totalPoint;
+	
+	private List<AttachImageVO> imageList;
 	
 	// 할인율 및 할인 가격, 포인트 구하기
 	public void initSaleTotal() {
