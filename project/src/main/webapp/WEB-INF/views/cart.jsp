@@ -105,15 +105,20 @@
 							<c:forEach items="${cartInfo}" var="ci">
 								<tr>
 									<td class="td_width_1 cart_info_td">
-										<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
+										<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked" name="chk">
 										<input type="hidden" class="individual_bookPrice_input" value="${ci.bookPrice}">
 										<input type="hidden" class="individual_salePrice_input" value="${ci.salePrice}">
 										<input type="hidden" class="individual_bookCount_input" value="${ci.bookCount}">
 										<input type="hidden" class="individual_totalPrice_input" value="${ci.salePrice * ci.bookCount}">
 										<input type="hidden" class="individual_point_input" value="${ci.point}">
 										<input type="hidden" class="individual_totalPoint_input" value="${ci.totalPoint}">
+										<input type="hidden" class="individual_bookId_input" value="${ci.bookId }">
 									</td>
-									<td class="td_width_2"></td>
+									<td class="td_width_2">
+										<div class="image_wrap" data-bookid="${ci.imageList[0].bookId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].fileName}">
+											<img>
+										</div>
+									</td>
 									<td class="td_width_3">${ci.bookName}</td>
 									<td class="td_width_4 price_td"><del>
 											정가 :
@@ -124,16 +129,18 @@
 												value="${ci.point}" pattern="#,###" /></span></td>
 									<td class="td_width_4 table_text_align_center">
 										<div class="table_text_align_center quantity_div">
-											<input type="text" value="${ci.bookCount}"
+											<input type="text" value="${ci.bookCount}" maxlength="3"
 												class="quantity_input">
 											<button class="quantity_btn plus_btn">+</button>
 											<button class="quantity_btn minus_btn">-</button>
-										</div> <a class="quantity_modify_btn">변경</a>
+										</div> <a class="quantity_modify_btn" data-cartId="${ci.cartId }">변경</a>
 									</td>
 									<td class="td_width_4 table_text_align_center"><fmt:formatNumber
 											value="${ci.salePrice * ci.bookCount}" pattern="#,### 원" />
 									</td>
-									<td class="td_width_4 table_text_align_center delete_btn"><button class="btn-warning">삭제</button></td>
+									<td class="td_width_4 table_text_align_center">
+										<button class="btn-warning delete_btn" data-cartid="${ci.cartId }">삭제</button>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -202,8 +209,26 @@
 				</div>
 				<!-- 구매 버튼 영역 -->
 				<div class="content_btn_section">
-					<a>주문하기</a>
+					<a class="order_btn">주문하기</a>
 				</div>
+				
+				<!-- 수량 조정 form -->
+				<form action="/cart/update" method="post" class="quantity_update_form">
+					<input type="hidden" name="cartId" class="update_cartId">
+					<input type="hidden" name="bookCount" class="update_bookCount">
+					<input type="hidden" name="memberId" value="${member.memberId }">
+				</form>
+				
+				<!-- 삭제 form -->
+				<form action="/cart/delete" method="post" class="quantity_delete_form">
+					<input type="hidden" name="cartId" class="delete_cartId">
+					<input type="hidden" name="memberId" value="${member.memberId }">
+				</form>
+				
+				<!-- 주문 form -->
+				<form action="/order/${member.memberId}" method="get" class="order_form">
+					
+				</form>
 			</div>
 
 			<%-- <%@ include file="includes/footer.jsp"%> --%>
@@ -216,6 +241,24 @@
 	$(document).ready(function(){
 		// 종합 정보 섹션 정보 삽입
 		setTotalInfo();
+		
+		// 이미지 삽입
+		$(".image_wrap").each(function(i,obj){
+			
+			const bobj = $(obj);
+			
+			if (bobj.data("bookid")) {
+				const uploadPath = bobj.data("path");
+				const uuid = bobj.data("uuid");
+				const fileName = bobj.data("filename");
+				
+				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+				
+				$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+			} else{
+				$(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
+			}
+		});
 	});
 	
 	/* 체크여부에따른 종합 정보 변화 */
@@ -224,18 +267,30 @@
 	});
 	
 	/* 체크박스 전체 선택 */
-	$(".all_check_input").change(function(){
-		
-		/* 체크박스 체크/해제 */ 
+	$(".all_check_input").on("click", function(){
+
+		/* 체크박스 체크/해제 */
 		if($(".all_check_input").prop("checked")){
-			$(".individual_cart_checkbox").attr("checked", true);
+			$(".individual_cart_checkbox").prop('checked',true);
 		} else{
-			$(".individual_cart_checkbox").attr("checked", false);
-		} 
+			$(".individual_cart_checkbox").prop('checked',false);
+		}
 		
 		/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 		setTotalInfo($(".cart_info_td"));	
 		
+	});
+	
+	/* 모든 항목 체크 시 전체선택 체크박스 체크 | 하나다로 체크 풀려있을 경우 전체박스 체크 해제 */
+	$("input[name=chk]").click(function() {
+		var total = $("input[name=chk]").length;
+		var checked = $("input[name=chk]:checked").length;
+		
+		if(total != checked){
+			$(".all_check_input").prop("checked", false);
+		}else {
+			$(".all_check_input").prop("checked", true); 
+		}
 	});
 	
 	// 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류)
@@ -288,5 +343,60 @@
 		// 최종 가격(총 가격 + 배송비)
 		$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
 	}
+	
+	// 수량버튼
+	$(".plus_btn").on("click", function() {
+		let quantity = $(this).parent("div").find("input").val();
+		$(this).parent("div").find("input").val(++quantity);
+	});	
+	$(".minus_btn").on("click", function() {
+		let quantity = $(this).parent("div").find("input").val();
+		$(this).parent("div").find("input").val(--quantity);
+	});	
+	
+	/* 수량 수정 버튼 */
+	$(".quantity_modify_btn").on("click", function(){
+		let cartId = $(this).data("cartid");
+		let bookCount = $(this).parent("td").find("input").val();
+		
+		$(".update_cartId").val(cartId);
+		$(".update_bookCount").val(bookCount);
+		$(".quantity_update_form").submit();
+	});
+	
+	/* 장바구니 상품 삭제 버튼 */
+	$(".delete_btn").on("click", function(e){
+		e.preventDefault()
+		const cartId = $(this).data("cartid");
+		
+		$(".delete_cartId").val(cartId);
+		$(".quantity_delete_form").submit();
+	});
+	
+	/* 주문 페이지 이동 */	
+	$(".order_btn").on("click", function(){
+		let form_contents ='';
+		let orderNumber = 0;
+		$(".cart_info_td").each(function(index, element) {
+			
+			if($(element).find(".individual_cart_checkbox").is(":checked") === true){
+				
+				let bookId = $(element).find(".individual_bookId_input").val();
+				let bookCount = $(element).find(".individual_bookCount_input").val();
+				
+				let bookId_input = "<input name='orders[" + orderNumber + "].bookId' type='hidden' value='" + bookId + "'>";
+				form_contents += bookId_input;
+				
+				let bookCount_input = "<input name='orders[" + orderNumber + "].bookCount' type='hidden' value='" + bookCount + "'>";
+				form_contents += bookCount_input;
+				
+				orderNumber += 1;
+			}
+		});
+		
+		$(".order_form").html(form_contents);
+		$(".order_form").submit();
+	});
+	
 </script>
 </html>
