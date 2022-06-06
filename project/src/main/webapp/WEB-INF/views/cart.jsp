@@ -119,7 +119,7 @@
 											<img>
 										</div>
 									</td>
-									<td class="td_width_3">${ci.bookName}</td>
+									<td class="td_width_3" style="text-align: center;">${ci.bookName}</td>
 									<td class="td_width_4 price_td"><del>
 											정가 :
 											<fmt:formatNumber value="${ci.bookPrice}" pattern="#,### 원" />

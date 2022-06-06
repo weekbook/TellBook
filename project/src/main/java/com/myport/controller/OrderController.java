@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.myport.domain.OrderPageDTO;
+import com.myport.service.MemberService;
+import com.myport.service.OrderService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -15,10 +17,17 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class OrderController {
 	
+	private OrderService orderService;
+	
+	private MemberService memberService;
+	
 	@GetMapping("/order/{memberId}")
-	public void orderPageGET(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) {
+	public String orderPageGET(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) {
 		
-		log.info("memberId" + memberId);
-		log.info("orders" + opd.getOrders());
+		model.addAttribute("orderList", orderService.getGoodsInfo(opd.getOrders()));
+		
+		model.addAttribute("memberInfo", memberService.getMemberInfo(memberId));
+		
+		return "/order";
 	}
 }
