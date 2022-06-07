@@ -45,7 +45,10 @@
                         </li>
                         <li>
                             <a class="admin_list_05" href="#">회원 관리</a>                            
-                        </li>                                                                                             
+                        </li>
+                        <li>
+                            <a class="admin_list_06" href="/admin/orderList">주문 현황</a>                            
+                        </li>                                                                                  
                     </ul>
                     
                     <!-- <div class="admin_list_01">

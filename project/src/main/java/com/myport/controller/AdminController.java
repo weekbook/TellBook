@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
@@ -43,9 +45,14 @@ import com.myport.domain.AuthorVO;
 import com.myport.domain.BookVO;
 import com.myport.domain.CateVO;
 import com.myport.domain.Criteria;
+import com.myport.domain.MemberVO;
+import com.myport.domain.OrderCancleDTO;
+import com.myport.domain.OrderDTO;
 import com.myport.domain.PageDTO;
 import com.myport.service.AdminService;
 import com.myport.service.AuthorService;
+import com.myport.service.MemberService;
+import com.myport.service.OrderService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -60,6 +67,10 @@ public class AdminController {
 	private AuthorService authorService;
 
 	private AdminService adminService;
+	
+	private OrderService orderService;
+	
+	private MemberService memberService;
 
 	// 관리자 메인 페이지 이동
 	@GetMapping("/main")
@@ -401,9 +412,44 @@ public class AdminController {
 		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
 	
+	// 주문 현황 페이지
+	@GetMapping("/orderList")
+	public String orderListGET(Criteria cri, Model model) {
+		
+		List<OrderDTO> list = adminService.getOrderList(cri);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			model.addAttribute("pageMaker", new PageDTO(cri, adminService.getOrderTotal(cri)));
+		} else {
+			model.addAttribute("listCheck", "empty");
+		}
+		
+		return "/admin/orderList";
+	}
 	
-	
-	
+	// 주문삭제
+	@PostMapping("/orderCancle")
+	public String orderCanclePOST(OrderDTO od ,OrderCancleDTO dto, HttpServletRequest request) {
+		
+		orderService.orderCancle(dto);
+		
+		// 삭제 후 충전금액, 포인트 갱신
+		MemberVO member = new MemberVO();
+		member.setMemberId(od.getMemberId());
+		
+		HttpSession session = request.getSession();
+		
+		try {
+			MemberVO memberLogin = memberService.memberLogin(member);
+			memberLogin.setMemberPw("");
+			session.setAttribute("member", memberLogin);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/orderList?keyword=" + dto.getKeyword() + "&amount=" + dto.getAmount() + "&pageNum=" + dto.getPageNum();
+	}
 	
 	
 	

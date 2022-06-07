@@ -9,6 +9,7 @@ import com.myport.domain.AttachImageVO;
 import com.myport.domain.BookVO;
 import com.myport.domain.CateVO;
 import com.myport.domain.Criteria;
+import com.myport.domain.OrderDTO;
 import com.myport.mapper.AdminMapper;
 
 import lombok.AllArgsConstructor;
@@ -92,6 +93,16 @@ public class AdminServiceImpl implements AdminService{
 	public List<AttachImageVO> getAttachInfo(int bookId) {
 		log.info("getAttachInfo..");
 		return adminmapper.getAttachInfo(bookId);
+	}
+
+	@Override
+	public List<OrderDTO> getOrderList(Criteria cri) {
+		return adminmapper.getOrderList(cri);
+	}
+
+	@Override
+	public int getOrderTotal(Criteria cri) {
+		return adminmapper.getOrderTotal(cri);
 	}
 	
 	

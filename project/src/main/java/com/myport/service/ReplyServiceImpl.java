@@ -24,40 +24,40 @@ public class ReplyServiceImpl implements ReplyService{
 	@Setter(onMethod_ =@Autowired)
 	private ComuBoMapper boardMapper;
 	
-	@Transactional
-	@Override
-	public int register(ReplyVO vo) {
-		boardMapper.updateReplyCnt(vo.getBno(), 1);
-		return mapper.insert(vo);
-	}
-
-	@Override
-	public ReplyVO get(Long rno) {
-		return mapper.read(rno);
-	}
-
-	@Transactional
-	@Override
-	public int remove(Long rno) {
-		ReplyVO vo = mapper.read(rno);
-		boardMapper.updateReplyCnt(vo.getBno(), -1);
-		return mapper.delete(rno);
-	}
-
-	@Override
-	public int modify(ReplyVO reply) {
-		return mapper.update(reply);
-	}
-
-	@Override
-	public List<ReplyVO> getList(Criteria cri, Long bno) {
-		return mapper.getListWithPaging(cri, bno);
-	}
-
-	@Override
-	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
-		return new ReplyPageDTO(mapper.getCountByBno(bno), mapper.getListWithPaging(cri, bno));
-	}
+//	@Transactional
+//	@Override
+//	public int register(ReplyVO vo) {
+//		boardMapper.updateReplyCnt(vo.getBno(), 1);
+//		return mapper.insert(vo);
+//	}
+//
+//	@Override
+//	public ReplyVO get(Long rno) {
+//		return mapper.read(rno);
+//	}
+//
+//	@Transactional
+//	@Override
+//	public int remove(Long rno) {
+//		ReplyVO vo = mapper.read(rno);
+//		boardMapper.updateReplyCnt(vo.getBno(), -1);
+//		return mapper.delete(rno);
+//	}
+//
+//	@Override
+//	public int modify(ReplyVO reply) {
+//		return mapper.update(reply);
+//	}
+//
+//	@Override
+//	public List<ReplyVO> getList(Criteria cri, Long bno) {
+//		return mapper.getListWithPaging(cri, bno);
+//	}
+//
+//	@Override
+//	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
+//		return new ReplyPageDTO(mapper.getCountByBno(bno), mapper.getListWithPaging(cri, bno));
+//	}
 	
 
 }

@@ -6,6 +6,7 @@ import com.myport.domain.AttachImageVO;
 import com.myport.domain.BookVO;
 import com.myport.domain.CateVO;
 import com.myport.domain.Criteria;
+import com.myport.domain.OrderDTO;
 
 public interface AdminMapper {
 	
@@ -14,7 +15,6 @@ public interface AdminMapper {
 	
 	// 카테고리 리스트
 	public List<CateVO> cateList();
-	
 	
 	// 상품 리스트
 	public List<BookVO> goodsGetList(Criteria cri);
@@ -42,4 +42,10 @@ public interface AdminMapper {
 	
 	/* 지정 상품 이미지 정보 얻기 */
 	public List<AttachImageVO> getAttachInfo(int bookId);
+	
+	// 주문 상품 리스트
+	public List<OrderDTO> getOrderList(Criteria cri);
+	
+	// 주문 총 갯수
+	public int getOrderTotal(Criteria cri);
 }
