@@ -445,7 +445,8 @@ table {
 .image_wrap img{
     max-width: 85%;
     height: auto;
-    display: block;		
+    display: block;
+    margin: 0px auto;		
 }
 
 /* 로그인 성공 영역 */

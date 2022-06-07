@@ -33,7 +33,10 @@
 		where memberId = #{memberId} and bookId = #{bookId}
 	</select>
 	
-	
+	<!-- 카트 제거(주문 완료된 상품) -->
+	<delete id="deleteOrderCart">
+		delete from book_cart where memberId = #{memberId} and bookId = #{bookId}
+	</delete>
 	
 	
 	

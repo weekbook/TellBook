@@ -85,7 +85,18 @@ public class CartMapperTests {
 //		System.out.println("결과 : " + resultCart);
 //	}
 	
-	
+	// 장바구니 제거(주문 완료 후)
+	@Test
+	public void deleteOrderCart() {
+		String memberId = "admin";
+		int bookId = 262;
+		
+		CartDTO dto = new CartDTO();
+		dto.setMemberId(memberId);
+		dto.setBookId(bookId);
+		
+		mapper.deleteOrderCart(dto);
+	}
 	
 	
 	
