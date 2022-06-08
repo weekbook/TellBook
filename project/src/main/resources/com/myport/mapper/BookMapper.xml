@@ -39,7 +39,8 @@
 		    select * from(
 		        select /*+INDEX_DESC(book_product SYS_C008434)*/ rownum as rn, bookId, bookName,
 		            (select authorName from book_author where book_product.authorId = book_author.authorId) authorName, authorId,
-		            (select cateName from book_category where book_product.cateCode = book_category.cateCode) cateName,cateCode, publisher, publeYear, bookPrice, bookDiscount
+		            (select cateName from book_category where book_product.cateCode = book_category.cateCode) cateName,cateCode, 
+		            publisher, publeYear, bookPrice, bookDiscount, RATINGAVG
 		        from book_product
 		        where 
 	    ]]>
@@ -134,12 +135,35 @@
 	
 	<!-- 상품 정보 -->
 	<select id="getGoodsInfo" resultType="com.myport.domain.BookVO">
-			select a.BOOKID, a.BOOKNAME, a.AUTHORID, b.AUTHORNAME, a.PUBLEYEAR, a.PUBLISHER, a.CATECODE, c.CATENAME, a.BOOKPRICE, a.BOOKSTOCK, a.BOOKDISCOUNT, a.BOOKINTRO, a.BOOKCONTENTS
+			select a.BOOKID, a.BOOKNAME, a.AUTHORID, b.AUTHORNAME, a.PUBLEYEAR, a.PUBLISHER, a.CATECODE, c.CATENAME, 
+			a.BOOKPRICE, a.BOOKSTOCK, a.BOOKDISCOUNT, a.BOOKINTRO, a.BOOKCONTENTS, a.ratingavg
 			from book_product a left outer join book_author b on a.authorId = b.authorId
 			left outer join book_category c on a.catecode = c.catecode
 			where bookid = #{bookId}	
 	</select>
 
-
+	<!-- 상품 이름  -->
+	<select id="getBookIdName" resultType="com.myport.domain.BookVO">
+		select bookId, bookName from book_product
+		where bookId = #{bookId}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </mapper>

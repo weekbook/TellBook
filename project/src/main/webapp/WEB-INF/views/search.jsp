@@ -134,7 +134,8 @@
 											</div>
 										</td>
 										<td class="info">
-											<div class="rating">평점(추후 추가)</div>
+											<div class="rating">평점 <fmt:formatNumber value="${list.rating }"/>
+											</div>
 										</td>
 										<td class="price">
 											<div class="org_price">

@@ -55,7 +55,6 @@ public class BookServiceImpl implements BookService {
 
 		list.forEach(book -> {
 			int bookId = book.getBookId();
-
 			List<AttachImageVO> imageList = attachMapper.getAttachList(bookId);
 
 			book.setImageList(imageList);
@@ -122,5 +121,11 @@ public class BookServiceImpl implements BookService {
 		goodsInfo.setImageList(adminMapper.getAttachInfo(bookId));
 		
 		return goodsInfo;
+	}
+
+	@Override
+	public BookVO getBookIdName(int bookId) {
+		
+		return bookMapper.getBookIdName(bookId);
 	}
 }
