@@ -195,7 +195,7 @@ a {
 	padding-left: 3%;
 }
 
-.title a{
+.title a {
 	font-size: 40px;
 	font-weight: bold;
 }
@@ -289,7 +289,117 @@ a {
 .content_bottom {
 	width: 100%;
 	min-height: 400px;
-	background-color: #e7dbdb;
+}
+
+/* 리뷰쓰기 버튼 */
+.reply_button_wrap {
+	padding: 10px;
+}
+
+.reply_button_wrap button {
+	background-color: #365fdd;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	padding: 5px 12px;
+	cursor: pointer;
+}
+
+.reply_button_wrap button:hover {
+	background-color: #1347e7;
+}
+
+/* 리뷰 영역 */
+.content_bottom {
+	width: 80%;
+	margin: auto;
+}
+
+.reply_content_ul {
+	list-style: none;
+}
+
+.comment_wrap {
+	position: relative;
+	border-bottom: 1px dotted #d4d4d4;
+	padding: 14px 0 10px 0;
+	font-size: 16px;
+}
+/* 리뷰 머리 부분 */
+.reply_top {
+	padding-bottom: 10px;
+}
+
+.id_span {
+	padding: 0 15px 0 3px;
+	font-weight: bold;
+}
+
+.date_span {
+	padding: 0 15px 0;
+}
+/* 리뷰 컨텐트 부분 */
+.reply_bottom {
+	padding-bottom: 10px;
+}
+
+/* 리뷰 선 */
+.reply_line {
+	width: 80%;
+	margin: auto;
+	border-top: 1px solid #c6c6cf;
+}
+
+/* 리뷰 제목 */
+.reply_subject h2 {
+	padding: 15px 0 5px 5px;
+}
+
+/* 페이지 버튼 인터페이스 */
+.pagination {
+	margin-top: 20px;
+	justify-content: center;
+}
+
+/* 리뷰 없는 경우 div */
+.reply_not_div {
+	text-align: center;
+}
+
+.reply_not_div span {
+	display: block;
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+/* 리뷰 수정 삭제 버튼 */
+.update_reply_btn {
+	font-weight: bold;
+	background-color: #b7b399;
+	display: inline-block;
+	width: 40px;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	margin: 0 5px 0 30px;
+	border-radius: 6px;
+	color: white;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.delete_reply_btn {
+	font-weight: bold;
+	background-color: #e7578f;
+	display: inline-block;
+	width: 40px;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 6px;
+	color: white;
+	cursor: pointer;
+	text-decoration: none;
 }
 
 /* 로그인 성공 영역 */

@@ -21,8 +21,10 @@ import com.myport.domain.AttachImageVO;
 import com.myport.domain.BookVO;
 import com.myport.domain.Criteria;
 import com.myport.domain.PageDTO;
+import com.myport.domain.ReplyDTO;
 import com.myport.mapper.AttachMapper;
 import com.myport.service.BookService;
+import com.myport.service.ReplyService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -35,6 +37,8 @@ public class BookController {
 	private AttachMapper attachMapper;
 
 	private BookService bookService;
+	
+	private ReplyService replyService;
 
 	@RequestMapping("/main")
 	public void mainPageGET(Model model) {
@@ -77,6 +81,9 @@ public class BookController {
 		log.info("cri : " + cri);
 
 		List<BookVO> list = bookService.getGoodsList(cri);
+		for(BookVO lists : list) {
+			log.info("좀보자시발" + lists.getRating());
+		}
 		log.info("pre list : " + list);
 		if (!list.isEmpty()) {
 			model.addAttribute("list", list);
@@ -98,28 +105,37 @@ public class BookController {
 
 		return "search";
 	}
-	
+
 	// 상품 상세
 	@GetMapping("/goodsDetail/{bookId}")
 	public String goodsDetailGET(@PathVariable("bookId") int bookId, Model model) {
-		
+
 		log.info("goodsDetailGET().......");
-		
+
 		model.addAttribute("goodsInfo", bookService.getGoodsInfo(bookId));
-		
+
 		return "/goodsDetail";
 	}
+
+	// 리뷰 작성
+	@GetMapping("/replyEnroll/{memberId}")
+	public String replyEnrollWindowGET(@PathVariable("memberId") String memberId, int bookId, Model model) {
+		BookVO book = bookService.getBookIdName(bookId);
+		model.addAttribute("bookInfo", book);
+		model.addAttribute("memberId", memberId);
+
+		return "/replyEnroll";
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// 리뷰 수정 팝업창
+	@GetMapping("/replyUpdate")
+	public String replyUpdateWindowGET(ReplyDTO dto, Model model) {
+		BookVO book = bookService.getBookIdName(dto.getBookId());
+		model.addAttribute("bookInfo", book);
+		model.addAttribute("replyInfo", replyService.getUpdateReply(dto.getReplyId()));
+		model.addAttribute("memberId", dto.getMemberId());
+		
+		return "/replyUpdate";
+	}
 
 }

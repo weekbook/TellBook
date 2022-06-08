@@ -19,6 +19,8 @@ public class Criteria {
 	private String[] authorArr; // 작가 리스트
 	private String cateCode; // 카테고리 코드
 	
+	private int bookId; // 상품번호 (댓글기능)
+	
 
 	public Criteria() { // 페이징 디폴트값
 		this(1, 10);

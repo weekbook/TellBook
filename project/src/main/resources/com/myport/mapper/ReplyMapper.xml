@@ -4,10 +4,67 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.myport.mapper.ReplyMapper">
+  
+  		<!-- 댓글등록 -->
   		<insert id="enrollReply">
-  			insert into test_reply(bookId, memberId, content, rating) values(#{bookId}, #{memberId}, #{content}, #{rating})
+  			insert into book_reply(bookId, memberId, content, rating) values(#{bookId}, #{memberId}, #{content}, #{rating})
   		</insert>
   		
+  		<!-- 댓글중복체크 -->
+  		<select id="checkReply" resultType="integer">
+  			select replyId from book_reply
+  			where memberId = #{memberId} and bookId = #{bookId}
+  		</select>
+  		
+  		<!-- 댓글 페이징 -->
+  		<select id="getReplyList" resultType="com.myport.domain.ReplyDTO">
+  			<![CDATA[
+  				select * from(
+  					select rownum as rn, replyId, bookId, memberId, content, rating, regDate
+  					from book_reply
+  					where rownum <= #{pageNum} * #{amount} and bookId = #{bookId}
+  					order by regDate desc)
+  				where rn > (#{pageNum} - 1) * #{amount}
+  			]]>
+  		</select>
+  		
+  		<!-- 댓글 총 갯수 -->
+  		<select id="getReplyTotal" resultType="int">
+  			select count(*)
+  			from book_reply
+  			where bookId = #{bookId}
+  		</select>
+  		
+  		<!-- 댓글 수정 -->
+  		<update id="updateReply">
+  			update book_reply set content = #{content}, rating = #{rating}
+  			where replyId = #{replyId}
+  		</update>
+  		
+  		<!-- 댓글 수정(페이지정보)-->
+  		<select id="getUpdateReply" resultType="com.myport.domain.ReplyDTO">
+  			select * from book_reply
+  			where replyId = #{replyId}
+  		</select>
+  		
+  		<!-- 댓글 삭제 -->
+  		<delete id="deleteReply">
+  			delete from book_reply where replyId = #{replyId}
+  		</delete>
+  		
+  		<!-- 평점 평균 구하기 -->
+  		<select id="getRatingAverage" resultType="double">
+  			select avg(rating)
+  			from book_reply
+  			where bookId = #{bookId}
+  		</select>
+  		
+  		<!-- 평점 업데이트 -->
+  		<update id="updateRating">
+  			update book_product
+  			set ratingAvg = #{ratingAvg}
+  			where bookId = #{bookId}
+  		</update>
 <!--   		<select id="read" resultType="com.myport.domain.ReplyVO">
   			select * from tbl_reply
   			where rno=#{rno}

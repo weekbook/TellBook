@@ -60,4 +60,7 @@ public class BookVO {
 	// 이미지 정보
 	private List<AttachImageVO> imageList;
 	
+	// 평점
+	private double rating;
+	
 }
