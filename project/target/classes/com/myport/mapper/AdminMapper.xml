@@ -115,14 +115,43 @@
 		</if>
 	</select>
 	
+	<!-- 멤버 명단 -->
+	<select id="getMemberList" resultType="com.myport.domain.MemberVO">
+		<![CDATA[
+			select * from(
+				select rownum rn, memberId, memberName, memberMail, regdate
+				from book_member
+				where rownum <= #{pageNum} * #{amount}
+		]]>
+		<if test="keyword != null">
+					and memberId like '%' || #{keyword} || '%'
+		</if>
+		<![CDATA[
+				order by regdate desc)
+			where rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
 	
+	<!-- 회원 총 인원 -->
+	<select id="getMemberTotal" resultType="int">
+		select count(*) from book_member
+		
+		<if test="keyword != null">
+			where memberId like '%' || #{keyword} || '%'
+		</if>
+	</select>
 	
+	<!-- 멤버 상세 조회 -->
+	<select id="memberDetail" resultType="com.myport.domain.MemberVO">
+		select * from book_member where memberId = #{memberId}
+	</select>
 	
-	
-	
-	
-	
-	
+  	<!-- 상품 수정 -->
+  	<!-- <update id="goodsModify">
+		update book_product set bookName = #{bookName}, authorId = #{authorId}, publeYear = #{publeYear}, publisher = #{publisher}, cateCode = ${cateCode}, 
+		bookPrice = #{bookPrice}, bookStock = #{bookStock}, bookDiscount = #{bookDiscount}, bookIntro = #{bookIntro}, bookContents = #{bookContents}, updateDate = sysdate
+		where bookId = ${bookId}
+	</update> -->
 	
 	
 	

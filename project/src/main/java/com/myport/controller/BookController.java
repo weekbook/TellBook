@@ -76,14 +76,12 @@ public class BookController {
 	}
 
 	// 상품 검색
-	@GetMapping("search")
+	@GetMapping("/search")
 	public String searchGoodsGET(Criteria cri, Model model) {
 		log.info("cri : " + cri);
 
 		List<BookVO> list = bookService.getGoodsList(cri);
-		for(BookVO lists : list) {
-			log.info("좀보자시발" + lists.getRating());
-		}
+		
 		log.info("pre list : " + list);
 		if (!list.isEmpty()) {
 			model.addAttribute("list", list);
@@ -98,7 +96,7 @@ public class BookController {
 		String[] typeArr = cri.getType().split("");
 
 		for (String s : typeArr) {
-			if (s.equals("T") || s.equals("A")) {
+			if (s.equals("T") || s.equals("A") || s.equals("C")) {
 				model.addAttribute("filter_info", bookService.getCateInfoList(cri));
 			}
 		}

@@ -1,6 +1,5 @@
 package com.myport.mapper;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
@@ -9,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.myport.domain.AttachImageVO;
-import com.myport.domain.BookVO;
 import com.myport.domain.Criteria;
+import com.myport.domain.MemberVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -143,15 +141,53 @@ public class AdminMapperTests {
 //	}
 	
 	/* 지정 상품 이미지 정보 얻기 */
-	@Test
-	public void getAttachInfoTest() {
-		
-		int bookId = 242;
-		
-		List<AttachImageVO> list = mapper.getAttachInfo(bookId);
-		
-		System.out.println("list : " + list);
-		
-	}
+//	@Test
+//	public void getAttachInfoTest() {
+//		
+//		int bookId = 242;
+//		
+//		List<AttachImageVO> list = mapper.getAttachInfo(bookId);
+//		
+//		System.out.println("list : " + list);
+//		
+//	}
+//	// 검색 조건
+//	cri.setKeyword("두르");
+//	
+//	// 검색 리스트
+//	List<BookVO> list = mapper.goodsGetList(cri);
+//	for (int i = 0; i < list.size(); i++) {
+//		System.out.println("result....." + i + " : " + list.get(i));
+//	}
+//	
+//	// 상품 총 갯수
+//	int result = mapper.goodsGetTotal(cri);
+//	System.out.println("resultTotal" + result);
 	
+	// 멤버 조회
+//	@Test
+//	public void getMemberList() {
+//		
+//		Criteria cri = new Criteria();
+//
+//		List<MemberVO> list = mapper.getMemberList(cri);
+//		for(MemberVO lists : list) {
+//			System.out.println("result...." + lists);
+//		}
+//		
+//		int result = mapper.getMemberTotal(cri);
+//		System.out.println("total : " + result);
+//	}
+	
+	@Test
+	public void memberDetail() {
+		MemberVO member = new MemberVO();
+		member.setMemberId("admin");
+		
+		MemberVO list = mapper.memberDetail(member.getMemberId());
+		
+		System.out.println(list);
+	}
 }
+
+

@@ -6,6 +6,7 @@ import com.myport.domain.AttachImageVO;
 import com.myport.domain.BookVO;
 import com.myport.domain.CateVO;
 import com.myport.domain.Criteria;
+import com.myport.domain.MemberVO;
 import com.myport.domain.OrderDTO;
 
 public interface AdminMapper {
@@ -48,4 +49,13 @@ public interface AdminMapper {
 	
 	// 주문 총 갯수
 	public int getOrderTotal(Criteria cri);
+	
+	// 회원 리스트
+	public List<MemberVO> getMemberList(Criteria cri);
+	
+	// 회원 총 인원
+	public int getMemberTotal(Criteria cri);
+	
+	// 회원 상세 조회
+	public MemberVO memberDetail(String memberId);
 }
