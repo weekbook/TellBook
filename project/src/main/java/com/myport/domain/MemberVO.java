@@ -1,12 +1,12 @@
 package com.myport.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.Data;
 
 @Data
 public class MemberVO implements Serializable {
-	// Serializable : 클래스를 VO로 쓰기 위해 반드시 구현해야 하는 인터페이스
 	
 	private static final long serialVersionUID = 1L;
 	private String memberId;
@@ -17,7 +17,7 @@ public class MemberVO implements Serializable {
 	private String memberAddr2;
 	private String memberAddr3;
 	private int adminCk;
-	private int regDate;
+	private Date regDate; // 6월 9일 int를 Date로 변경
 	private int money;
 	private int point;
 	

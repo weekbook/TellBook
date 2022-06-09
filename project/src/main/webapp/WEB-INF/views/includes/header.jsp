@@ -33,7 +33,7 @@
                           <a class="admin_list_04" href="/admin/authorManage">작가 관리</a>                            
                       </lI>
                       <lI>
-                          <a class="admin_list_05" href="#">회원 관리</a>                            
+                          <a class="admin_list_05" href="/admin/memberManage">회원 관리</a>                            
                       </lI>      
                       <li>
                             <a class="admin_list_06" href="/admin/orderList">주문 현황</a>                            

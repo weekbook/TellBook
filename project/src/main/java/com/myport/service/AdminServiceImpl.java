@@ -9,6 +9,7 @@ import com.myport.domain.AttachImageVO;
 import com.myport.domain.BookVO;
 import com.myport.domain.CateVO;
 import com.myport.domain.Criteria;
+import com.myport.domain.MemberVO;
 import com.myport.domain.OrderDTO;
 import com.myport.mapper.AdminMapper;
 
@@ -103,6 +104,21 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int getOrderTotal(Criteria cri) {
 		return adminmapper.getOrderTotal(cri);
+	}
+
+	@Override
+	public List<MemberVO> getMemberList(Criteria cri) {
+		return adminmapper.getMemberList(cri);
+	}
+
+	@Override
+	public int getMemberTotal(Criteria cri) {
+		return adminmapper.getMemberTotal(cri);
+	}
+
+	@Override
+	public MemberVO memberDetail(String memberId) {
+		return adminmapper.memberDetail(memberId);
 	}
 	
 	

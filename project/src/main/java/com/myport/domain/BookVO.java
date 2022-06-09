@@ -61,6 +61,6 @@ public class BookVO {
 	private List<AttachImageVO> imageList;
 	
 	// ∆Ú¡°
-	private double rating;
+	private double ratingavg;
 	
 }

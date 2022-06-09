@@ -44,7 +44,8 @@
 								<select class="form-select" name="type">
 									<option value="T">책 제목</option>
 									<option value="A">작가</option>
-								</select> <input type="text" name="keyword" class="form-control">
+								</select> 
+								<input type="text" name="keyword" class="form-control">
 								<button class='btn search_btn btn-success'>검 색</button>
 							</div>
 						</form>

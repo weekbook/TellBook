@@ -451,9 +451,28 @@ public class AdminController {
 		return "redirect:/admin/orderList?keyword=" + dto.getKeyword() + "&amount=" + dto.getAmount() + "&pageNum=" + dto.getPageNum();
 	}
 	
+	// 회원 리스트
+	@GetMapping("/memberManage")
+	public String memberListGET(@ModelAttribute("cri") Criteria cri, Model model) {
+		List<MemberVO> list = adminService.getMemberList(cri);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			model.addAttribute("pageMaker", new PageDTO(cri, adminService.getOrderTotal(cri)));
+		} else {
+			model.addAttribute("listCheck", "empty");
+		}
+		
+		return "/admin/memberManage";
+	}
 	
-	
-	
+	// 회원 상세 페이지
+	@GetMapping("/memberDetail")
+	public void memberDetailGET(String memberId, @ModelAttribute("cri") Criteria cri, Model model) {
+		log.info("memberDetailGET.." + memberId);
+		
+		model.addAttribute("memberInfo", adminService.memberDetail(memberId));
+	}
 	
 	
 	
