@@ -6,6 +6,7 @@ import com.myport.domain.BookVO;
 import com.myport.domain.CateFilterDTO;
 import com.myport.domain.CateVO;
 import com.myport.domain.Criteria;
+import com.myport.domain.SelectDTO;
 
 public interface BookMapper {
 
@@ -35,4 +36,7 @@ public interface BookMapper {
 	
 	// 상품 id 이름
 	public BookVO getBookIdName(int bookId);
+	
+	// 평점순 상품 정보
+	public List<SelectDTO> likeSelect();
 }

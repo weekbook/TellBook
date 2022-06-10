@@ -40,13 +40,7 @@ public class BookController {
 	
 	private ReplyService replyService;
 
-	@RequestMapping("/main")
-	public void mainPageGET(Model model) {
-		log.info("메인페이지");
-		model.addAttribute("cate1", bookService.getCateCode1());
-		model.addAttribute("cate2", bookService.getCateCode2());
-	}
-
+	
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getImage(String fileName) {
 		log.info("getImage.." + fileName);
@@ -96,7 +90,7 @@ public class BookController {
 		String[] typeArr = cri.getType().split("");
 
 		for (String s : typeArr) {
-			if (s.equals("T") || s.equals("A") || s.equals("C")) {
+			if (s.equals("T") || s.equals("A")) {
 				model.addAttribute("filter_info", bookService.getCateInfoList(cri));
 			}
 		}

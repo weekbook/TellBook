@@ -24,7 +24,7 @@
 </style>
 </head>
 <body>
-	<%@include file="../includes/header.jsp"%>
+	<%@include file="../includes/adminLayout.jsp"%>
 	<div class="admin_content_wrap">
 		<div class="admin_content_subject">
 			<span>상품 상세</span>
