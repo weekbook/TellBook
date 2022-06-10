@@ -1,4 +1,6 @@
-/* ÀüÃ¼ wrap */
+@charset "UTF-8";
+
+/* ì „ì²´ wrap */
 .wrapper{
 	width:100%;
 	height:535px;
@@ -17,7 +19,7 @@
 }
 
 
-/* ÀÛ°¡ ¸ñ·Ï ¿µ¿ª */
+/* ì‘ê°€ ëª©ë¡ ì˜ì—­ */
 .author_table_wrap{
 	padding: 20px 35px
 }
@@ -60,7 +62,7 @@
 	text-decoration: none;
 }
 
-/* °Ë»ö ¿µ¿ª  */
+/* ê²€ìƒ‰ ì˜ì—­  */
 .search_input{
 	position: relative;
 }
@@ -69,7 +71,7 @@
 	margin-left: 10px;
 }
 
-/* ÆäÀÌÁö ¹öÆ° ÀÎÅÍÆäÀÌ½º */
+/* í˜ì´ì§€ ë²„íŠ¼ ì¸í„°í˜ì´ìŠ¤ */
 .pagination{
 	justify-content: center;
 }

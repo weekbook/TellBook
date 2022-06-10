@@ -1,137 +1,5 @@
 @charset "UTF-8";
 
-* {
-	margin: 0;
-	padding: 0;
-}
-
-a {
-	text-decoration: none;
-}
-/* 화면 전체 렙 */
-.wrapper {
-	width: 100%;
-}
-/* content 랩 */
-.wrap {
-	width: 1080px;
-	margin: auto;
-}
-/* 홈페이지 기능 네비 */
-.top_gnb_area {
-	width: 100%;
-	height: 50px;
-	background-color: #f0f0f1;
-	position: relative;
-}
-
-.top_gnb_area .list {
-	position: absolute;
-	top: 0px;
-	right: 0;
-}
-
-.top_gnb_area .list li {
-	list-style: none;
-	float: left;
-	padding: 13px 15px 0 10px;
-	font-weight: 900;
-	cursor: pointer;
-}
-/* 로고, 검색, 로그인 */
-.top_area {
-	width: 100%;
-	height: 150px;
-	/* background-color: #f7f0b9; */
-}
-/* 로고 영역 */
-.logo_area {
-	width: 25%;
-	height: 100%;
-	float: left;
-}
-
-.logo_area img {
-	width: 100%;
-	height: 100%;
-}
-/* 검색 박스 영역 */
-.search_area {
-	width: 50%;
-	height: 100%;
-	float: left;
-}
-
-.search_wrap {
-	width: 100%;
-	height: 100%;
-}
-
-#searchForm {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.search_input {
-	display: flex;
-	height: 30%;
-	width: 80%;
-}
-
-.search_input select {
-	width: 25%;
-	font-size: 15px;
-}
-
-.search_input input {
-	margin-left: 10px;
-	width: 57%;
-	font-size: 18px;
-	padding-left: 2%;
-}
-
-.search_btn {
-	margin-left: 10px;
-	width: 17%;
-	border-radius: 14px;
-	font-size: 17px;
-	font-weight: 600;
-}
-
-/* 로그인 버튼 영역 */
-.login_area {
-	width: 25%;
-	height: 100%;
-	display: inline-block;
-	text-align: center;
-}
-
-.login_button {
-	height: 50%;
-	background-color: #D4DFE6;
-	margin-top: 30px;
-	line-height: 77px;
-	font-size: 40px;
-	font-weight: 900;
-	border-radius: 10px;
-	cursor: pointer;
-}
-
-.login_area>span {
-	margin-top: 10px;
-	font-weight: 900;
-	display: inline-block;
-}
-
-.login_button {
-	height: 50%;
-	background-color: #D4DFE6;
-	margin-top: 30px;
-}
-
 /* 제품 목록 네비 */
 .navi_bar_area {
   overflow: hidden;
@@ -147,13 +15,13 @@ a {
   text-decoration: none;
 }
 
-.dropdown {
+.dropdowns {
   float: left;
   overflow: hidden;
   margin-left: 10px;
 }
 
-.dropdown .dropbtn {
+.dropdowns .dropbtn {
   font-size: 16px;
   font-weight: bold;  
   border: none;
@@ -186,7 +54,7 @@ a {
   width: 80px;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdowns:hover .dropdown-content {
   display: block;
 }
 
@@ -204,35 +72,95 @@ a {
 	min-height: 1000px;
 }
 
-/* 로그인 성공 영역 */
-.login_success_area {
-	height: 62%;
+.slick-prev{
+	left: 160px;
+    z-index: 1;
+}
+.slick-next{
+	right: 160px;
+    z-index: 1;
+}
+.slide_div img{
+	margin: auto;
+}
+.slide_div_wrap{
+	padding: 15px 0 15px 0;
+    background: #e6e9f6;
+}
+.image_wrap img{
+	max-width: 85%;
+	max-height : 100%;
+    display: block;
+	margin: auto;    
+}
+
+/* 평점 이미지  */
+.ls_wrap{
+    margin: 30px 0 30px 0;
+    padding: 0 10px 0 10px;
+}
+.ls_div_content{
 	width: 80%;
-	border: 2px solid #7474ad;
-	border-radius: 15px;
-	margin: 5% auto;
-	padding-top: 5%;
+    margin: auto;
+    height: 275px;
+    border: 1px solid #dadada;
+}
+.image_wrap{
+	width: 80%;
+    height: 60%;
+    margin: auto;
+    padding: 5% 0 5% 0;
+    display: flex;
+    align-items: center;    
+}
+.ls_category{
+	text-align: center;
+    font-size: 13px;
+    color: #3e74ab;
+}
+.ls_rating{
+	text-align: center;
+    font-size: 13px;
+    color: #e15b6e;
+}
+.ls_bookName{
+	text-align: center;
+    color: #333;
+    font-size: 15px;
+    font-weight: bold;
+}
+.ls_div_subject{
+	font-weight: bold;
+	font-size: 26px;
+	padding-bottom: 10px;
 }
 
-.login_success_area>span {
-	display: block;
-	text-align: left;
-	margin-left: 10%;
+.ls_div_content_prev{
+    position: absolute;
+    top: 40%;
+    width: 40px;
+    height: 30px;
+    left: 27px;
+    font-weight: bold;
+    z-index: 1;
+    opacity: 35%;
 }
-
-.login_success_area>a {
-	font-size: 15px;
-	font-weight: 900;
-	display: inline-block;
-	margin-top: 5px;
-	background: #e1e5e8;
-	width: 82px;
-	height: 22px;
-	line-height: 22px;
-	border-radius: 25px;
-	color: #606267;
+.ls_div_content_prev:hover{
+   opacity: 80%;
 }
-
+.ls_div_content_next{
+    position: absolute;
+    top: 40%;
+    width: 40px;
+    height: 30px;
+    right: 27px;
+    font-weight: bold;
+    z-index: 1;
+    opacity: 35%;
+}
+.ls_div_content_next:hover{
+   opacity: 80%;
+}
 /* float 속성 해제 */
 .clearfix {
 	clear: both;

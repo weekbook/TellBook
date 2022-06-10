@@ -87,7 +87,6 @@
 
 	<!-- 검색 대상 카테고리 리스트 -->
 	<select id="getCateList" resultType="String">
-	
 		select DISTINCT cateCode from book_product where 
 		<foreach item="type" collection="typeArr">		
   				<choose>
@@ -102,38 +101,49 @@
   					</when>
   					<when test="type == 'T'.toString()">
   						bookName like '%' || #{keyword} || '%'
-  					</when>				
-  					<when test="type == 'C'.toString()">
-							cateCode like '%' || #{cateCode} || '%'
-					</when>
+  					</when>  					
   				</choose>
   		</foreach>
 	
 	</select>
 
 	<!-- 카테고리 정보(+검색대상 갯수) -->	
-	
 	<select id="getCateInfo" resultType="com.myport.domain.CateFilterDTO">
 		select DISTINCT count(*) cateCount, a.cateCode, b.cateName from book_product a left join book_category b on a.cateCode = b.cateCode 
 		where 
 		<foreach item="type" collection="typeArr">		
   				<choose>
   					<when test="type == 'A'.toString()">
+  					
   						<trim prefix="(" suffix=")" prefixOverrides="or">
+  						
 		  					<foreach collection="authorArr" item="authorId">
+		  					
 		  						<trim prefix="or">
+		  						
 		  							authorId = #{authorId}
+		  							
 		  						</trim>
+		  						
 		  					</foreach>
+		  					  						
   						</trim>
+  						
   						and a.cateCode = #{cateCode}
+  						
   					</when>
+  					
   					<when test="type == 'T'.toString()">
+  					
   						bookName like '%' || #{keyword} || '%' and a.cateCode = #{cateCode}
+  						 
   					</when>
+  					  					
   				</choose>
   		</foreach>
+  		
   		group by a.cateCode, b.cateName
+	
 	</select>
 	
 	<!-- 상품 정보 -->
@@ -152,7 +162,18 @@
 	</select>
 	
 	
+	<!-- 평점순 리스트 -->
+	<select id="likeSelect" resultType="com.myport.domain.SelectDTO">
 	
+		select * from
+		(select rownum as rn, bookId, bookName, ratingAvg, (select cateName from book_category where book_product.cateCode = book_category.cateCode) as cateName
+		from book_product
+		order by ratingAvg desc nulls last)
+		<![CDATA[
+		where rn < 9
+		]]>	
+	
+	</select>
 	
 	
 	

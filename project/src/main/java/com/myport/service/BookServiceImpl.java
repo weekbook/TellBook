@@ -10,6 +10,7 @@ import com.myport.domain.BookVO;
 import com.myport.domain.CateFilterDTO;
 import com.myport.domain.CateVO;
 import com.myport.domain.Criteria;
+import com.myport.domain.SelectDTO;
 import com.myport.mapper.AdminMapper;
 import com.myport.mapper.AttachMapper;
 import com.myport.mapper.BookMapper;
@@ -127,5 +128,19 @@ public class BookServiceImpl implements BookService {
 	public BookVO getBookIdName(int bookId) {
 		
 		return bookMapper.getBookIdName(bookId);
+	}
+
+	@Override
+	public List<SelectDTO> likeSelect() {
+		
+		List<SelectDTO> list = bookMapper.likeSelect();
+		
+		list.forEach(dto -> {
+			int bookId = dto.getBookId();
+			List<AttachImageVO> imageList = attachMapper.getAttachList(bookId);
+			dto.setImageList(imageList);
+		});
+		
+		return list;
 	}
 }

@@ -11,7 +11,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-	<%@include file="../includes/header.jsp"%>
+	<%@include file="../includes/adminLayout.jsp"%>
 	<div class="admin_content_wrap">
 		<div class="admin_content_subject">
 			<span>회원 상세</span>
