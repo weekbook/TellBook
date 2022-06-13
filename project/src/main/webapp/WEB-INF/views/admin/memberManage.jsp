@@ -136,7 +136,7 @@
 		
 	});
 
-	/* 상품 조회 페이지 */
+	/* 회원 조회 페이지 */
 	$(".move").on("click", function(e){
 		
 		e.preventDefault();

@@ -36,7 +36,7 @@
 		<interceptor>
 			<mapping path="/cart/**"/>
 			<exclude-mapping path="/cart/add"/>
-			<beans:bean id="CartIntreceptor" class="com.myport.interceptor.AdminInterceptor"></beans:bean>
+			<beans:bean id="CartIntreceptor" class="com.myport.interceptor.CartInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
 	

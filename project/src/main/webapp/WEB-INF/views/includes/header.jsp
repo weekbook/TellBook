@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
  <link rel="stylesheet" href="/resources/css/header.css">
 <div class="wrapper">
 		<div class="wrap">
@@ -14,8 +16,8 @@
 							<li><a href="/admin/main">관리자 페이지</a></li>
 						</c:if>
 						<li><a id="gnb_logout_button">로그아웃</a></li>
-						<li><a href="/myPage">마이페이지</a></li>
-						<li><a href="/cart/${member.memberId}">장바구니</a></li>
+						<li><a href="/mypage/myPage">마이페이지</a></li>
+						<li><a href="/cart/${member.memberId }">장바구니</a></li>
 					</c:if>
 					<li><a href="/support">고객센터</a></li>
 				</ul>
