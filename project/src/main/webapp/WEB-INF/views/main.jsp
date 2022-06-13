@@ -66,7 +66,7 @@
 					</div>
 					<div class="ls_div">
 						<c:forEach items="${ls}" var="ls">
-							<a href="/goodsDetail/${ls.bookId}">
+							<a href="/goodsDetail/${ls.bookId}" style="text-decoration: none;">
 								<div class="ls_div_content_wrap">
 									<div class="ls_div_content">
 										<div class="image_wrap" data-bookid="${ls.imageList[0].bookId}" data-path="${ls.imageList[0].uploadPath}" data-uuid="${ls.imageList[0].uuid}" data-filename="${ls.imageList[0].fileName}">
@@ -107,8 +107,8 @@
 		$(".ls_div").slick({
 			slidesToShow: 4,
 			slidesToScroll: 4,
-			prevArrow : "<button type='button' class='ls_div_content_prev'>이전</button>",		// 이전 화살표 모양 설정
-			nextArrow : "<button type='button' class='ls_div_content_next'>다음</button>",
+			/* prevArrow : "<button type='button' class='ls_div_content_prev'>이전</button>",		// 이전 화살표 모양 설정
+			nextArrow : "<button type='button' class='ls_div_content_next'>다음</button>", */
 			autoplay : true,
 			autoplaySpeed: 3000
 		});

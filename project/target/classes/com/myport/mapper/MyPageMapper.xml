@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myport.mapper.MyPageMapper">
+
+	<!-- 주문 리스트 -->
+	<select id="getMyOrderList"
+		resultType="com.myport.domain.OrderDTO">
+		<![CDATA[
+			select * from( select rownum rn, o.orderId, o.memberId, o.orderstate, o.orderdate,g.bookName
+				from book_order o inner join book_orderitem d
+                on o.orderId = d.orderId
+                inner join book_product g
+                on d.bookId = g.bookId
+                where rownum <= #{pageNum} * #{amount}
+		]]>
+		<if test="keyword != null">
+			and g.bookName like '%' || #{keyword} || '%'
+		</if>
+		<![CDATA[
+				order by o.orderdate desc)
+				where rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+
+	<!-- 상품 총 갯수 -->
+	<select id="getMyOrderTotal" resultType="int">
+		select count(*) from book_order
+
+		<if test="keyword != null">
+			where memberId like '%' || #{keyword} || '%'
+		</if>
+	</select>
+	
+	<!-- 개인 회원 상세 조회 -->
+	<select id="memberPersonalDetail" resultType="com.myport.domain.MemberVO">
+		select * from book_member where memberId = #{memberId}
+	</select>
+	
+
+</mapper>

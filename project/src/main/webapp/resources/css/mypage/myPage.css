@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+
+/* 제품 목록 네비 */
+.navi_bar_area {
+  overflow: hidden;
+  background-color: #5e6b9e;
+}
+
+.navi_bar_area a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdowns {
+  float: left;
+  overflow: hidden;
+  margin-left: 10px;
+}
+
+.dropdowns .dropbtn {
+  font-size: 16px;
+  font-weight: bold;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  width:140px;
+}
+
+.dropdown-content {
+  display:none ; 
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 466px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  font-size: 12px;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: left;
+  width: 80px;
+}
+
+.dropdowns:hover .dropdown-content {
+  display: block;
+}
+
+.navi_bar_area a:hover, .dropdown:hover .dropbtn {
+  background-color: #475382;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+
+/* 관리제 페이지 상단 현페이지 정보 */
+.admin_top_wrap{
+    height:110px;
+    line-height: 110px;
+    background-color: #5080bd;
+    margin-bottom:15px;
+}
+.admin_top_wrap>span{
+    margin-left: 30px;
+    display:inline-block;
+    color: white;
+    font-size: 50px;
+    font-weight: bolder;
+}
+/* 관리제 페이지 상단 현페이지 정보 */
+.admin_top_wrap{
+    height:110px;
+    line-height: 110px;
+    background-color: #5080bd;
+    margin-bottom:15px;
+}
+.admin_top_wrap>span{
+    margin-left: 30px;
+    display:inline-block;
+    color: white;
+    font-size: 50px;
+    font-weight: bolder;
+}
+/* 관리자페이지 네비 영역 */
+.admin_navi_wrap{
+    width: 20%;
+    height: 300px;
+    float:left;
+    height: 100%;
+}
+.admin_navi_wrap li{
+    display: block;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+}
+.admin_navi_wrap li a{
+    display: block;
+    height: 100%;
+    width: 95%;
+    margin: 0 auto;
+    cursor: pointer;
+    font-size: 27px;
+    font-weight: bolder;
+}
+.admin_navi_wrap li a:link {color: black;}
+.admin_navi_wrap li a:visited {color: black;}
+.admin_navi_wrap li a:active {color: black;}
+.admin_navi_wrap li a:hover {color: black;}
+.admin_navi_wrap li a {text-decoration: none;}
+
+/* 홈페이지 메인 제품 목록  */
+.content_area {
+	width: 100%;
+	min-height: 1000px;
+}
+
+/* float 속성 해제 */
+.clearfix {
+	clear: both;
+}

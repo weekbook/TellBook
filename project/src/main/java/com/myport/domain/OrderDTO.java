@@ -43,6 +43,9 @@ public class OrderDTO {
 	
 	/* DB테이블 존재 하지 않는 데이터 */
 	
+	// 주문한 책 이름
+	private String bookName;
+	
 	/* 판매가(모든 상품 비용) */
 	private int orderSalePrice;
 	
