@@ -22,6 +22,7 @@
 					<li><a href="/support">고객센터</a></li>
 				</ul>
 			</div>
+			
 			<div class="top_area">
 				<div class="logo_area">
 					<a href="/main"><img src="/resources/img/mLogo.png"></a>

@@ -53,7 +53,6 @@
 		</div>
 	</div>
 	<div class="content_area">
-		가나다라
 		<form id="moveForm" action="/mypage/memberDetail" method="get">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 		</form>

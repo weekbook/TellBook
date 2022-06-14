@@ -178,7 +178,6 @@
 
 .mail_check_button {
 	border: 1px solid black;
-	height: 51px;
 	width: 30%;
 	float: right;
 	line-height: 50px;
@@ -224,7 +223,6 @@
 
 .address_button {
 	border: 1px solid black;
-	height: 51px;
 	width: 30%;
 	float: right;
 	line-height: 50px;
@@ -273,6 +271,7 @@
 .join_button_wrap {
 	margin-top: 40px;
 	text-align: center;
+	
 }
 
 .join_button {

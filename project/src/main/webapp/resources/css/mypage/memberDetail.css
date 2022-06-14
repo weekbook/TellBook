@@ -161,7 +161,7 @@ ul{
 
 
 
-.admin_list_01{
+.admin_list_02{
     background-color: #c8c8c8;
 } 
 
@@ -239,6 +239,12 @@ ul{
     color: white;   
     
 }
+
+/* 테이블 */
+.table button{
+	margin-left: 10px;
+}
+
 
 /* float 속성 해제 */
 .clearfix{

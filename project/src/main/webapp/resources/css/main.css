@@ -2,68 +2,68 @@
 
 /* 제품 목록 네비 */
 .navi_bar_area {
-  overflow: hidden;
-  background-color: #5e6b9e;
+	overflow: hidden;
+	background-color: #5e6b9e;
 }
 
 .navi_bar_area a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+	float: left;
+	font-size: 16px;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
 }
 
 .dropdowns {
-  float: left;
-  overflow: hidden;
-  margin-left: 10px;
+	float: left;
+	overflow: hidden;
+	margin-left: 10px;
 }
 
 .dropdowns .dropbtn {
-  font-size: 16px;
-  font-weight: bold;  
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-  width:140px;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	outline: none;
+	color: white;
+	padding: 14px 16px;
+	background-color: inherit;
+	font-family: inherit;
+	margin: 0;
+	width: 140px;
 }
 
 .dropdown-content {
-  display:none ; 
-  position: absolute;
-  background-color: #f9f9f9;
-  width: 466px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	width: 466px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
 }
 
 .dropdown-content a {
-  float: none;
-  font-size: 12px;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: inline-block;
-  text-align: left;
-  width: 80px;
+	float: none;
+	font-size: 12px;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: inline-block;
+	text-align: left;
+	width: 104px;
 }
 
 .dropdowns:hover .dropdown-content {
-  display: block;
+	display: block;
 }
 
 .navi_bar_area a:hover, .dropdown:hover .dropbtn {
-  background-color: #475382;
+	background-color: #475382;
 }
 
 .dropdown-content a:hover {
-  background-color: #ddd;
+	background-color: #ddd;
 }
 
 /* 홈페이지 메인 제품 목록  */
@@ -72,95 +72,136 @@
 	min-height: 1000px;
 }
 
-.slick-prev{
+.slick-prev {
 	left: 160px;
-    z-index: 1;
+	z-index: 1;
 }
-.slick-next{
+
+.slick-next {
 	right: 160px;
-    z-index: 1;
+	z-index: 1;
 }
-.slide_div img{
+
+.slide_div img {
 	margin: auto;
 }
-.slide_div_wrap{
+
+.slide_div_wrap {
 	padding: 15px 0 15px 0;
-    background: #e6e9f6;
+	background: #e6e9f6;
 }
-.image_wrap img{
+
+.image_wrap img {
 	max-width: 85%;
-	max-height : 100%;
-    display: block;
-	margin: auto;    
+	max-height: 100%;
+	display: block;
+	margin: auto;
 }
 
 /* 평점 이미지  */
-.ls_wrap{
-    margin: 30px 0 30px 0;
-    padding: 0 10px 0 10px;
+.ls_wrap {
+	margin: 30px 0 30px 0;
+	padding: 0 10px 0 10px;
 }
-.ls_div_content{
+
+.ls_div_content {
 	width: 80%;
-    margin: auto;
-    height: 275px;
-    border: 1px solid #dadada;
+	margin: auto;
+	height: 275px;
+	border: 1px solid #dadada;
 }
-.image_wrap{
+
+.image_wrap {
 	width: 80%;
-    height: 60%;
-    margin: auto;
-    padding: 5% 0 5% 0;
-    display: flex;
-    align-items: center;    
+	height: 60%;
+	margin: auto;
+	padding: 5% 0 5% 0;
+	display: flex;
+	align-items: center;
 }
-.ls_category{
+
+.ls_category {
 	text-align: center;
-    font-size: 13px;
-    color: #3e74ab;
+	font-size: 13px;
+	color: #3e74ab;
 }
-.ls_rating{
+
+.ls_rating {
 	text-align: center;
-    font-size: 13px;
-    color: #e15b6e;
+	font-size: 13px;
+	color: #e15b6e;
 }
-.ls_bookName{
+
+.ls_bookName {
 	text-align: center;
-    color: #333;
-    font-size: 15px;
-    font-weight: bold;
+	color: #333;
+	font-size: 15px;
+	font-weight: bold;
 }
-.ls_div_subject{
+
+.ls_div_subject {
 	font-weight: bold;
 	font-size: 26px;
 	padding-bottom: 10px;
 }
 
-.ls_div_content_prev{
-    position: absolute;
-    top: 40%;
-    width: 40px;
-    height: 30px;
-    left: 27px;
-    font-weight: bold;
-    z-index: 1;
-    opacity: 35%;
+.ls_div_content_prev {
+	position: absolute;
+	top: 40%;
+	width: 40px;
+	height: 30px;
+	left: 27px;
+	font-weight: bold;
+	z-index: 1;
+	opacity: 35%;
 }
-.ls_div_content_prev:hover{
-   opacity: 80%;
+
+.ls_div_content_prev:hover {
+	opacity: 80%;
 }
-.ls_div_content_next{
-    position: absolute;
-    top: 40%;
-    width: 40px;
-    height: 30px;
-    right: 27px;
-    font-weight: bold;
-    z-index: 1;
-    opacity: 35%;
+
+.ls_div_content_next {
+	position: absolute;
+	top: 40%;
+	width: 40px;
+	height: 30px;
+	right: 27px;
+	font-weight: bold;
+	z-index: 1;
+	opacity: 35%;
 }
-.ls_div_content_next:hover{
-   opacity: 80%;
+
+.ls_div_content_next:hover {
+	opacity: 80%;
 }
+
+.sidebar {
+	position: absolute;
+	left: 56%;
+	top: 0;
+	margin-left: 500px;
+	width: 90px;
+}
+
+.remoTop{
+	display: block;
+    height: 34px;
+    line-height: 29px;
+    border-top: solid 1px #616161;
+    overflow: hidden;
+    letter-spacing: -1px;
+    font-size: 15px;
+    font-weight: normal;
+    background-color: #4e4e4e;
+    text-align: center;
+}
+
+h2.remoTit a{
+	color: #fff;
+}
+
+
+
 /* float 속성 해제 */
 .clearfix {
 	clear: both;
