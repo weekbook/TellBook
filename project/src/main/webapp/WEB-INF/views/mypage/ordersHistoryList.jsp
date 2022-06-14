@@ -44,8 +44,8 @@
 				<div class="admin_navi_wrap">
 					<ul>
 						<li><a class="admin_list_01" href="/mypage/ordersHistoryList">주문조회/취소</a></li>
-						<li><a class="admin_list_02" href="/mypage/memberDetail">개인정보
-								수정</a></li>
+						<li><a class="admin_list_02 move" href='<c:out value="${member.memberId }"/>'>
+									개인정보 수정</a></li>
 					</ul>
 				</div>
 				<div class="admin_content_wrap">
@@ -159,6 +159,9 @@
 				</div>
 			</div>
 		</div>
+		<form id="moveForm" action="/mypage/memberDetail" method="get">
+			<input type="hidden" name="memberId" value="${member.memberId}">
+		</form>
 	</div>
 
 	<%@ include file="../includes/footer.jsp"%>
@@ -203,6 +206,22 @@
 		
 		$("#deleteForm").find("input[name='orderId']").val(id);
 		$("#deleteForm").submit();
+	});
+	
+	$(".move").on("click", function(e){
+		e.preventDefault();
+		
+		var memberId = moveForm.find("input[name='memberId']").val();
+		// 게시물 읽고 뒤로가기 버튼했을때 같은 게시물에 들어가지는 오류 해결
+		if(memberId != ''){
+			moveForm.find("input[name='memberId']").remove();
+		}
+		
+		moveForm.append("<input type='hidden' name='memberId' value='"+$(this).attr("href") + "'>");
+		moveForm.attr("action", "/mypage/memberDetail");
+		moveForm.submit();
+		
+		
 	});
 </script>
 </html>

@@ -18,7 +18,7 @@ a:not([class]):hover {
 }
 /* content 랩 */
 .wrap {
-	width: 1080px;
+	width: 1150px;
 	margin: auto;
 }
 /* 홈페이지 기능 네비 */
@@ -56,8 +56,10 @@ a:not([class]):hover {
 }
 
 .logo_area img {
-	width: 100%;
+	width: 70%;
 	height: 100%;
+	display: block;
+	margin: auto;
 }
 /* 검색 박스 영역 */
 .search_area {
