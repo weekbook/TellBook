@@ -18,4 +18,13 @@ public interface MypageService {
 	
 	// 회원 개인정보 조회
 	public MemberVO memberPersonalDetail(String memberId);
+	
+	// 이메일 수정
+	public int emailModify(MemberVO vo);
+	
+	// 주소 수정
+	public int addressModify(MemberVO vo);
+	
+	// 비밀번호 수정
+	public int passwordModify(MemberVO vo);
 }

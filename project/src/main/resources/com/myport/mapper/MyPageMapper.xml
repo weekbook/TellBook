@@ -38,5 +38,19 @@
 		select * from book_member where memberId = #{memberId}
 	</select>
 	
+	<update id="emailModify">
+		update book_member set memberMail = #{memberMail}
+		where memberId = #{memberId}
+	</update>
+	
+	<update id="addressModify">
+		update book_member set memberaddr1 = #{memberAddr1}, memberaddr2 = #{memberAddr2}, memberaddr3 = #{memberAddr3}
+		where memberId = #{memberId}
+	</update>
+	
+	<update id="passwordModify">
+		update book_member set memberpw = #{memberPw}	
+		where memberId = #{memberId}
+	</update>
 
 </mapper>

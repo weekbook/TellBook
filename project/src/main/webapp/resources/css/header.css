@@ -56,14 +56,13 @@ a:not([class]):hover {
 }
 
 .logo_area img {
-	width: 70%;
 	height: 100%;
 	display: block;
 	margin: auto;
 }
 /* 검색 박스 영역 */
 .search_area {
-	width: 50%;
+	width: 50%;	
 	height: 100%;
 	float: left;
 }
