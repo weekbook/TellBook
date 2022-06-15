@@ -32,5 +32,20 @@ public class MyPageServiceImpl implements MypageService {
 		return mypageMapper.memberPersonalDetail(memberId);
 	}
 
+	@Override
+	public int emailModify(MemberVO vo) {
+		return mypageMapper.emailModify(vo);
+	}
+
+	@Override
+	public int addressModify(MemberVO vo) {
+		return mypageMapper.addressModify(vo);
+	}
+
+	@Override
+	public int passwordModify(MemberVO vo) {
+		return mypageMapper.passwordModify(vo);
+	}
+
 	
 }

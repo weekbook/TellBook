@@ -221,6 +221,7 @@
 		const memberId = '${member.memberId}';
 		const bookId = '${goodsInfo.bookId}';
 		
+		
 		$.ajax({
 			data : {
 				bookId : bookId,

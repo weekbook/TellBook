@@ -245,6 +245,11 @@ ul{
 	margin-left: 10px;
 }
 
+.after_change input{
+	margin-top: 10px;
+	height: 30px;
+}
+
 
 /* float 속성 해제 */
 .clearfix{

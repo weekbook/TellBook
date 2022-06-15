@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.myport.domain.AttachImageVO;
 import com.myport.domain.BookVO;
 import com.myport.domain.Criteria;
+import com.myport.domain.MemberVO;
 import com.myport.domain.PageDTO;
 import com.myport.domain.ReplyDTO;
 import com.myport.mapper.AttachMapper;
 import com.myport.service.BookService;
+import com.myport.service.MemberService;
 import com.myport.service.ReplyService;
 
 import lombok.AllArgsConstructor;
@@ -39,6 +41,8 @@ public class BookController {
 	private BookService bookService;
 	
 	private ReplyService replyService;
+	
+	private MemberService memberService;
 
 	
 	@GetMapping("/display")
@@ -130,4 +134,5 @@ public class BookController {
 		return "/replyUpdate";
 	}
 
+	
 }
