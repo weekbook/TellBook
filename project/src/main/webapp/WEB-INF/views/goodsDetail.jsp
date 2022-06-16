@@ -184,14 +184,20 @@
 	// 장바구니 추가 버튼
 	$(".btn_cart").on("click", function(e) {
 		form.bookCount = $(".quantity_input").val();
-		$.ajax({
-			url : '/cart/add',
-			type : 'POST',
-			data : form,
-			success : function(result){
-				cartAlert(result);
-			}
-		})
+		
+		if(form.bookCount > ${goodsInfo.bookStock}){
+			alert("상품 재고를 초과하였습니다. 남은 수량은 " + ${goodsInfo.bookStock} + "개 입니다.");
+		}else{
+			$.ajax({
+				url : '/cart/add',
+				type : 'POST',
+				data : form,
+				success : function(result){
+					cartAlert(result);
+				}
+			});
+		}
+		
 	});
 	
 	function cartAlert(result) {
@@ -210,7 +216,12 @@
 	$(".btn_buy").on("click", function() {
 		let bookCount = $(".quantity_input").val();
 		$(".order_form").find("input[name='orders[0].bookCount']").val(bookCount);
-		$(".order_form").submit();
+		if(bookCount > ${goodsInfo.bookStock}){
+			alert("상품 재고를 초과하였습니다. 남은 수량은 " + ${goodsInfo.bookStock} + "개 입니다.");
+		}else{
+			$(".order_form").submit();
+		}
+		
 	});
 	
 	// 리뷰쓰기

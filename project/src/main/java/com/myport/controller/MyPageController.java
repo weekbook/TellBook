@@ -5,13 +5,16 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.myport.domain.Criteria;
 import com.myport.domain.MemberVO;
 import com.myport.domain.OrderCancleDTO;
@@ -38,6 +41,8 @@ public class MyPageController {
 	private OrderService orderService;
 	
 	private MemberService memberService;
+	
+	private BCryptPasswordEncoder pwEncoder;
 	
 	@GetMapping("/myPage")
 	public void mainPageGET(Model model) {
@@ -108,5 +113,44 @@ public class MyPageController {
 		model.addAttribute("memberId", memberId);
 		
 		return "/mypage/passwordUpdate";
+	}
+	
+	@PostMapping("/passwordUpdate")
+	public String passwordModifyPOST(HttpServletRequest request, RedirectAttributes rttr) throws Exception{
+		// 해야하는거 -> memberID 컨트롤러로 보내서 그걸로 db의 암호화된 비번 받아오기 -> 기존 비번이랑 암호화된비번 match해서 맞는지?
+		// 맞다면...뭐알아서 하고 새비번도 파라미터로 받아서 암호화한 다음에 db에 저장시키기
+		String rawPw = request.getParameter("memberPw");
+		String newPw = request.getParameter("newpassword");
+		String memberId = request.getParameter("memberId");
+		String encodePw = "";
+		String newEncodePw ="";
+		
+		MemberVO lvo = mypageService.memberPersonalDetail(memberId);
+		
+		log.info("rawPw" + rawPw);
+		log.info("newPw"+ newPw);
+		log.info("memberId" + memberId);
+		log.info(lvo);
+		
+		if(lvo != null) {
+			encodePw = lvo.getMemberPw();
+			
+			if(pwEncoder.matches(rawPw, encodePw) == true) {
+				newEncodePw = pwEncoder.encode(newPw);
+				lvo.setMemberPw(newEncodePw);
+				
+				mypageService.passwordModify(lvo);
+				
+			}else {
+				rttr.addFlashAttribute("result", 0);
+				return "redirect:/mypage/passwordUpdate/"+memberId;
+			}
+		} else {
+			rttr.addFlashAttribute("result", 0);
+			return "redirect:/mypage/passwordUpdate/"+memberId;
+		}
+		rttr.addFlashAttribute("result", 0);
+		return "redirect:/mypage/passwordUpdate/"+memberId;
+		
 	}
 }

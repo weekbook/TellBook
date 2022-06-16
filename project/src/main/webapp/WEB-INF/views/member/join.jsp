@@ -39,8 +39,12 @@ input{
 			</div>
 			<div class="pw_wrap">
 				<div class="pw_name">비밀번호</div>
+					<p>비밀번호는
+						영문, 숫자, 특수문자를 최소 한가지씩 조합하여<br>
+						8자 이상, 20자 이하로 설정하십시오.<br></p>
 					<input type="password" class="pw_input form-control" name="memberPw">
 				<span class="final_pw_ck">비밀번호를 입력해주세요.</span>
+				<span class="valiation_pw" style="display: none; color: red">비밀번호 형식에 어긋납니다.</span>
 			</div>
 			<div class="pwck_wrap">
 				<div class="pwck_name">비밀번호 확인</div>
@@ -108,6 +112,7 @@ var idckCheck = false;            // 아이디 중복 검사
 var pwCheck = false;            // 비번
 var pwckCheck = false;            // 비번 확인
 var pwckcorCheck = false;        // 비번 확인 일치 확인
+var vali_pwCk = false;
 var nameCheck = false;            // 이름
 var mailCheck = false;            // 이메일
 var mailnumCheck = false;        // 이메일 인증번호 확인
@@ -180,7 +185,7 @@ $(document).ready(function(){
         }
         
         /* 최종 유효성 검사 */
-        if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&mailCheck&&mailnumCheck&&addressCheck ){
+        if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&mailCheck&&mailnumCheck&&addressCheck&&vali_pwCk ){
         	$("#join_form").attr("action", "/member/join");
     		$("#join_form").submit();
         }
@@ -326,11 +331,29 @@ $('.pwck_input').on("propertychange change keyup paste input", function(){
         pwckcorCheck = false;
     }     
 });
+//8~20자 사이 문자1개, 숫자1개, 특수문자1개 유효성
+$('.pw_input').on("propertychange change keyup paste input", function(){
+	var pw = $('.pw_input').val();
+	var pwck = $('.pwck_input').val("");
+	
+    if(passwordCheck(pw)){
+		vali_pwCk = true;
+		$('.valiation_pw').css('display','none');
+	}else{
+		vali_pwCk = false;
+		$('.valiation_pw').css('display','block');
+	}
+});
 
 // 입력 이메일 형식 유효성 검사
 function mailFormCheck(email){
 	var form = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	return form.test(email);
+}
+
+function passwordCheck(password){
+	var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+	return regExp.test(password);
 }
 
 </script>

@@ -42,8 +42,6 @@ public class BookController {
 	
 	private ReplyService replyService;
 	
-	private MemberService memberService;
-
 	
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getImage(String fileName) {

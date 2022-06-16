@@ -34,6 +34,8 @@ public class CartDTO {
 	
 	private List<AttachImageVO> imageList;
 	
+	private int bookStock;
+	
 	// 할인율 및 할인 가격, 포인트 구하기
 	public void initSaleTotal() {
 		this.salePrice = (int) (this.bookPrice * (1-this.bookDiscount));

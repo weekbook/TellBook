@@ -55,6 +55,7 @@
 										<input type="hidden" class="individual_point_input" value="${ci.point}">
 										<input type="hidden" class="individual_totalPoint_input" value="${ci.totalPoint}">
 										<input type="hidden" class="individual_bookId_input" value="${ci.bookId }">
+										<input type="hidden" class="individual_bookStock_input" value="${ci.bookStock }">
 									</td>
 									<td class="td_width_2">
 										<div class="image_wrap" data-bookid="${ci.imageList[0].bookId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].fileName}">
@@ -315,8 +316,10 @@
 		$(".quantity_delete_form").submit();
 	});
 	
+	let quantity_boolean = false;
 	/* 주문 페이지 이동 */	
 	$(".order_btn").on("click", function(){
+		
 		let form_contents ='';
 		let orderNumber = 0;
 		$(".cart_info_td").each(function(index, element) {
@@ -325,19 +328,28 @@
 				
 				let bookId = $(element).find(".individual_bookId_input").val();
 				let bookCount = $(element).find(".individual_bookCount_input").val();
+				let bookStock = $(element).find(".individual_bookStock_input").val();
 				
-				let bookId_input = "<input name='orders[" + orderNumber + "].bookId' type='hidden' value='" + bookId + "'>";
-				form_contents += bookId_input;
+				if (bookCount > bookStock) {
+					alert("주문수량이 상품재고보다 많습니다. 현재 재고 수량은 " + bookStock + "개 입니다.");
+					quantity_boolean = false;
+				} else{
+					let bookId_input = "<input name='orders[" + orderNumber + "].bookId' type='hidden' value='" + bookId + "'>";
+					form_contents += bookId_input;
+					
+					let bookCount_input = "<input name='orders[" + orderNumber + "].bookCount' type='hidden' value='" + bookCount + "'>";
+					form_contents += bookCount_input;
+					
+					orderNumber += 1;
+					quantity_boolean = true;
+				}
 				
-				let bookCount_input = "<input name='orders[" + orderNumber + "].bookCount' type='hidden' value='" + bookCount + "'>";
-				form_contents += bookCount_input;
-				
-				orderNumber += 1;
 			}
 		});
-		
-		$(".order_form").html(form_contents);
-		$(".order_form").submit();
+		if(quantity_boolean == true){
+			$(".order_form").html(form_contents);
+			$(".order_form").submit();
+		}
 	});
 	
 </script>
