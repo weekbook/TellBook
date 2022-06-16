@@ -417,7 +417,7 @@
 	function password_modify() {
 		 let replyId = $(this).attr("href");
 		 let popUrl = "/mypage/passwordUpdate/" + '${member.memberId}'; 
-		 let popOption = "width = 490px, height=300px, top=300px, left=300px, scrollbars=yes";
+		 let popOption = "width = 600px, height=300px, top=300px, left=300px, scrollbars=yes";
 		 
 		 window.open(popUrl,"비밀번호 변경",popOption);
 	}

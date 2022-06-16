@@ -22,7 +22,7 @@
 	
 	<!-- 카트 목록 -->
 	<select id="getCart" resultType="com.myport.domain.CartDTO">
-		select a.cartId, a.memberId, a.bookId, a.bookCount, b.bookName, b.bookPrice, b.bookDiscount
+		select a.cartId, a.memberId, a.bookId, a.bookCount, b.bookName, b.bookPrice, b.bookDiscount, b.bookStock
 		from book_cart a left outer join book_product b on a.bookId = b.bookId
 		where memberId = #{memberId}
 	</select>
