@@ -98,7 +98,7 @@ body {
     
 <main class="form-signin">
   <form id="login_form" method="post">
-    <img class="mb-4" src="/resources/img/mLogo.png" alt="" width="200" height="210">
+  	<a href="/main"><img class="mb-4" src="/resources/img/mLogo.png" alt="" width="200" height="210"></a>
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
@@ -110,11 +110,18 @@ body {
       <label for="floatingPassword">Password</label>
     </div>
 
-    <div class="checkbox mb-3">
+    <!-- <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Remember me
       </label>
+    </div> -->
+    
+    <div class="mb-3" style="font-size: 13px;">
+    	<button type="button" class="btn btn-outline-dark" onclick="location.href='/member/findMember'">아이디 찾기</button>
+    	&nbsp &nbsp
+    	<button type="button" class="btn btn-outline-dark" onclick="location.href='/member/findMember'">비빌번호 찾기</button>
     </div>
+    
     <button class="w-100 btn btn-lg btn-primary login_button" type="submit" value="로그인">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2022.05 - 07</p>
   </form>

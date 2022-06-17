@@ -445,33 +445,40 @@ function setTotalInfo(){
 /* 주문 요청 */
 $(".order_btn").on("click", function(){
 	
-	// 주소 정보, 받는이
-	$(".addressInfo_input_div").each(function(i, obj) {
-		if ($(obj).find(".selectAddress").val() === 'T') {
-			$("input[name='addressee']").val($(obj).find(".addressee_input").val());
-			$("input[name='memberAddr1']").val($(obj).find(".address1_input").val());
-			$("input[name='memberAddr2']").val($(obj).find(".address2_input").val());
-			$("input[name='memberAddr3']").val($(obj).find(".address3_input").val());
-		}
-	});
+	let totalPrice = setTotalInfo();
+	let money = ${member.money};
+	if(totalPrice > money){
+		alert("충전금액이 부족합니다.");
+	} else{
+		// 주소 정보, 받는이
+		$(".addressInfo_input_div").each(function(i, obj) {
+			if ($(obj).find(".selectAddress").val() === 'T') {
+				$("input[name='addressee']").val($(obj).find(".addressee_input").val());
+				$("input[name='memberAddr1']").val($(obj).find(".address1_input").val());
+				$("input[name='memberAddr2']").val($(obj).find(".address2_input").val());
+				$("input[name='memberAddr3']").val($(obj).find(".address3_input").val());
+			}
+		});
+		
+		// 사용 포인트
+		$("input[name='usePoint']").val($(".order_point_input").val());
+		
+		// 상품 정보
+		let form_contents = '';
+		$(".goods_table_price_td").each(function(index, element) {
+			let bookId = $(element).find(".individual_bookId_input").val();
+			let bookCount = $(element).find(".individual_bookCount_input").val();
+			let bookId_input = "<input name='orders[" + index + "].bookId' type='hidden' value='" + bookId + "'>";
+			form_contents += bookId_input;
+			let bookCount_input = "<input name='orders[" + index + "].bookCount' type='hidden' value='" + bookCount + "'>";
+			form_contents += bookCount_input;
+		});
+		$(".order_form").append(form_contents);
+		
+		// 서버 전솧
+		$(".order_form").submit();
+	}
 	
-	// 사용 포인트
-	$("input[name='usePoint']").val($(".order_point_input").val());
-	
-	// 상품 정보
-	let form_contents = '';
-	$(".goods_table_price_td").each(function(index, element) {
-		let bookId = $(element).find(".individual_bookId_input").val();
-		let bookCount = $(element).find(".individual_bookCount_input").val();
-		let bookId_input = "<input name='orders[" + index + "].bookId' type='hidden' value='" + bookId + "'>";
-		form_contents += bookId_input;
-		let bookCount_input = "<input name='orders[" + index + "].bookCount' type='hidden' value='" + bookCount + "'>";
-		form_contents += bookCount_input;
-	});
-	$(".order_form").append(form_contents);
-	
-	// 서버 전솧
-	$(".order_form").submit();
 });
 
 

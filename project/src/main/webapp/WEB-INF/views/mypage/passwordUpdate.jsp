@@ -118,9 +118,12 @@
 			}
 			
 			if(pwckCheck == true && pwCheck == true){
+				alert("변경되었습니다.");
 				$("#modify_form").attr("action", "/mypage/passwordUpdate");
 				$("#modify_form").submit();
-				window.close();
+				setTimeout(function() {   
+		             window.close();
+		          }, 100);
 			}
 			return false;
 		});

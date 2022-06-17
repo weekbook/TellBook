@@ -316,7 +316,9 @@
 		$(".quantity_delete_form").submit();
 	});
 	
-	let quantity_boolean = false;
+	let quantity_boolean = true;
+	let quantity_booleanCk = false;
+	
 	/* 주문 페이지 이동 */	
 	$(".order_btn").on("click", function(){
 		
@@ -327,8 +329,9 @@
 			if($(element).find(".individual_cart_checkbox").is(":checked") === true){
 				
 				let bookId = $(element).find(".individual_bookId_input").val();
-				let bookCount = $(element).find(".individual_bookCount_input").val();
-				let bookStock = $(element).find(".individual_bookStock_input").val();
+				// parseInt로 형변환을 하지않으면 주문량이 재고보다 적어도 주문량이 많다는 오류 발생
+				let bookCount = parseInt($(element).find(".individual_bookCount_input").val());
+				let bookStock = parseInt($(element).find(".individual_bookStock_input").val());
 				
 				if (bookCount > bookStock) {
 					alert("주문수량이 상품재고보다 많습니다. 현재 재고 수량은 " + bookStock + "개 입니다.");
@@ -341,12 +344,15 @@
 					form_contents += bookCount_input;
 					
 					orderNumber += 1;
-					quantity_boolean = true;
 				}
 				
 			}
 		});
 		if(quantity_boolean == true){
+			quantity_booleanCk = true;
+		}
+		
+		if(quantity_booleanCk == true){
 			$(".order_form").html(form_contents);
 			$(".order_form").submit();
 		}
