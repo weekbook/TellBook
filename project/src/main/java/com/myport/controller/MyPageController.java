@@ -90,7 +90,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		return "redirect:/mypage/OrdersHistoryList?keyword=" + dto.getKeyword() + "&amount=" + dto.getAmount() + "&pageNum="
+		return "redirect:/mypage/ordersHistoryList?keyword=" + dto.getKeyword() + "&amount=" + dto.getAmount() + "&pageNum="
 				+ dto.getPageNum();
 	}
 	
@@ -141,6 +141,15 @@ public class MyPageController {
 				
 				mypageService.passwordModify(lvo);
 				
+				
+				// 비빌번호 변경 후 로그아웃 및 메인 창 이동
+				// 팝업창페이지에선 session정보가 없어서 기능이 작동안하는듯하다
+				HttpSession session = request.getSession();
+				
+				session.invalidate();
+				
+				return "redirect:/main";
+				
 			}else {
 				rttr.addFlashAttribute("result", 0);
 				return "redirect:/mypage/passwordUpdate/"+memberId;
@@ -149,8 +158,6 @@ public class MyPageController {
 			rttr.addFlashAttribute("result", 0);
 			return "redirect:/mypage/passwordUpdate/"+memberId;
 		}
-		rttr.addFlashAttribute("result", 0);
-		return "redirect:/mypage/passwordUpdate/"+memberId;
 		
 	}
 }
