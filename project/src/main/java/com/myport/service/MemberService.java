@@ -14,4 +14,7 @@ public interface MemberService {
 	
 	// 주문자 정보
 	public MemberVO getMemberInfo(String memberId);
+	
+	// 아이디 찾기
+	public String getMemberID(String memberName, String memberMail);
 }

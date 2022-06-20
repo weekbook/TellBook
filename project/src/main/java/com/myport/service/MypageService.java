@@ -27,4 +27,7 @@ public interface MypageService {
 	
 	// 비밀번호 수정
 	public int passwordModify(MemberVO vo);
+	
+	// 회원 탈퇴
+	public int memeberDelete(String memberId);
 }

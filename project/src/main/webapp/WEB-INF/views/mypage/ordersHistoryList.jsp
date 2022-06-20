@@ -46,6 +46,7 @@
 						<li><a class="admin_list_01" href="/mypage/ordersHistoryList">주문조회/취소</a></li>
 						<li><a class="admin_list_02 move" href='<c:out value="${member.memberId }"/>'>
 									개인정보 수정</a></li>
+						<li><a class="admin_list_03" href="/mypage/memberDelete">회원탈퇴</a></li>
 					</ul>
 				</div>
 				<div class="admin_content_wrap">
@@ -99,7 +100,7 @@
 					</div>
 					<!-- 검색 영역 -->
 					<div class="search_wrap">
-						<form id="searchForm2" action="/mypage/OrdersHistoryList"
+						<form id="searchForm2" action="/mypage/ordersHistoryList"
 							method="get" style="display: flex; justify-content: center;">
 							<div class="search_input"
 								style="display: flex; justify-content: center;">
@@ -141,7 +142,7 @@
 							</c:if>
 						</ul>
 					</div>
-					<form id="moveForm" action="/mypage/OrdersHistoryList" method="get">
+					<form id="moveForm" action="/mypage/ordersHistoryList" method="get">
 						<input type="hidden" name="pageNum"
 							value="${pageMaker.cri.pageNum}"> <input type="hidden"
 							name="amount" value="${pageMaker.cri.amount}"> <input

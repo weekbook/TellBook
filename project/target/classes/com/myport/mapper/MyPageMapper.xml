@@ -52,5 +52,9 @@
 		update book_member set memberpw = #{memberPw}	
 		where memberId = #{memberId}
 	</update>
+	
+	<delete id="memberDelete">
+		delete from book_member where memberId = #{memberId}
+	</delete>
 
 </mapper>

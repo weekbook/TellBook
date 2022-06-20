@@ -48,6 +48,7 @@
 					<li><a class="admin_list_02 move" href='<c:out value="${member.memberId }"/>'>
 									개인정보 수정
 								</a></li>
+					<li><a class="admin_list_03" href="/mypage/memberDelete">회원탈퇴</a></li>
 				</ul>
 			</div>
 		</div>

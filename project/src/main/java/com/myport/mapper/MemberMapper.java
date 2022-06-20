@@ -15,4 +15,7 @@ public interface MemberMapper {
 	
 	// 주문자 주소 정보
 	public MemberVO getMemberInfo(String memberId);
+	
+	// 아이디 정보
+	public String getMemberId(String memberName, String memberMail);
 }

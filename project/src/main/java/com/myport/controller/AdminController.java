@@ -458,7 +458,7 @@ public class AdminController {
 		
 		if(!list.isEmpty()) {
 			model.addAttribute("list", list);
-			model.addAttribute("pageMaker", new PageDTO(cri, adminService.getOrderTotal(cri)));
+			model.addAttribute("pageMaker", new PageDTO(cri, adminService.getMemberTotal(cri)));
 		} else {
 			model.addAttribute("listCheck", "empty");
 		}
