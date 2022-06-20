@@ -27,4 +27,11 @@
 		from book_member
 		where memberId = #{memberId}
 	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="getMemberId" resultType="String">
+		select memberId
+		from book_member
+		where memberName = #{memberName} and memberMail = #{memberMail}
+	</select>
 </mapper>

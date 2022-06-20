@@ -30,7 +30,6 @@ import lombok.extern.log4j.Log4j;
 public class MemberController {
 
 	private MemberService service;
-
 	private JavaMailSender mailSender;
 	
 	private BCryptPasswordEncoder pwEncoder;
@@ -169,9 +168,17 @@ public class MemberController {
 	}
 	
 	@GetMapping("/findMember")
-	public void findIdGET(Model model) {
-		model.addAttribute("hi","hi");
+	public String findMemberGET(Model model) {
+		
+		return "/member/findMember";
 	}
 	
-	
+	@PostMapping("/findMemberID")
+	@ResponseBody
+	public String findIdPOST(MemberVO vo) {
+		
+		String result = service.getMemberID(vo.getMemberName(), vo.getMemberMail());
+		
+		return result;
+	}
 }

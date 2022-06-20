@@ -160,6 +160,8 @@
 
 </body>
 <script>
+	let deleteResult = '${memberDeleteResult}';
+
 	$(document).ready(function(){
 		
 		$(".slide_div").slick({
@@ -197,6 +199,10 @@
 			}
 			
 		});
+		
+		if (deleteResult === '1') {
+			alert("회원탈퇴가 완료되었습니다.");
+		}
 	});
 </script>
 </html>

@@ -119,7 +119,8 @@
 	<select id="getMemberList" resultType="com.myport.domain.MemberVO">
 		<![CDATA[
 			select * from(
-				select rownum rn, memberId, memberName, memberMail, regdate
+				select /*+INDEX_DESC(book_member SYS_C008423) */ 
+				rownum as rn, memberId, memberName, memberMail, regdate
 				from book_member
 				where rownum <= #{pageNum} * #{amount}
 		]]>

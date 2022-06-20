@@ -26,4 +26,7 @@ public interface MyPageMapper {
 	// 비밀번호 수정
 	public int passwordModify(MemberVO vo);
 	
+	// 회원 탈퇴
+	public int memberDelete(String memberId);
+	
 }

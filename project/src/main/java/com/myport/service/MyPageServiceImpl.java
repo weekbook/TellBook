@@ -47,5 +47,10 @@ public class MyPageServiceImpl implements MypageService {
 		return mypageMapper.passwordModify(vo);
 	}
 
+	@Override
+	public int memeberDelete(String memberId) {
+		return mypageMapper.memberDelete(memberId);
+	}
+
 	
 }

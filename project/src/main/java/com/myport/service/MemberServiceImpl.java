@@ -39,5 +39,10 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.getMemberInfo(memberId);
 	}
 
+	@Override
+	public String getMemberID(String memberName, String memberMail) {
+		return mapper.getMemberId(memberName, memberMail);
+	}
+
 
 }

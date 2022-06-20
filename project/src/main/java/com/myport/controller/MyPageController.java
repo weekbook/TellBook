@@ -160,4 +160,47 @@ public class MyPageController {
 		}
 		
 	}
+	
+	@GetMapping("/memberDelete")
+	public String memberDeleteGET(Model model) {
+		
+		return "/mypage/memberDelete";
+	}
+	
+	@PostMapping("/memberDelete")
+	public String memberDeletePOST(HttpServletRequest request, RedirectAttributes rttr) {
+		String memberId = request.getParameter("memberId");
+		String rawPw = request.getParameter("memberPw");
+		String encodePw ="";
+		
+		log.info(memberId);
+		log.info(rawPw);
+		
+		MemberVO lvo = mypageService.memberPersonalDetail(memberId);
+		
+		if(lvo != null) {
+			encodePw = lvo.getMemberPw();
+			
+			if(pwEncoder.matches(rawPw, encodePw) == true) {
+				
+				mypageService.memeberDelete(memberId);
+				
+				// 비빌번호 변경 후 로그아웃 및 메인 창 이동
+				// 팝업창페이지에선 session정보가 없어서 기능이 작동안하는듯하다
+				HttpSession session = request.getSession();
+				
+				session.invalidate();
+				
+				rttr.addFlashAttribute("memberDeleteResult", 1);
+				return "redirect:/main";
+				
+			}else {
+				rttr.addFlashAttribute("memberDeleteResult", 0);
+				return "redirect:/mypage/memberDelete";
+			}
+		} else {
+			rttr.addFlashAttribute("memberDeleteResult", 0);
+			return "redirect:/mypage/memberDelete";
+		}
+	}
 }
