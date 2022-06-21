@@ -12,6 +12,10 @@
 	<select id="idCheck" resultType="int">
 		select count(*) from book_member where memberId = #{memberId}
 	</select>
+	
+	<select id="mailCheck" resultType="int">
+		select count(*) from book_member where memberMail = #{memberMail}
+	</select>
 
 	<!-- 로그인 -->
 	<select id="memberLogin" resultType="com.myport.domain.MemberVO">
@@ -34,4 +38,16 @@
 		from book_member
 		where memberName = #{memberName} and memberMail = #{memberMail}
 	</select>
+	<!-- 계정 확인 -->
+	<select id="accountCheck" resultType="String">
+		select memberName
+		from book_member
+		where memberId = #{memberId} and memberMail = #{memberMail}
+	</select>
+	
+	<!-- 비밀번호 재설정 -->
+	<update id="resetPassword">
+		update book_member set memberPw = #{memberPw}
+		where memberId = #{memberId}
+	</update>
 </mapper>

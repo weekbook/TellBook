@@ -74,6 +74,22 @@ public class MemberController {
 			return "success";
 		}
 	}
+	
+	// 이메일 중복 검사
+	@PostMapping("/memberMailChk")
+	@ResponseBody
+	public String mailOverlabPOST(String memberMail) throws Exception{
+		
+		int result = service.mailCheck(memberMail);
+
+		log.info("결과값 = " + result);
+		if (result != 0) {
+			return "fail";
+		} else {
+			return "success";
+		}
+		
+	}
 
 	/* 이메일 인증 */
 	@GetMapping("/mailCheck")
@@ -92,7 +108,7 @@ public class MemberController {
 		/* 이메일 보내기 */
 		String setFrom = "weekbook@naver.com";
 		String toMail = email;
-		String title = "회원가입 인증 이메일 입니다.";
+		String title = "TellBook 인증 이메일 입니다.";
 		String content = "홈페이지를 방문해주셔서 감사합니다." + "<br><br>" + "인증 번호는 " + checkNum + "입니다." + "<br>"
 				+ "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
 
@@ -180,5 +196,32 @@ public class MemberController {
 		String result = service.getMemberID(vo.getMemberName(), vo.getMemberMail());
 		
 		return result;
+	}
+	
+	@PostMapping("/findMemberPw")
+	@ResponseBody
+	public String findPwPOST(MemberVO vo) {
+		
+		String result = service.accountCheck(vo.getMemberId(), vo.getMemberMail());
+		
+		return result;
+	}
+	
+	@PostMapping("/resetPassword")
+	@ResponseBody
+	public String resetPwPOST(MemberVO vo, RedirectAttributes rttr) {
+		
+		String rawPw = ""; // 인코딩 전 비밀번호
+		String encodePw = ""; // 인코딩 후 비밀번호
+		
+		rawPw = vo.getMemberPw(); // 비밀번호 데이터 얻음
+		encodePw = pwEncoder.encode(rawPw); // 비밀번호 인코딩
+		vo.setMemberPw(encodePw); // 인코딩된 비밀번호 member객체에 다시 저장.
+		
+		service.resetPassword(vo.getMemberId(), encodePw);
+
+		rttr.addFlashAttribute("pwChange", 1);
+		return "redirect:/main";
+		
 	}
 }
