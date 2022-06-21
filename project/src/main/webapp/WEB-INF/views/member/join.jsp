@@ -60,9 +60,15 @@ input{
 			</div>
 			<div class="mail_wrap">
 				<div class="mail_name">이메일</div> 
+				<div id="mail_input_box" style="width: 65%; display: inline-block;" >
 					<input class="mail_input form-control" name="memberMail">
-				<span class="final_mail_ck">이메일을 입력해주세요.</span>
-				<span class="mail_input_box_warn"></span>
+					<span class="final_mail_ck">이메일을 입력해주세요.</span>
+					<span class="mail_input_box_warn"></span>
+					<p class="mail_overlab_pTag" style="display: none; color: red;"><strong>이메일 중복검사를 실행해주세요.</strong></p>
+				</div>
+				<div class="mail_overlabCk_button mail_overlab_btn btn btn-success">
+						<span style="font-weight: 900">이메일 중복 검사</span>
+				</div>
 				<div class="mail_check_wrap">
 					<div id="mail_check_input_box_false" style="width: 65%; display: inline-block;" >
 						<input class="mail_check_input form-control" disabled="disabled" style="width: 100%">
@@ -104,31 +110,34 @@ input{
 <!-- 다음 주소록 API 스크립트 -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-var code = ""; // 이메일전송 인증번호 저장을 위한 변수
+let code = ""; // 이메일전송 인증번호 저장을 위한 변수
 
 /* 유효성 검사 통과유무 변수 */
-var idCheck = false;            // 아이디
-var idckCheck = false;            // 아이디 중복 검사
-var pwCheck = false;            // 비번
-var pwckCheck = false;            // 비번 확인
-var pwckcorCheck = false;        // 비번 확인 일치 확인
-var vali_pwCk = false;
-var nameCheck = false;            // 이름
-var mailCheck = false;            // 이메일
-var mailnumCheck = false;        // 이메일 인증번호 확인
-var addressCheck = false         // 주소
+let idCheck = false;            // 아이디
+let idckCheck = false;            // 아이디 중복 검사
+let pwCheck = false;            // 비번
+let pwckCheck = false;            // 비번 확인
+let pwckcorCheck = false;        // 비번 확인 일치 확인
+let vali_pwCk = false;
+let nameCheck = false;            // 이름
+let mailCheck = false;            // 이메일
+let mailnumCheck = false;        // 이메일 인증번호 확인
+
+let mailOverlap = false; 		// 이메일 DB 중복 검사
+
+let addressCheck = false         // 주소
 
 $(document).ready(function(){
 	//회원가입 버튼(회원가입 기능 작동)
 	$(".join_button").click(function(){
 		
 		// 입력값 변수
-		var id = $('.id_input').val(); // id 입력란
-		var pw = $('.pw_input').val(); // 비밀번호 입력란
-		var pwck = $('.pwck_input').val(); // 비밀번호 확인 입력란
-		var name = $('.user_input').val(); // 이름 입력란
-        var mail = $('.mail_input').val(); // 이메일 입력란
-        var addr = $('.address_input_3').val();  // 주소 입력란
+		let id = $('.id_input').val(); // id 입력란
+		let pw = $('.pw_input').val(); // 비밀번호 입력란
+		let pwck = $('.pwck_input').val(); // 비밀번호 확인 입력란
+		let name = $('.user_input').val(); // 이름 입력란
+        let mail = $('.mail_input').val(); // 이메일 입력란
+        let addr = $('.address_input_3').val();  // 주소 입력란
         
         // 아이디 유효성검사
         if(id == ""){
@@ -184,8 +193,12 @@ $(document).ready(function(){
             addressCheck = true;
         }
         
+        if(mailOverlap == false){
+        	$('.mail_overlab_pTag').css('display', 'block');
+        }
+        
         /* 최종 유효성 검사 */
-        if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&mailCheck&&mailnumCheck&&addressCheck&&vali_pwCk ){
+        if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&mailCheck&&mailnumCheck&&addressCheck&&vali_pwCk&&mailOverlap){
         	$("#join_form").attr("action", "/member/join");
     		$("#join_form").submit();
         }
@@ -195,8 +208,8 @@ $(document).ready(function(){
 	
 	//아이디 중복검사
 	$('.id_input').on("propertychange change keyup paste input", function(){
-		var memberId = $('.id_input').val();			// .id_input에 입력되는 값
-		var data = {memberId : memberId}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+		let memberId = $('.id_input').val();			// .id_input에 입력되는 값
+		let data = {memberId : memberId}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
 		
 		$.ajax({
 			type : "post",
@@ -217,13 +230,34 @@ $(document).ready(function(){
 		});
 	});
 	
+	//이메일 중복검사
+	$('.mail_overlabCk_button').click(function() {
+		let memberMail = $('.mail_input').val();			
+		let data = {memberMail : memberMail}
+		
+		$.ajax({
+			type : "post",
+			url : "/member/memberMailChk",
+			data : data,
+			success : function(result){
+				if(result != 'fail'){
+					alert("사용가능한 이메일입니다.")
+					mailOverlap = true;
+				} else {
+					alert("중복된 이메일입니다.")
+					mailOverlap = false;
+				}
+			}
+		});
+	});
+		
 	/* 인증번호 이메일 전송 */
 	$(".mail_check_button").click(function(){
 		
-		var email = $(".mail_input").val(); // 입력한 이메일
-		var checkBox = $(".mail_check_input"); // 인증번호 입력란
-		var boxWrap = $(".mail_check_input_box"); // 인증번호 입력란 박스
-		var warnMsg = $(".mail_input_box_warn"); // 이메일 입력 경고글
+		let email = $(".mail_input").val(); // 입력한 이메일
+		let checkBox = $(".mail_check_input"); // 인증번호 입력란
+		let boxWrap = $(".mail_check_input_box"); // 인증번호 입력란 박스
+		let warnMsg = $(".mail_input_box_warn"); // 이메일 입력 경고글
 		
 		if(mailFormCheck(email)){
 			warnMsg.html("이메일이 전송 되었습니다. 이메일을 확인해주세요.");
@@ -248,8 +282,8 @@ $(document).ready(function(){
 	
 	// 인증번호 비교
 	$(".mail_check_input").blur(function(){
-		var inputCode = $(".mail_check_input").val(); // 입력코드
-		var checkResult = $("#mail_check_input_box_warn"); // 비교결과
+		let inputCode = $(".mail_check_input").val(); // 입력코드
+		let checkResult = $("#mail_check_input_box_warn"); // 비교결과
 		
 		if(inputCode == code){
 			checkResult.html("인증번호가 일치합니다.");
@@ -273,8 +307,8 @@ function execution_daum_address(){
 			
 			// 각 주소의 노출 규칙에 따라 주소를 조합한다.
             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var addr = ''; // 주소 변수
-            var extraAddr = ''; // 참고항목 변수
+            let addr = ''; // 주소 변수
+            let extraAddr = ''; // 참고항목 변수
 
             //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
             if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
@@ -317,8 +351,8 @@ function execution_daum_address(){
 // 비밀번호 확인 일치 유효성 검사
 $('.pwck_input').on("propertychange change keyup paste input", function(){
 	
-	var pw = $('.pw_input').val();
-	var pwck = $('.pwck_input').val();
+	let pw = $('.pw_input').val();
+	let pwck = $('.pwck_input').val();
 	$('.final_pwck_ck').css('display', 'none');
 	
 	if(pw == pwck){
@@ -333,8 +367,8 @@ $('.pwck_input').on("propertychange change keyup paste input", function(){
 });
 //8~20자 사이 문자1개, 숫자1개, 특수문자1개 유효성
 $('.pw_input').on("propertychange change keyup paste input", function(){
-	var pw = $('.pw_input').val();
-	var pwck = $('.pwck_input').val("");
+	let pw = $('.pw_input').val();
+	let pwck = $('.pwck_input').val("");
 	
     if(passwordCheck(pw)){
 		vali_pwCk = true;
@@ -347,12 +381,12 @@ $('.pw_input').on("propertychange change keyup paste input", function(){
 
 // 입력 이메일 형식 유효성 검사
 function mailFormCheck(email){
-	var form = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	let form = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	return form.test(email);
 }
 
 function passwordCheck(password){
-	var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+	let regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
 	return regExp.test(password);
 }
 

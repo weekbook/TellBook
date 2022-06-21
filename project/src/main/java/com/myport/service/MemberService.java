@@ -9,6 +9,9 @@ public interface MemberService {
 	// 아이디 중복 검사
 	public int idCheck(String memberId) throws Exception;
 	
+	// 이메일 중복 검사
+	public int mailCheck(String memberMail) throws Exception;
+	
 	// 로그인
 	public MemberVO memberLogin(MemberVO member) throws Exception;
 	
@@ -17,4 +20,10 @@ public interface MemberService {
 	
 	// 아이디 찾기
 	public String getMemberID(String memberName, String memberMail);
+	
+	// 계정 확인
+	public String accountCheck(String memberId, String memberMail);
+	
+	// 비밀번호 재설정
+	public int resetPassword(String memberId, String memberPw);
 }

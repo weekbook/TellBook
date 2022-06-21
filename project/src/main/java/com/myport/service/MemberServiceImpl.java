@@ -25,6 +25,13 @@ public class MemberServiceImpl implements MemberService{
 		
 		return mapper.idCheck(memberId);
 	}
+	
+	// 이메일 중복 검사
+	@Override
+	public int mailCheck(String memberMail) throws Exception {
+		return mapper.mailCheck(memberMail);
+	}
+
 
 	// 로그인
 	@Override
@@ -44,5 +51,14 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.getMemberId(memberName, memberMail);
 	}
 
+	@Override
+	public String accountCheck(String memberId, String memberMail) {
+		return mapper.accountCheck(memberId, memberMail);
+	}
+
+	@Override
+	public int resetPassword(String memberId, String memberPw) {
+		return mapper.resetPassword(memberId, memberPw);
+	}
 
 }
