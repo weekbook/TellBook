@@ -6,60 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <link rel="stylesheet" href="/resources/css/member/login.css"> -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/resources/css/member/login.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <Style>
-.login_warn {
-	margin-top: 30px;
-	text-align: center;
-	color: red;
-}
 
-html,
-body {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
-}
-
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-}
-
-.form-signin .checkbox {
-  font-weight: 400;
-}
-
-.form-signin .form-floating:focus-within {
-  z-index: 2;
-}
-
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
 </Style>
 </head>
 <!-- <body> -->
 
-	<%-- <div class="wrapper">
+<%-- <div class="wrapper">
 
 		<div class="wrap">
 			<form id="login_form" method="post">
@@ -95,41 +53,49 @@ body {
 
 </body> --%>
 <body class="text-center">
-    
-<main class="form-signin">
-  <form id="login_form" method="post">
-  	<a href="/main"><img class="mb-4" src="/resources/img/mLogo.png" alt="" width="200" height="210"></a>
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+	<div class="container">
+    <div class="input-form-backgroud">
+      <div class="input-form col-md-12 mx-auto">
+	<main class="form-signin">
+		<form id="login_form" method="post">
+			<a href="/main"><img class="mb-4" src="/resources/img/mLogo.png"
+				alt="" width="200" height="210"></a>
+			<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-    <div class="form-floating">
-      <input type="id_input" class="form-control" name="memberId" placeholder="ID">
-      <label for="floatingInput">ID</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" name="memberPw" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
+			<div class="form-floating">
+				<input type="id_input" class="form-control" name="memberId"
+					placeholder="ID"> <label for="floatingInput">ID</label>
+			</div>
+			<div class="form-floating">
+				<input type="password" class="form-control" name="memberPw"
+					placeholder="Password"> <label for="floatingPassword">Password</label>
+			</div>
 
-    <!-- <div class="checkbox mb-3">
+			<!-- <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div> -->
-    
-    <div class="mb-3" style="font-size: 13px;">
-    	<button type="button" class="btn btn-outline-dark" onclick="location.href='/member/findMember'">아이디 찾기</button>
-    	&nbsp &nbsp
-    	<button type="button" class="btn btn-outline-dark" onclick="location.href='/member/findMember'">비빌번호 찾기</button>
-    </div>
-    
-    <button class="w-100 btn btn-lg btn-primary login_button" type="submit" value="로그인">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2022.05 - 07</p>
-  </form>
-</main>
 
-    
-  </body>
-  <script>
+			<div class="mb-3" style="font-size: 13px;">
+				<button type="button" class="btn btn-outline-dark"
+					onclick="location.href='/member/findMember'">아이디 찾기</button>
+				&nbsp &nbsp
+				<button type="button" class="btn btn-outline-dark"
+					onclick="location.href='/member/findMember'">비빌번호 찾기</button>
+			</div>
+
+			<button class="w-100 btn btn-lg btn-primary login_button"
+				type="submit" value="로그인">Sign in</button>
+			<p class="mt-5 mb-3 text-muted">&copy; 2022.05 - 07</p>
+		</form>
+	</main>
+	</div>
+	</div>
+	</div>
+
+</body>
+<script>
 		// 로그인 버튼 클릭 메서드
 		$(".login_button").click(function() {
 			// alert("로그인 버튼 작동");

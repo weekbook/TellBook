@@ -79,38 +79,6 @@ ul{
   background-color: #ddd;
 }
 
-
-
-/* 화면 전체 렙 */
-.wrapper{
-	width: 100%;
-}
-/* content 랩 */
-.wrap{
-	width : 1080px;
-	margin: auto;
-}
-/* 홈페이지 기능 네비 */ 
-.top_gnb_area{
-	width: 100%;
-    height: 50px;
-    background-color: #f0f0f1;
-    position:relative;
-}
-.top_gnb_area .list{
-	position: absolute;
-    top: 0px;
-    right: 0;
-    
-}
-.top_gnb_area .list li{
-	list-style: none;	
-    float : left;
-    padding: 13px 15px 0 10px;
-    font-weight: 900;
-    cursor: pointer;
-}
-
 /* 관리제 페이지 상단 현페이지 정보 */
 .admin_top_wrap{
     height:110px;

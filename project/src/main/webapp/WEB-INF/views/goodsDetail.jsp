@@ -11,6 +11,15 @@
 <link rel="stylesheet" href="/resources/css/goodsDetail.css?ver1">
 </head>
 <body>
+	<%
+		request.setCharacterEncoding("utf-8");
+		// 쿠키 지정 name, value
+		Cookie cookie = new Cookie("abc", "123");
+		// 쿠키의 유효시간 설정
+		cookie.setMaxAge(60*60);
+		// 쿠키 추가
+		response.addCookie(cookie);
+	%>
 		<%@include file="includes/header.jsp"%>
 			<div class="content_area">
 				<div class="line"></div>
