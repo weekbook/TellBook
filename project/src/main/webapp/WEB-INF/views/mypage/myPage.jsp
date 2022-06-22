@@ -54,6 +54,16 @@
 		</div>
 	</div>
 	<div class="content_area">
+		<div class="card border-secondary mb-3" style="max-width: 55rem; margin-top: 40px;">
+		  <div class="card-header">${member.memberName}님의 마이페이지</div>
+		  <div class="card-body">
+		    <h4 class="card-title">충전금액 / 포인트</h4>
+		    <p class="card-text">회원님의 현재 충전금액 : ${member.money } </p>
+		    <p class="card-text">회원님의 현재 포인트 : ${member.point} </p>
+		  </div>
+		</div>	
+	
+	
 		<form id="moveForm" action="/mypage/memberDetail" method="get">
 			<input type="hidden" name="memberId" value="${member.memberId}">
 		</form>

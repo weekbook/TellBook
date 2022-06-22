@@ -59,29 +59,6 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="ls_wrap">
-			<div class="ls_div_subject">평점순 상품</div>
-			<div class="ls_div">
-				<c:forEach items="${ls}" var="ls">
-					<a href="/goodsDetail/${ls.bookId}" style="text-decoration: none;">
-						<div class="ls_div_content_wrap">
-							<div class="ls_div_content">
-								<div class="image_wrap" data-bookid="${ls.imageList[0].bookId}"
-									data-path="${ls.imageList[0].uploadPath}"
-									data-uuid="${ls.imageList[0].uuid}"
-									data-filename="${ls.imageList[0].fileName}">
-									<img>
-								</div>
-								<div class="ls_category">${ls.cateName}</div>
-								<div class="ls_rating">${ls.ratingAvg}</div>
-								<div class="ls_bookName">${ls.bookName}</div>
-							</div>
-						</div>
-					</a>
-				</c:forEach>
-			</div>
-		</div>
 		
 		<div class="ls_wrap">
 			<div class="ls_div_subject">평점순 상품</div>
@@ -106,103 +83,100 @@
 			</div>
 		</div>
 		
-		<div class="ls_wrap">
-			<div class="ls_div_subject">평점순 상품</div>
-			<div class="ls_div">
-				<c:forEach items="${ls}" var="ls">
-					<a href="/goodsDetail/${ls.bookId}" style="text-decoration: none;">
-						<div class="ls_div_content_wrap">
-							<div class="ls_div_content">
-								<div class="image_wrap" data-bookid="${ls.imageList[0].bookId}"
-									data-path="${ls.imageList[0].uploadPath}"
-									data-uuid="${ls.imageList[0].uuid}"
-									data-filename="${ls.imageList[0].fileName}">
-									<img>
-								</div>
-								<div class="ls_category">${ls.cateName}</div>
-								<div class="ls_rating">${ls.ratingAvg}</div>
-								<div class="ls_bookName">${ls.bookName}</div>
-							</div>
-						</div>
-					</a>
-				</c:forEach>
-			</div>
-		</div>
 		
-		<div class="ls_wrap">
-			<div class="ls_div_subject">평점순 상품</div>
-			<div class="ls_div">
-				<c:forEach items="${ls}" var="ls">
-					<a href="/goodsDetail/${ls.bookId}" style="text-decoration: none;">
-						<div class="ls_div_content_wrap">
-							<div class="ls_div_content">
-								<div class="image_wrap" data-bookid="${ls.imageList[0].bookId}"
-									data-path="${ls.imageList[0].uploadPath}"
-									data-uuid="${ls.imageList[0].uuid}"
-									data-filename="${ls.imageList[0].fileName}">
-									<img>
-								</div>
-								<div class="ls_category">${ls.cateName}</div>
-								<div class="ls_rating">${ls.ratingAvg}</div>
-								<div class="ls_bookName">${ls.bookName}</div>
-							</div>
-						</div>
-					</a>
-				</c:forEach>
-			</div>
-		</div>
-	</div>
+		
+		<%
+		request.setCharacterEncoding("utf-8");
+		// 쿠키 정보를 얻기
+		Cookie[] cookies = request.getCookies();
+		// 쿠키에 값이 있다면
+		for(int i = 0; i<cookies.length; i++){
+			String name = cookies[i].getName(); // 쿠키 이름
+			String value = cookies[i].getValue(); // 쿠키 값
+			if(name.equals("abc")){
+				out.println("cokies[" + i + "] name : " + name);
+				out.println("<br/>");
+				out.println("cokies[" + i + "] value : " + value);
+			}
+		}
+		%>
 	
-	<div class="sidebar" style="position: fixed; top: 200px; background-color: blue; width: 130px; height: 500px;">
-	<h2 id="remoMy" class="remoTit remoTop"><a href="javascript:void(0);" onclick="setWcode('003_002_001')">최근 본 상품</a></h2>
+	</div>
+
+	<div class="sidebar"
+		style="position: fixed; top: 200px; background-color: blue; width: 130px; height: 500px;">
+		<h2 id="remoMy" class="remoTit remoTop">
+			<a href="javascript:void(0);" onclick="setWcode('003_002_001')">최근
+				본 상품</a>
+		</h2>
 	</div>
 	<%@ include file="includes/footer.jsp"%>
 
 </body>
 <script>
+	function getCookie() {
+		console.log(document.cookie);
+	}
+	
 	let deleteResult = '${memberDeleteResult}';
 
-	$(document).ready(function(){
-		
-		$(".slide_div").slick({
-			dots: true,
-			autoplay : true,
-			autoplaySpeed: 3000,
-			arrows : false
-		});
-		
-		$(".ls_div").slick({
-			slidesToShow: 4,
-			slidesToScroll: 4,
-			/* prevArrow : "<button type='button' class='ls_div_content_prev'>이전</button>",		// 이전 화살표 모양 설정
-			nextArrow : "<button type='button' class='ls_div_content_next'>다음</button>", */
-			autoplay : true,
-			autoplaySpeed: 3000,
-			arrows : false
-		});
-		
-		/* 이미지 삽입 */
-		$(".image_wrap").each(function(i, obj){
-			
-			const bobj = $(obj);
-			
-			if(bobj.data("bookid")){
-				const uploadPath = bobj.data("path");
-				const uuid = bobj.data("uuid");
-				const fileName = bobj.data("filename");
-				
-				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
-				
-				$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
-			} else {
-				$(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
-			}
-			
-		});
-		
-		if (deleteResult === '1') {
-			alert("회원탈퇴가 완료되었습니다.");
-		}
-	});
+	$(document)
+			.ready(
+					function() {
+
+						$(".slide_div").slick({
+							dots : true,
+							autoplay : true,
+							autoplaySpeed : 3000,
+							arrows : false
+						});
+
+						$(".ls_div").slick({
+							slidesToShow : 4,
+							slidesToScroll : 4,
+							/* prevArrow : "<button type='button' class='ls_div_content_prev'>이전</button>",		// 이전 화살표 모양 설정
+							nextArrow : "<button type='button' class='ls_div_content_next'>다음</button>", */
+							autoplay : true,
+							autoplaySpeed : 3000,
+							arrows : false
+						});
+
+						/* 이미지 삽입 */
+						$(".image_wrap")
+								.each(
+										function(i, obj) {
+
+											const bobj = $(obj);
+
+											if (bobj.data("bookid")) {
+												const uploadPath = bobj
+														.data("path");
+												const uuid = bobj.data("uuid");
+												const fileName = bobj
+														.data("filename");
+
+												const fileCallPath = encodeURIComponent(uploadPath
+														+ "/s_"
+														+ uuid
+														+ "_"
+														+ fileName);
+
+												$(this).find("img").attr(
+														'src',
+														'/display?fileName='
+																+ fileCallPath);
+											} else {
+												$(this)
+														.find("img")
+														.attr('src',
+																'/resources/img/goodsNoImage.png');
+											}
+
+										});
+
+						if (deleteResult === '1') {
+							alert("회원탈퇴가 완료되었습니다.");
+						}
+					});
 </script>
 </html>
