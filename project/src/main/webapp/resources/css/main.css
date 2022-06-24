@@ -108,7 +108,8 @@
 	width: 80%;
 	margin: auto;
 	height: 275px;
-	border: 1px solid #dadada;
+	border: none;
+	background-color: #f9f9f9;
 }
 
 .image_wrap {
@@ -183,6 +184,14 @@
 	width: 90px;
 }
 
+.ranking{
+	font-size: 22px;
+	font-weight: 800;
+	color: #999;
+	margin-left: 15px;
+	position: relative;
+	
+}
 .remoTop{
 	display: block;
     height: 34px;

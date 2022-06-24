@@ -175,8 +175,43 @@
 	
 	</select>
 	
+	<!-- 날짜순 리스트 -->
+	<select id="dateSelect" resultType="com.myport.domain.SelectDTO">
 	
+		select * from
+		(select rownum as rn, bookId, bookName, regDate, (select cateName from book_category where book_product.cateCode = book_category.cateCode) as cateName
+		from book_product
+		order by regDate desc nulls last)
+		<![CDATA[
+		where rn < 9
+		]]>	
 	
+	</select>
+	
+	<!-- 구매횟수 및 평점순 리스트 -->
+	<select id="bestSelect" resultType="com.myport.domain.SelectDTO">
+	
+		select * from
+		(select rownum as rn, bookId, bookName, purchaseCount, ratingAvg, (select cateName from book_category where book_product.cateCode = book_category.cateCode) as cateName
+		from book_product
+		order by ratingAvg * purchasecount  desc)
+		<![CDATA[
+		where rn < 9
+		]]>	
+	
+	</select>
+	
+	<!-- 구매 횟수 증가 -->
+	<update id="purchaseCount">
+		update book_product set purchaseCount = purchaseCount + 1
+		where bookId = #{bookId}
+	</update>
+	
+	<!-- 구매 횟수 감소 -->
+	<update id="purchaseCountMinus">
+		update book_product set purchaseCount = purchaseCount -1
+		where bookId = #{bookId}
+	</update>
 	
 	
 	

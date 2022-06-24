@@ -60,7 +60,7 @@
 			</div>
 		</div>
 		
-		<div class="ls_wrap">
+		<div class="ls_wrap border-bottom pb-3 mb-3">
 			<div class="ls_div_subject">평점순 상품</div>
 			<div class="ls_div">
 				<c:forEach items="${ls}" var="ls">
@@ -83,6 +83,63 @@
 			</div>
 		</div>
 		
+		<div class="ls_wrap border-bottom pb-3 mb-3">
+			<div class="ls_div_subject">신간도서</div>
+			<div class="ls_div">
+				<c:forEach items="${ds}" var="ds">
+					<a href="/goodsDetail/${ds.bookId}" style="text-decoration: none;">
+						<div class="ls_div_content_wrap">
+							<div class="ls_div_content">
+								<div class="image_wrap" data-bookid="${ds.imageList[0].bookId}"
+									data-path="${ds.imageList[0].uploadPath}"
+									data-uuid="${ds.imageList[0].uuid}"
+									data-filename="${ds.imageList[0].fileName}">
+									<img>
+								</div>
+								<div class="ls_category">${ds.cateName}</div>
+								<div class="ls_rating"><fmt:formatDate pattern="yyyy-MM-dd" value="${ds.regDate}"/></div>
+								<div class="ls_bookName">${ds.bookName}</div>
+							</div>
+						</div>
+					</a>
+				</c:forEach>
+			</div>
+		</div>
+		
+		<div class="ls_wrap border-bottom pb-3 mb-3">
+			<div class="ls_div_subject">베스트셀러</div>
+			<div class="ls_div">
+				<c:forEach items="${bs}" var="bs" varStatus="status">
+					<a href="/goodsDetail/${bs.bookId}" style="text-decoration: none;">
+						<div class="ls_div_content_wrap">
+							<div class="ls_div_content">
+								<c:choose>
+									<c:when test="${status.index == 0 }">
+										<strong class="ranking" style="color: red;"><c:out value="${status.index + 1 }" /></strong>
+									</c:when>
+									<c:when test="${status.index == 1 }">
+										<strong class="ranking" style="color: blue;"><c:out value="${status.index + 1 }" /></strong>
+									</c:when>
+									<c:otherwise>
+										<strong class="ranking"><c:out value="${status.index + 1 }" /></strong>
+									</c:otherwise>
+								</c:choose>
+								
+								<div class="image_wrap" data-bookid="${bs.imageList[0].bookId}"
+									data-path="${bs.imageList[0].uploadPath}"
+									data-uuid="${bs.imageList[0].uuid}"
+									data-filename="${bs.imageList[0].fileName}">
+									<img>
+								</div>
+								<div class="ls_category">${bs.cateName}</div>
+								<div class="ls_rating best">셀러포인트 : ${bs.ratingAvg * bs.purchaseCount }</div>
+								<div class="ls_bookName">${bs.bookName}</div>
+							</div>
+						</div>
+					</a>
+				</c:forEach>
+			</div>
+		</div>
 		
 		
 		<%
@@ -114,10 +171,6 @@
 
 </body>
 <script>
-	function getCookie() {
-		console.log(document.cookie);
-	}
-	
 	let deleteResult = '${memberDeleteResult}';
 
 	$(document)
@@ -140,7 +193,7 @@
 							autoplaySpeed : 3000,
 							arrows : false
 						});
-
+						
 						/* 이미지 삽입 */
 						$(".image_wrap")
 								.each(

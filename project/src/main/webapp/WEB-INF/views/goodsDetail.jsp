@@ -225,12 +225,18 @@
 	$(".btn_buy").on("click", function() {
 		let bookCount = $(".quantity_input").val();
 		$(".order_form").find("input[name='orders[0].bookCount']").val(bookCount);
-		if(bookCount > ${goodsInfo.bookStock}){
-			alert("상품 재고를 초과하였습니다. 남은 수량은 " + ${goodsInfo.bookStock} + "개 입니다.");
-		}else{
-			$(".order_form").submit();
-		}
 		
+		let memObj = "${member}";
+		
+		if (memObj == "") {
+			alert("로그인이 필요합니다.");
+		} else{
+			if(bookCount > ${goodsInfo.bookStock}){
+				alert("상품 재고를 초과하였습니다. 남은 수량은 " + ${goodsInfo.bookStock} + "개 입니다.");
+			}else{
+				$(".order_form").submit();
+			}
+		}
 	});
 	
 	// 리뷰쓰기

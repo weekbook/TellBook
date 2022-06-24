@@ -26,7 +26,7 @@ public class BookServiceImpl implements BookService {
 	private BookMapper bookMapper;
 
 	private AttachMapper attachMapper;
-	
+
 	private AdminMapper adminMapper;
 
 	// 상품 검색
@@ -94,7 +94,7 @@ public class BookServiceImpl implements BookService {
 		for (String type : typeArr) {
 			if (type.equals("A")) {
 				authorArr = bookMapper.getAuthorIdList(cri.getKeyword());
-				if(authorArr.length == 0) {
+				if (authorArr.length == 0) {
 					return filterInfoList;
 				}
 				cri.setAuthorArr(authorArr);
@@ -120,27 +120,55 @@ public class BookServiceImpl implements BookService {
 	public BookVO getGoodsInfo(int bookId) {
 		BookVO goodsInfo = bookMapper.getGoodsInfo(bookId);
 		goodsInfo.setImageList(adminMapper.getAttachInfo(bookId));
-		
+
 		return goodsInfo;
 	}
 
 	@Override
 	public BookVO getBookIdName(int bookId) {
-		
+
 		return bookMapper.getBookIdName(bookId);
 	}
 
 	@Override
 	public List<SelectDTO> likeSelect() {
-		
+
 		List<SelectDTO> list = bookMapper.likeSelect();
-		
+
 		list.forEach(dto -> {
 			int bookId = dto.getBookId();
 			List<AttachImageVO> imageList = attachMapper.getAttachList(bookId);
 			dto.setImageList(imageList);
 		});
+
+		return list;
+	}
+
+	@Override
+	public List<SelectDTO> dateSelect() {
 		
+		List<SelectDTO> list = bookMapper.dateSelect();
+
+		list.forEach(dto -> {
+			int bookId = dto.getBookId();
+			List<AttachImageVO> imageList = attachMapper.getAttachList(bookId);
+			dto.setImageList(imageList);
+		});
+
+		return list;
+	}
+
+	@Override
+	public List<SelectDTO> bestSelect() {
+		
+		List<SelectDTO> list = bookMapper.bestSelect();
+
+		list.forEach(dto -> {
+			int bookId = dto.getBookId();
+			List<AttachImageVO> imageList = attachMapper.getAttachList(bookId);
+			dto.setImageList(imageList);
+		});
+
 		return list;
 	}
 }
