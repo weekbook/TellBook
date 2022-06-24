@@ -78,6 +78,9 @@ public class OrderServiceImpl implements OrderService{
 			orderItem.initSaleTotal();
 			// list객체 추가
 			ords.add(orderItem);
+			
+			// 구매횟수 증가
+			bookMapper.purchaseCount(oit.getBookId());
 		}
 		// OrderDTO 셋팅
 		od.setOrders(ords);
@@ -128,6 +131,9 @@ public class OrderServiceImpl implements OrderService{
 			
 			cartMapper.deleteOrderCart(dto);
 		}
+		
+		// 구매횟수증가
+		
 	}
 
 	@Override
@@ -166,14 +172,14 @@ public class OrderServiceImpl implements OrderService{
 			BookVO book = bookMapper.getGoodsInfo(ord.getBookId());
 			book.setBookStock(book.getBookStock() + ord.getBookCount());
 			ordermapper.updateStock(book);
+			
+			// 구매횟수감소
+			bookMapper.purchaseCountMinus(book.getBookId());
 		}
+		
+		
 	}
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

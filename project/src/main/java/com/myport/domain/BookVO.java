@@ -63,4 +63,7 @@ public class BookVO {
 	// 평점
 	private double ratingavg;
 	
+	// 구매 횟수
+	private int purchaseCount;
+	
 }

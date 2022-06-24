@@ -22,7 +22,10 @@ public class MainController {
 		log.info("메인페이지");
 		model.addAttribute("cate1", bookService.getCateCode1());
 		model.addAttribute("cate2", bookService.getCateCode2());
+		
 		model.addAttribute("ls", bookService.likeSelect());
+		model.addAttribute("ds", bookService.dateSelect());
+		model.addAttribute("bs", bookService.bestSelect());
 	}
 	
 	@RequestMapping("/support")

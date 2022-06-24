@@ -27,6 +27,7 @@
 								<tr>
 									<th style="width: 25%;">주문자</th>
 									<td style="width: *">${memberInfo.memberName} | ${memberInfo.memberMail}</td>
+									<td> 현재 충전금액 : ${member.money } </td>
 								</tr>
 							</tbody>
 						</table>

@@ -39,4 +39,16 @@ public interface BookMapper {
 	
 	// 평점순 상품 정보
 	public List<SelectDTO> likeSelect();
+	
+	// 날짜순 상품 정보
+	public List<SelectDTO> dateSelect();
+	
+	// 베스트셀러(구매횟수 + 평점) 상품 정보
+	public List<SelectDTO> bestSelect();
+	
+	// 구매횟수 증가
+	public int purchaseCount(int bookId);
+	
+	// 구매횟수 감소
+	public int purchaseCountMinus(int bookId);
 }
