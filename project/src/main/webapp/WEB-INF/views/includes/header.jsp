@@ -25,7 +25,7 @@
 					<li><a href="/mypage/myPage">마이페이지</a></li>
 					<li><a href="/cart/${member.memberId }">장바구니</a></li>
 				</c:if>
-				<li><a href="/support">고객센터</a></li>
+				<li><a href="/support/support">고객센터</a></li>
 			</ul>
 		</div>
 

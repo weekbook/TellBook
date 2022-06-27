@@ -13,19 +13,20 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 @AllArgsConstructor
-public class MainController {
-
+@RequestMapping("/support/*")
+public class SupportController {
+	
 	private BookService bookService;
-
-	@RequestMapping("/main")
-	public void mainPageGET(Model model) {
-		log.info("메인페이지");
+	
+	@GetMapping("/support")
+	public void supportGET(Model model) {
+		log.info("고객센터");
 		model.addAttribute("cate1", bookService.getCateCode1());
 		model.addAttribute("cate2", bookService.getCateCode2());
-		
-		model.addAttribute("ls", bookService.likeSelect());
-		model.addAttribute("ds", bookService.dateSelect());
-		model.addAttribute("bs", bookService.bestSelect());
 	}
 	
+	@GetMapping("/supportLi1")
+	public void supportLi1GET() {
+		log.info("반품/환불/교환");
+	}
 }
