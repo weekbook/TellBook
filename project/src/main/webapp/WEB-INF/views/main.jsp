@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome BookMall</title>
+<title>TellBook</title>
+<link rel="shortcut icon" type="image/x-icon" href="resources/img/pavicon.png">
 <link rel="stylesheet" href="/resources/css/main.css">
 <link rel="stylesheet" type="text/css"
 	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />

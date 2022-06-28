@@ -29,4 +29,29 @@ public class SupportController {
 	public void supportLi1GET() {
 		log.info("반품/환불/교환");
 	}
+	
+	@GetMapping("/supportLi2")
+	public void supportLi2GET() {
+		log.info("주문/결제");
+	}
+	
+	@GetMapping("/supportLi3")
+	public void supportLi3GET() {
+		log.info("회원");
+	}
+	
+	@GetMapping("/supportLi4")
+	public void supportLi4GET() {
+		log.info("도서/상품정보/교과서");
+	}
+	
+	@GetMapping("/supportLi5")
+	public void supportLi5GET() {
+		log.info("배송/수령일안내");
+	}
+
+	@GetMapping("/supportLi6")
+	public void supportLi6GET() {
+		log.info("서비스/기타");
+	}
 }

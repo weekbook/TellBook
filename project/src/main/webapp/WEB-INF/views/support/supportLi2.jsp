@@ -40,7 +40,7 @@
 		</div>
 		
 		<div class="wrap">
-			<p class="path" style="margin-left: 10px;">홈 > 고객센터 > 반품/교환/환불 </p>
+			<p class="path" style="margin-left: 10px;">홈 > 고객센터 > 주문 / 결제 </p>
 			<div class="support_snb">
 				<h2 class="cscenter_h2"><a href="support">고객센터</a></h2>
 					<div style="background: #e9e9e9;">
@@ -55,101 +55,91 @@
 					</div>
 			</div>
 			<div class="content_area">
-				<h3 class="content_h3">반품 / 교환 / 환불</h3>
+				<h3 class="content_h3">주문 / 결제</h3>
 				<hr style="">
 				
 				<div class="accordion" id="accordionExample">
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingOne">
 				      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-				        &nbsp [주문취소/변경] 주문수정(취소/변경) 할 수 있나요?
+				        &nbsp [주문] 비회원도 주문할 수 있나요?
 				      </button>
 				    </h2>
 				    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
-				      	<p>주문하신 상품은 아래의 상태로 주문이 진행되며, 주문수정 가능 단계는 배송상품별로 다릅니다.</p>
-				      		※주문취소 안내 <br>
-							- 일반배송 상품(교보문고 배송 도서)은 상품준비중 단계까지 주문취소 가능합니다. <br>
-							- eBook은 구매 후 다운로드를 하지 않은 경우에 한해 구매일로부터 7일 이내 주문취소 가능합니다. <br>
-							- 해외주문도서의 경우는 결제완료 이후 24시간 이내 해외발주처리되므로 결제완료 상태에서 주문취소 불가 할수 있습니다. <br>
-							- 주문취소할 수 없는 진행단계에 있는 상품의 경우에는 배송완료 후 반품신청을 하시기 바랍니다.
+				      	<p>TellBook은 비회원으로 주문하실 수 없습니다.</p>
+				      	주문을 하기 위해서는 로그인을 완료한 회원상태에서 주문이 가능합니다.<br>
+				      	번거로울수 있으시지만, 회원상태에서 주문을 진행해주시길 바랍니다.
 				      </div>
 				    </div>
 				  </div>
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingTwo">
 				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				        &nbsp [반품/교환/환불] 파본/훼손/오배송 된 상품을 교환하고 싶습니다. 어떻게 해야하나요?
+				        &nbsp [결제] 결제방법을 변경할 수 있나요?
 				      </button>
 				    </h2>
 				    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
-				      		고객센터 1:1상담에서 <파본/ 상품불량 신고> 또는 <반품/교환/환불> 상담에 주문번호와 내용을 기재하여 주십시오.<br>
-							담당자 확인 후 주문시의 주소로 상품을 다시 배송 해 드립니다.<br>
-							파본도서는 배송 된 상품을 받으시면서 맞교환해주시면 됩니다.<br><br>
-							
-							택배직원 편에 반송을 못하셨을 경우, 고객센터의 Q&A <반품/교환/환불>로 문의 접수해주시면,<br>
-							택배기사가 반품회수 재방문을 하도록 조치해드립니다.<br>
-							또는 주문번호와 반송사유를 간략하게 메모하여 착불 반품을 보내주셔도 됩니다.<br><br>
-							
-							[반송주소]<br>
-							일반 택배 반품시 :(우편번호:12345) 인천 미추홀구 매소홀로488번길 6-32 A동 2층 인터넷반품담당자 앞<br>
-							위 주소는 인터넷교보문고 구매고객님께서 이용하시는 반품주소입니다.<br>
-							※만약의 배송 확인을 위해, 택배 반송 시에는 반송영수증을 최소 2개월간 보관하여 주시기 바랍니다.
+				      	주문/결제하신 후에는 인터넷 상에서 결제방법을 변경하실 수 없습니다.<br>
+						주문을 취소한 후 재주문 해 주시기 바랍니다.<br><br>
+						
+						단, 신용카드 결제 후 카드 변경이 필요하거나 온라인입금 선택 후 입금 전 상태에서 신용카드 결제로 변경은<br>
+						고객센터 1:1상담의 <주문/결제> 또는 전화(국번없이)1544-1900으로 문의 주신 후<br>
+						주문번호와 변경사항 등을 알려주시면 확인 후 변경 가능합니다.
 				      </div>
 				    </div>
 				  </div>
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingThree">
 				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-				        &nbsp [주의사항] 반품/교환이 안되는 상품도 있나요?
+				        &nbsp [결제] 온라인 송금으로 주문/결제했을 때 며칠 이내에 송금해야 하나요?
 				      </button>
 				    </h2>
 				    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
-				      	<p>
-				      	구입일로부터 7일 이내 교환/환불 가능<br><br>
-
-						1. 음반, 비디오, DVD, CD-ROM 및 S/W의 포장을 개봉했을 때는 반품/교환이 되지 않습니다.<br>
-						   구입 전에 시스템 사양 등을 꼭 확인하시고 구입해 주십시오.<br><br>
-						
-						2. 기타 반품불가품목 <br>
-						   잡지, 테이프, 대학입시자료, 사진집, 방통대 교재, 교과서, 만화, 미디어전품목, 악보집,
-						정부간행물, 지도, 각종 수험서(해당 시험일정 D-1일까지 교환가능), 적성검사자료, 성경, 사전, 법령집, 지류, 필기구류, 시즌상품, 개봉한 상품, 외국서적 개인 주문 분, 상품의 인위적인 훼손이 있는 경우 등
-				      	</p>
+				      	<온라인 송금>으로 주문/결제하신 상품의 경우, 주문완료일로부터 10일 이내에 상품금액을 송금해주셔야 결제가 완료됩니다.<br>
+						10일 이내에 송금이 완료되지 않은 주문은 자동으로 주문 취소됩니다.
 				      </div>
 				    </div>
 				  </div>
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingThree">
 				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-				        &nbsp [반품/교환/환불] 일본만화나 문고 중 띠지가 없는 도서는 반품이 되나요?
+				        &nbsp [주문] 외국서적을 해외에서 직접 주문할 때는?
 				      </button>
 				    </h2>
 				    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
-				      	일본만화나 문고의 띠지가 없는 경우는 반품사유가 되지 않습니다. 띠지는 광고효과로 도서에 첨부되는 것이고, 상품이 아니기 때문에 도서가 파손된 것이 아니므로 반품이 불가합니다.
+				      	먼저 '외국도서' 코너에서 국내에 수입 되었는지 여부를 검색하시고, 국내에 수입되지 않았거나, 국내 재고가 없는 도서에 대해서는 해외로 직접 주문하실 수 있습니다.<br>
+
+						- 인터넷교보문고에서는 미국 내 최대 도서 도매상인 Baker & Taylor 사와 제휴하여 국내에 수입되지 않은 해외도서를 최대 10%까지 할인된 가격으로 국내 독자님들에게 보다 신속하게 제공해 드립니다.<br>
+						
+						- 서양 도서에서 검색이 되지 않을 경우에는 도서명, 출판사, 저자, ISBN 등을 고객센터의 Q&A <서양 도서 검색/주문> 상담으로 알려주시면 해외 주문 가능 여부를 확인하여 드립니다.<br>
+						
+						- 일본 도서의 경우에는 고객센터의 Q&A <일본 도서 검색/주문> 상담을 이용하여 주십시오.
 				      </div>
 				    </div>
 				  </div>
 				  <div class="accordion-item">
 				    <h2 class="accordion-header" id="headingFive">
 				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-				       &nbsp [반품/교환/환불] [택배파업] 택배 파업 지역 반품 및 회수시 어떻게 하나요?
+				       &nbsp [주문] 주문을 수정(취소/변경)할 수 있나요?
 				      </button>
 				    </h2>
 				    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
-				      	수령하신 도서의 반품을 원하시는 경우에는 매장에 직접 반품해주시거나<br>
-						파업지역이 아닌 경우 홈페이지에서 반품신청을 해주시면 기사님께서 방문 회수하시게 됩니다.<br><br>
-						
-						파업지역인 경우, 다른 택배를 이용하여 아래 주소로 착불 반품 부탁드립니다.<br>
-						반품처 : (우 10881) 경기 파주시 문발로 249, 교보문고 A동 2층 인터넷반품담당자 앞
+				      	주문수정(취소/변경)는 주문/배송조회에서 회원 로그인 후 하실 수 있습니다.<br><br>
+				      	
+				      	주문을 접수하여 대금 결제를 진행하는 단계로 주문취소가 가능합니다.<br>
+						온라인 입금이 완료된 건은 고객님의 환불계좌를 확인하기까지 일시적으로 취소하신 금액을 예치금으로 전환해 드립니다.<br>
+						[반송 주소]<br>
+						(우편번호:10881) 경기도 파주시 문발로 249, 교보문고 A동 2층 인터넷반품담당자 앞
 				      </div>
 				    </div>
 				  </div>
+				  
 				</div>
-		
 			</div>
 		</div>
 		

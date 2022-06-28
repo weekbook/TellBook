@@ -38,6 +38,10 @@
 			<exclude-mapping path="/cart/add"/>
 			<beans:bean id="CartIntreceptor" class="com.myport.interceptor.CartInterceptor"></beans:bean>
 		</interceptor>
+		<interceptor>
+			<mapping path="/mypage/**"/>
+			<beans:bean id="MyPageInterceptor" class="com.myport.interceptor.MyPageInterceptor"></beans:bean>
+		</interceptor>
 	</interceptors>
 	
 	<beans:bean id="multipartResolver"

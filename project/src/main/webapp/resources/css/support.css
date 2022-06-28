@@ -124,15 +124,19 @@ ul {
 	overflow: hidden;
 	border-bottom: 2px solid #565656;
 }
-
 .content_area{
-	color: #4d4d4d;
-	margin-left: 210px;	
+	width: 80%;
+	min-height: 500px;
+	float: left;
+	margin-left: 25px;
 }
 
-.cscenter_shortcut{
-	margin-left: 210px;	
-	border: 1px solid #199ad8;
+.cscenter_shortcut {
+    border: 2px solid #199ad8;
+    *zoom: 1;
+    margin-top: 10px;
+    margin-left: 56px;
+    width: fit-content;
 }
 
 .cscenter_shortcut h3 {
@@ -140,18 +144,112 @@ ul {
     float: left;
     width: 158px;
     border-top: 1px solid #aacada;
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 22px;
+    line-height: 32px;
+    padding: 33px 0 0 20px;
     height: 50px;
     color: #055ecd;
 }
 
 .cscenter_shortcut ul li {
     float: left;
-    width: 115px;
+    width: 215px;
 }
+
+.cscenter_shortcut ul li a {
+    display: block;
+    border-left: 1px solid #dadada;
+    border-top: 1px solid #aacada;
+    padding-top: 57px;
+    text-align: center;
+    color: #333;
+    letter-spacing: -0.05em;
+    height: 98px;
+    background: url(http://image.kyobobook.co.kr/ink/images/cscenter/icon_shortcut.gif) no-repeat 50% 0;
+}
+
+.cscenter_shortcut ul li.item_2 a {
+    background-position: 50% -80px;
+    background-position-x: 50%;
+    background-position-y: -78px;
+}
+
+.cscenter_shortcut ul li.item_3 a {
+    background-position: 50% -156px;
+}
+
+.cscenter_shortcut ul li.item_4 a {
+    background-position: 50% -400px;
+}
+
+.cscenter_shortcut ul li.item_5 a {
+    background-position: 50% -480px;
+}
+
+.cscenter_shortcut ul li.item_6 a {
+    background-position: 50% -640px;
+}
+
 .cscenter_shortcut ul {
-    float: right;
+    float: left;
+    margin-bottom: 0rem;
+    padding-left: 0rem;
+}
+.cscenter_shortcut:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.q_Questions{
+	border: 2px solid #199ad8;
+    margin-top: 50px;
+    margin-left: 56px;
+    width: 88%;
+}
+
+.q_Questions h3{
+	position: relative;
+    padding: 10px 13px 0 20px;
+    height: 29px;
+    border-bottom: 1px solid #c8eafa;
+    font-size: 23px;
+    line-height: 18px;
+    color: #444;
+    background: url(http://image.kyobobook.co.kr/ink/images/cscenter/bg_search02.gif) repeat-x;
+}
+
+.q_Questions h3 small{
+	font-size: 16px;
+    color: #666;
+    font-weight: normal;
+    margin-left: 70px;
+}
+
+.list-group a{
+	font-size: 20px;
+	padding: 0.5rem 3rem;
+	height: 70px;
+    line-height: 55px;
+}
+
+#servicelistView{
+	display: inline-block;
+}
+
+#servicelistView li{
+	list-style: square;
+}
+
+.accordion-button{
+	font-size: 19px !important;
+	background: url(http://image.kyobobook.co.kr/ink/images/cscenter/icon_q.gif) 1px 15px no-repeat;
+}
+.accordion-body{
+	background: #f9f9f9 url(http://image.kyobobook.co.kr/ink/images/cscenter/icon_a.gif) 1px 17px no-repeat;
+}
+.accordion-body #text {
+	margin-left: 10px;
 }
 
 /* float 속성 해제 */
