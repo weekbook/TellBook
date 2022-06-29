@@ -50,7 +50,7 @@
 							<li><a href="supportLi3" style="text-decoration: none; color: inherit;">회원</a></li>
 							<li><a href="supportLi4" style="text-decoration: none; color: inherit;">도서/상품정보/교과서</a></li>
 							<li><a href="supportLi5" style="text-decoration: none; color: inherit;">배송/수령일안내</a></li>
-							<li><a href="supportLi6" style="text-decoration: none; color: inherit;">1:1상담접수/내역확인</a></li>
+							<li><a href="inquirie" style="text-decoration: none; color: inherit;">1:1상담접수/내역확인</a></li>
 						</ul>
 					</div>
 			</div>
