@@ -50,7 +50,7 @@ public class SupportController {
 		log.info("배송/수령일안내");
 	}
 
-	@GetMapping("/supportLi6")
+	@GetMapping("/inquirie")
 	public void supportLi6GET() {
 		log.info("서비스/기타");
 	}

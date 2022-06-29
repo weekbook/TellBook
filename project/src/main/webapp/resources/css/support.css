@@ -223,7 +223,7 @@ ul {
 	font-size: 16px;
     color: #666;
     font-weight: normal;
-    margin-left: 70px;
+    margin-left: 20px;
 }
 
 .list-group a{
@@ -252,6 +252,38 @@ ul {
 	margin-left: 10px;
 }
 
+/* 1:1 QnA  */
+ /* 惑前 格废 康开 */
+.goods_table_wrap{
+	padding: 20px 35px
+}
+.goods_table{
+	width: 100%;
+    border: 1px solid #d3d8e1;
+    text-align: center;
+    border-collapse: collapse;
+}
+.goods_table td{
+	padding: 10px 5px;
+	border : 1px solid #e9ebf0;
+}
+
+.goods_table a{
+	color:#1088ed;
+	text-decoration: none;
+}
+.th_column_1{
+	width:120px;
+}
+.th_column_3{
+	width:110px;
+}
+.th_column_4{
+	width:140px;
+}
+.th_column_5{
+	width:140px;
+}
 /* float 加己 秦力 */
 .clearfix {
 	clear: both;
