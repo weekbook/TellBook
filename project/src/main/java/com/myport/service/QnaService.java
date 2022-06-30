@@ -1,17 +1,15 @@
-package com.myport.mapper;
+package com.myport.service;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
 
 import com.myport.domain.Criteria;
 import com.myport.domain.QnaVO;
 
-public interface QnaMapper {
+public interface QnaService {
 
 	// 글 작성
 	public int insert(QnaVO board);
-	
+
 	// 글 조회
 	public List<QnaVO> getList(Criteria cri);
 	

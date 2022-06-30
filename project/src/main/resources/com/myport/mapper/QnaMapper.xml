@@ -10,22 +10,38 @@
 			select qna_board_seq.nextval from dual
 		</selectKey>
  	
- 		insert into qna_board (bid, bname, btitle, bcontent, btype, bgroup, bstep, bindent)
- 		values (#{bid}, #{bName}, #{bTitle}, #{bContent}, #{bType}, #{bGroup}, #{bStep}, #{bIndent})
+ 		insert into qna_board (bid, bname, btitle, bcontent, btype, bgroup, bstep, bindent, memberId)
+ 		values (#{bid}, #{bName}, #{bTitle}, #{bContent}, #{bType}, #{bGroup}, #{bStep}, #{bIndent}, #{memberId})
  	</insert>
  	
  	<select id="getList" resultType="com.myport.domain.QnaVO">
  		<![CDATA[
 			select *
 			from (
-			select /*+INDEX_DESC(qna_board SYS_C008488) */
-			rownum rn, bid, bname, btitle, bcontent, bdate, btype, bgroup, bstep, bindent
+			select /*+INDEX_DESC(qna_board SYS_C008447) */
+			rownum rn, bid, btype, btitle, bdate
 			from qna_board
-			where #{memberId} = memberId
+			where rownum <= #{pageNum} * #{amount}
+			and memberId = #{memberId}
 		]]>
+		<if test="keyword != null">
+			and bTitle like '%' || #{keyword} || '%'
+		</if>
 		<![CDATA[
-			)
+				)
+				where rn > (#{pageNum} -1) * #{amount}
 		]]>
  	</select>
+ 	
+ 	<!-- 상품 총 갯수 -->
+	<select id="getQnaTotal" resultType="int">
+		select count(*) from qna_board
+
+		<if test="keyword != null">
+			where bTitle like '%' || #{keyword} || '%'
+		</if>
+	</select>
+ 	
+ 	
  		
  </mapper>

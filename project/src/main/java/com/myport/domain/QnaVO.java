@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class QnaVO {
 	
-	private Long bid;
+	private Long bId;
 	
 	private String bName;
 	
@@ -24,6 +24,8 @@ public class QnaVO {
 	private int bStep;
 	
 	private int bIndent;
+	
+	private String memberId;
 	
 	public QnaVO() {
 		
