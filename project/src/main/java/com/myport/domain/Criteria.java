@@ -20,6 +20,7 @@ public class Criteria {
 	private String cateCode; // 카테고리 코드
 	
 	private int bookId; // 상품번호 (댓글기능)
+	private String memberId; // 자기 자신의 게시물만 볼 수 있게
 	
 	public Criteria() { // 페이징 디폴트값
 		this(1, 10);

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,16 +70,14 @@
 								<td class="th_column_4">날짜</td>
 							</tr>
 						</thead>
-						<c:forEach items="${list}" var="list">
+						<c:forEach items="${list }" var="list">
 							<tr>
-								<td><c:out value="${list.bookId}"></c:out></td>
+								<td><c:out value="${list.BId}"></c:out></td>
 								<td>
-									<a class="move" href='<c:out value="${list.bookId }"/>'>
-										<c:out value="${list.bookName}"></c:out>
-									</a>
+									<c:out value="${list.BType}"></c:out>
 								</td>
-								<td><c:out value="${list.authorName}"></c:out></td>
-								<td><fmt:formatDate value="${list.regDate}"
+								<td><c:out value="${list.BTitle}"></c:out></td>
+								<td><fmt:formatDate value="${list.BDate}"
 										pattern="yyyy-MM-dd" /></td>
 							</tr>
 						</c:forEach>
