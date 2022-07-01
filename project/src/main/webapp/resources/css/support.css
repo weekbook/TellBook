@@ -273,16 +273,24 @@ ul {
 	text-decoration: none;
 }
 .th_column_1{
-	width:120px;
+	width:55px;
+}
+.th_column_2{
+	width:55px;
 }
 .th_column_3{
-	width:110px;
+	width:140px;
 }
 .th_column_4{
-	width:140px;
+	width:35px;
 }
 .th_column_5{
-	width:140px;
+	width:50px;
+}
+
+/* 페이지 버튼 인터페이스 */
+.pagination{
+	justify-content: center;
 }
 /* float 속성 해제 */
 .clearfix {

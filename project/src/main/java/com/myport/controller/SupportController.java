@@ -8,8 +8,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.myport.domain.ComuBoVO;
 import com.myport.domain.Criteria;
 import com.myport.domain.MemberVO;
 import com.myport.domain.OrderDTO;
@@ -82,14 +87,14 @@ public class SupportController {
 		
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("member");
+		log.info("멤버세션" + vo);
+		
 		if(vo != null) {
 			String memberId = vo.getMemberId();
-			log.info("세션정보" + vo);
 			cri.setMemberId(memberId);
 		}
 		
 		List<QnaVO> list = qnaService.getList(cri);
-		log.info("sibal" + list);
 
 		if (!list.isEmpty()) {
 			model.addAttribute("list", list);
@@ -98,5 +103,34 @@ public class SupportController {
 			model.addAttribute("listCheck", "empty");
 		}
 
+	}
+	
+	@GetMapping("/register")
+	public void registerGET() {
+
+	}
+	
+	@PostMapping("/register")
+	public String register(QnaVO board, RedirectAttributes rttr) {
+		log.info("등록" + board);
+		qnaService.insert(board);
+
+		rttr.addFlashAttribute("result", board.getBId());
+		return "redirect:/support/inquirie";
+	}
+	
+	@GetMapping("/inquirieDetail")
+	public void inquirieDetailGET(@RequestParam("bId") Long bId, Model model, @ModelAttribute("cri") Criteria cri) throws Exception {
+		log.info("detailGet...");
+		model.addAttribute("board", qnaService.readQna(bId));
+	}
+	
+	@PostMapping("/answer")
+	public String answer(QnaVO board, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
+		log.info("modify:" + board);
+		if (qnaService.answerQna(board)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect:/support/inquirie" + cri.getListLink();
 	}
 }

@@ -6,12 +6,12 @@
  <mapper namespace="com.myport.mapper.QnaMapper">
  	
  	<insert id="insert">
- 		<selectKey keyProperty="bid" order="BEFORE" resultType="Long">
+ 		<selectKey keyProperty="bId" order="BEFORE" resultType="Long">
 			select qna_board_seq.nextval from dual
 		</selectKey>
  	
- 		insert into qna_board (bid, bname, btitle, bcontent, btype, bgroup, bstep, bindent, memberId)
- 		values (#{bid}, #{bName}, #{bTitle}, #{bContent}, #{bType}, #{bGroup}, #{bStep}, #{bIndent}, #{memberId})
+ 		insert into qna_board (bId, bname, btitle, bcontent, btype, bgroup, bstep, bindent, memberId)
+ 		values (#{bId}, #{bName}, #{bTitle}, #{bContent}, #{bType}, #{bGroup}, #{bStep}, #{bIndent}, #{memberId})
  	</insert>
  	
  	<select id="getList" resultType="com.myport.domain.QnaVO">
@@ -19,7 +19,7 @@
 			select *
 			from (
 			select /*+INDEX_DESC(qna_board SYS_C008447) */
-			rownum rn, bid, btype, btitle, bdate
+			rownum rn, bid, btype, btitle, bdate, banswerCk
 			from qna_board
 			where rownum <= #{pageNum} * #{amount}
 			and memberId = #{memberId}
@@ -36,12 +36,19 @@
  	<!-- 상품 총 갯수 -->
 	<select id="getQnaTotal" resultType="int">
 		select count(*) from qna_board
-
-		<if test="keyword != null">
-			where bTitle like '%' || #{keyword} || '%'
-		</if>
+		where memberId = #{memberId}
 	</select>
  	
+ 	<!-- 문의 상세 -->
+ 	<select id="readQna" resultType="com.myport.domain.QnaVO">
+ 		select * from Qna_board where bId=#{bId}
+ 	</select>
  	
- 		
+ 	<!-- 답변  -->
+ 	<update id="answerQna">
+ 		update qna_board set 
+ 		bAnswer = #{bAnswer},
+ 		bAnswerCk = '1'
+ 		where bId = #{bId}
+ 	</update>
  </mapper>

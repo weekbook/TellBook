@@ -19,7 +19,7 @@
 
 	<!-- 로그인 -->
 	<select id="memberLogin" resultType="com.myport.domain.MemberVO">
-		select memberId, memberPw, memberName, adminck, money, point from
+		select memberId, memberPw, memberName, memberMail, adminck, money, point from
 		book_member where memberId = #{memberId}
 		<!-- select memberId, memberName, adminck, money, point from book_member 
 			where memberId = #{memberId} and memberPw = #{memberPw} -->

@@ -33,6 +33,16 @@ public class QnaServiceImpl implements QnaService {
 	public int getQnaTotal(Criteria cri) {
 		return qnaMapper.getQnaTotal(cri);
 	}
+
+	@Override
+	public QnaVO readQna(Long bId) {
+		return qnaMapper.readQna(bId);
+	}
+
+	@Override
+	public boolean answerQna(QnaVO board) {
+		return qnaMapper.answerQna(board) == 1;
+	}
 	
 	
 	
