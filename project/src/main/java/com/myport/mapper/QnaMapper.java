@@ -17,4 +17,10 @@ public interface QnaMapper {
 	
 	// 게시물 수
 	public int getQnaTotal(Criteria cri);
+	
+	// 문의 상세
+	public QnaVO readQna(Long bId);
+	
+	// 답변
+	public int answerQna(QnaVO board);
 }

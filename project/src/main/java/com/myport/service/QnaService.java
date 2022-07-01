@@ -12,7 +12,13 @@ public interface QnaService {
 
 	// 글 조회
 	public List<QnaVO> getList(Criteria cri);
-	
+
 	// 게시물 수
 	public int getQnaTotal(Criteria cri);
+
+	// 문의 상세
+	public QnaVO readQna(Long bId);
+
+	// 답변
+	public boolean answerQna(QnaVO board);
 }

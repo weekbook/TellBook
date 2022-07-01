@@ -27,6 +27,10 @@ public class QnaVO {
 	
 	private String memberId;
 	
+	private String bAnswer;
+	
+	private String bAnswerCk;
+	
 	public QnaVO() {
 		
 	}
