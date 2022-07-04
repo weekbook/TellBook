@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.myport.domain.CateVO;
 import com.myport.domain.ComuBoVO;
 import com.myport.domain.Criteria;
 import com.myport.domain.MemberVO;
@@ -89,17 +90,26 @@ public class SupportController {
 		MemberVO vo = (MemberVO) session.getAttribute("member");
 		log.info("멤버세션" + vo);
 		
+		List<QnaVO> list = null;
+		
 		if(vo != null) {
 			String memberId = vo.getMemberId();
 			cri.setMemberId(memberId);
-		}
-		
-		List<QnaVO> list = qnaService.getList(cri);
-
-		if (!list.isEmpty()) {
-			model.addAttribute("list", list);
-			model.addAttribute("pageMaker", new PageDTO(cri, qnaService.getQnaTotal(cri)));
+			
+			if (vo.getAdminCk() == 1) {
+				// 어드민 계정은 모든 문의내역을 볼 수 있게.
+				list = qnaService.getListAll(cri);
+			}else {
+				// 아니라면 해당 세션 memberId의 게시물만 볼 수 있게
+				list = qnaService.getList(cri);
+			}
+			
+			if (!list.isEmpty()) {
+				model.addAttribute("list", list);
+				model.addAttribute("pageMaker", new PageDTO(cri, qnaService.getQnaTotal(cri)));
+			}
 		} else {
+			log.info("세션이 없습니다." + vo);
 			model.addAttribute("listCheck", "empty");
 		}
 

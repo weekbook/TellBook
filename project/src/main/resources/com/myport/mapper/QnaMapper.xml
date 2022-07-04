@@ -33,6 +33,25 @@
 		]]>
  	</select>
  	
+ 	<!-- 글 조회(Admin) -->
+ 	<select id="getListAll" resultType="com.myport.domain.QnaVO">
+ 		<![CDATA[
+			select *
+			from (
+			select /*+INDEX_DESC(qna_board SYS_C008447) */
+			rownum rn, bid, btype, btitle, bdate, banswerCk
+			from qna_board
+			where rownum <= #{pageNum} * #{amount}
+		]]>
+		<if test="keyword != null">
+			and bTitle like '%' || #{keyword} || '%'
+		</if>
+		<![CDATA[
+				)
+				where rn > (#{pageNum} -1) * #{amount}
+		]]>
+ 	</select>
+ 	
  	<!-- 상품 총 갯수 -->
 	<select id="getQnaTotal" resultType="int">
 		select count(*) from qna_board

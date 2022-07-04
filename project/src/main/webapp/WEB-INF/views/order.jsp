@@ -6,223 +6,225 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome BookMall</title>
+<title>상품결제 - 교보문고</title>
+<!-- 파비콘 -->
+<link rel="shortcut icon" type="image/x-icon" href="/resources/img/pavicon.png">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="/resources/css/order.css">
- <!-- 다음주소 -->
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- 다음주소 -->
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 	<%@include file="includes/header.jsp"%>
-			<div class="content_area">
-				<div class="content_subject">
-					<span>상품결제</span>
+	<div class="content_area">
+		<div class="content_subject">
+			<span>상품결제</span>
+		</div>
+
+		<div class="content_main">
+			<!-- 회원 정보 -->
+			<div class="member_info_div">
+				<table class="table_text_align_center memberInfo_table">
+					<tbody>
+						<tr>
+							<th style="width: 25%;">주문자</th>
+							<td style="width: *">${memberInfo.memberName} |
+								${memberInfo.memberMail}</td>
+							<td>현재 충전금액 : ${member.money }</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- 배송지 정보 -->
+			<div class="addressInfo_div">
+				<div class="addressInfo_button_div">
+					<button class="address_btn address_btn_1"
+						onclick="showAddress('1')" style="background-color: #3c3838;">상용자
+						정보 주소록</button>
+					<button class="address_btn address_btn_2"
+						onclick="showAddress('2')">직접 입력</button>
 				</div>
-				
-				<div class="content_main">
-					<!-- 회원 정보 -->
-					<div class="member_info_div">
-						<table class="table_text_align_center memberInfo_table">
-							<tbody>
-								<tr>
-									<th style="width: 25%;">주문자</th>
-									<td style="width: *">${memberInfo.memberName} | ${memberInfo.memberMail}</td>
-									<td> 현재 충전금액 : ${member.money } </td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<!-- 배송지 정보 -->
-					<div class="addressInfo_div">
-						<div class="addressInfo_button_div">
-							<button class="address_btn address_btn_1" onclick="showAddress('1')" style="background-color: #3c3838;">상용자 정보 주소록</button>
-							<button class="address_btn address_btn_2" onclick="showAddress('2')">직접 입력</button>
-						</div>
-						<div class="addressInfo_input_div_wrap">
-							<div class="addressInfo_input_div addressInfo_input_div_1" style="display: block">
-								<table>
-									<colgroup>
-										<col width="25%">
-										<col width="*">
-									</colgroup>
-									<tbody>
-										<tr>
-											<th>이름</th>
-											<td>
-												${memberInfo.memberName}
-											</td>
-										</tr>
-										<tr>
-											<th>주소</th>
-											<td>
-												(${memberInfo.memberAddr1}) ${memberInfo.memberAddr2}<br>${memberInfo.memberAddr3}
-												<input class="selectAddress" value="T" type="hidden">									
-												<input class="addressee_input" value="${memberInfo.memberName}" type="hidden">
-												<input class="address1_input" type="hidden" value="${memberInfo.memberAddr1}">
-												<input class="address2_input" type="hidden" value="${memberInfo.memberAddr2}">
-												<input class="address3_input" type="hidden" value="${memberInfo.memberAddr3}">
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="addressInfo_input_div addressInfo_input_div_2">
-								<table>
-									<colgroup>
-										<col width="25%">
-										<col width="*">
-									</colgroup>
-									<tbody>
-										<tr>
-											<th>이름</th>
-											<td>
-												<input class="addressee_input">
-											</td>
-										</tr>
-										<tr>
-											<th>주소</th>
-											<td>
-												<input class="selectAddress" value="F" type="hidden">
-												<input class="address1_input" readonly="readonly"> <a class="address_search_btn" onclick="execution_daum_address()">주소 찾기</a><br>
-												<input class="address2_input" readonly="readonly"><br>
-												<input class="address3_input" readonly="readonly">
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<!-- 상품 정보 -->
-					<div class="orderGoods_div">
-						<!-- 상품 종류 -->
-						<div class="goods_kind_div">
-							주문상품 <span class="goods_kind_div_kind"></span>종 <span class="goods_kind_div_count"></span>개
-						</div>
-						<!-- 상품 테이블 -->
-						<table class="goods_subject_table">
-							<colgroup>
-								<col width="15%">
-								<col width="45%">
-								<col width="40%">
-							</colgroup>
-							<tbody>
-								<tr>
-									<th>이미지</th>
-									<th>상품 이름</th>
-									<th>판매가</th>
-								</tr>
-							</tbody>
-						</table>
-						<table class="goods_table">
-							<colgroup>
-								<col width="15%">
-								<col width="45%">
-								<col width="40%">
-							</colgroup>					
-							<tbody>
-								<c:forEach items="${orderList}" var="ol">
-									<tr>
-										<td>
-											<div class="image_wrap" data-bookid="${ol.imageList[0].bookId}" data-path="${ol.imageList[0].uploadPath}" data-uuid="${ol.imageList[0].uuid}" data-filename="${ol.imageList[0].fileName}">
-												<img>
-											</div>
-										</td>
-										<td style="text-align: center;">${ol.bookName}</td>
-										<td class="goods_table_price_td">
-											<fmt:formatNumber value="${ol.salePrice}" pattern="#,### 원" /> | 수량 ${ol.bookCount}개
-											<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
-											<br>[<fmt:formatNumber value="${ol.totalPoint}" pattern="#,### 원" />P]
-											<input type="hidden" class="individual_bookPrice_input" value="${ol.bookPrice}">
-											<input type="hidden" class="individual_salePrice_input" value="${ol.salePrice}">
-											<input type="hidden" class="individual_bookCount_input" value="${ol.bookCount}">
-											<input type="hidden" class="individual_totalPrice_input" value="${ol.salePrice * ol.bookCount}">
-											<input type="hidden" class="individual_point_input" value="${ol.point}">
-											<input type="hidden" class="individual_totalPoint_input" value="${ol.totalPoint}">
-											<input type="hidden" class="individual_bookId_input" value="${ol.bookId}">
-										</td>
-									</tr>							
-								</c:forEach>
-				
-							</tbody>
-						</table>
-					</div>
-					<!-- 포인트 정보 -->
-					<div class="point_div">
-						<div class="point_div_subject">포인트 사용</div>
-						<table class="point_table">
+				<div class="addressInfo_input_div_wrap">
+					<div class="addressInfo_input_div addressInfo_input_div_1"
+						style="display: block">
+						<table>
 							<colgroup>
 								<col width="25%">
 								<col width="*">
 							</colgroup>
 							<tbody>
 								<tr>
-									<th>포인트 사용</th>
-									<td>
-										${memberInfo.point} | <input class="order_point_input" value="0">원 
-										<a class="order_point_input_btn order_point_input_btn_N" data-state="N">모두사용</a>
-										<a class="order_point_input_btn order_point_input_btn_Y" data-state="Y" style="display: none;">사용취소</a>
-										
+									<th>이름</th>
+									<td>${memberInfo.memberName}</td>
+								</tr>
+								<tr>
+									<th>주소</th>
+									<td>(${memberInfo.memberAddr1}) ${memberInfo.memberAddr2}<br>${memberInfo.memberAddr3}
+										<input class="selectAddress" value="T" type="hidden">
+										<input class="addressee_input"
+										value="${memberInfo.memberName}" type="hidden"> <input
+										class="address1_input" type="hidden"
+										value="${memberInfo.memberAddr1}"> <input
+										class="address2_input" type="hidden"
+										value="${memberInfo.memberAddr2}"> <input
+										class="address3_input" type="hidden"
+										value="${memberInfo.memberAddr3}">
 									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
-					<!-- 주문 종합 정보 -->
-					<div class="total_info_div">
-						<!-- 가격 종합 정보 -->
-						<div class="total_info_price_div">
-							<ul>
-								<li>
-									<span class="price_span_label">상품 금액</span>
-									<span class="totalPrice_span">100000</span>원
-								</li>
-								<li>
-									<span class="price_span_label">배송비</span>
-									<span class="delivery_price_span">100000</span>원
-								</li>
-																						<li>
-									<span class="price_span_label">할인금액</span>
-									<span class="usePoint_span">100000</span>원
-								</li>
-								<li class="price_total_li">
-									<strong class="price_span_label total_price_label">최종 결제 금액</strong>
-									<strong class="strong_red">
-										<span class="total_price_red finalTotalPrice_span">
-											1500000
-										</span>원
-									</strong>
-								</li>
-								<li class="point_li">
-									<span class="price_span_label">적립예정 포인트</span>
-									<span class="totalPoint_span">7960원</span>
-								</li>
-							</ul>
-						</div>
-						<!-- 버튼 영역 -->
-						<div class="total_info_btn_div">
-							<a class="order_btn">결제하기</a>
-						</div>
+					<div class="addressInfo_input_div addressInfo_input_div_2">
+						<table>
+							<colgroup>
+								<col width="25%">
+								<col width="*">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th>이름</th>
+									<td><input class="addressee_input form-control"></td>
+								</tr>
+								<tr>
+									<th>주소</th>
+									<td><input class="selectAddress form-control" value="F" type="hidden">
+										<input class="address1_input form-control" readonly style="display: inline-block;"> <a
+										class="address_search_btn " onclick="execution_daum_address()">주소
+											찾기</a><br> <input class="address2_input form-control" readonly style="margin-top: 10px; display: inline-block;"><br>
+										<input class="address3_input form-control" readonly style="margin-top: 10px;"></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
-			<!-- 주문 요청 form -->
-			<form class="order_form" action="/order" method="post">
-				<!-- 주문자 회원번호 -->
-				<input name="memberId" value="${memberInfo.memberId}" type="hidden">
-				<!-- 주소록 & 받는이-->
-				<input name="addressee" type="hidden">
-				<input name="memberAddr1" type="hidden">
-				<input name="memberAddr2" type="hidden">
-				<input name="memberAddr3" type="hidden">
-				<!-- 사용 포인트 -->
-				<input name="usePoint" type="hidden">
-				<!-- 상품 정보 -->
-			</form>
-			<%-- <%@ include file="includes/footer.jsp"%> --%>
+			<!-- 상품 정보 -->
+			<div class="orderGoods_div">
+				<!-- 상품 종류 -->
+				<div class="goods_kind_div">
+					주문상품 <span class="goods_kind_div_kind"></span>종 <span
+						class="goods_kind_div_count"></span>개
+				</div>
+				<!-- 상품 테이블 -->
+				<table class="goods_subject_table">
+					<colgroup>
+						<col width="15%">
+						<col width="45%">
+						<col width="40%">
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>이미지</th>
+							<th>상품 이름</th>
+							<th>판매가</th>
+						</tr>
+					</tbody>
+				</table>
+				<table class="goods_table">
+					<colgroup>
+						<col width="15%">
+						<col width="45%">
+						<col width="40%">
+					</colgroup>
+					<tbody>
+						<c:forEach items="${orderList}" var="ol">
+							<tr>
+								<td>
+									<div class="image_wrap" data-bookid="${ol.imageList[0].bookId}"
+										data-path="${ol.imageList[0].uploadPath}"
+										data-uuid="${ol.imageList[0].uuid}"
+										data-filename="${ol.imageList[0].fileName}">
+										<img>
+									</div>
+								</td>
+								<td style="text-align: center;">${ol.bookName}</td>
+								<td class="goods_table_price_td"><fmt:formatNumber
+										value="${ol.salePrice}" pattern="#,### 원" /> | 수량
+									${ol.bookCount}개 <br>
+								<fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
+									<br>[<fmt:formatNumber value="${ol.totalPoint}"
+										pattern="#,### 원" />P] <input type="hidden"
+									class="individual_bookPrice_input" value="${ol.bookPrice}">
+									<input type="hidden" class="individual_salePrice_input"
+									value="${ol.salePrice}"> <input type="hidden"
+									class="individual_bookCount_input" value="${ol.bookCount}">
+									<input type="hidden" class="individual_totalPrice_input"
+									value="${ol.salePrice * ol.bookCount}"> <input
+									type="hidden" class="individual_point_input"
+									value="${ol.point}"> <input type="hidden"
+									class="individual_totalPoint_input" value="${ol.totalPoint}">
+									<input type="hidden" class="individual_bookId_input"
+									value="${ol.bookId}"></td>
+							</tr>
+						</c:forEach>
+
+					</tbody>
+				</table>
+			</div>
+			<!-- 포인트 정보 -->
+			<div class="point_div">
+				<div class="point_div_subject">포인트 사용</div>
+				<table class="point_table">
+					<colgroup>
+						<col width="25%">
+						<col width="*">
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>포인트 사용</th>
+							<td>${memberInfo.point} | <input class="order_point_input"
+								value="0">원 <a
+								class="order_point_input_btn order_point_input_btn_N"
+								data-state="N">모두사용</a> <a
+								class="order_point_input_btn order_point_input_btn_Y"
+								data-state="Y" style="display: none;">사용취소</a>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- 주문 종합 정보 -->
+			<div class="total_info_div">
+				<!-- 가격 종합 정보 -->
+				<div class="total_info_price_div">
+					<ul style="padding-left: 0rem;">
+						<li><span class="price_span_label">상품 금액</span> <span
+							class="totalPrice_span">100000</span>원</li>
+						<li><span class="price_span_label">배송비</span> <span
+							class="delivery_price_span">100000</span>원</li>
+						<li><span class="price_span_label">할인금액</span> <span
+							class="usePoint_span">100000</span>원</li>
+						<li class="price_total_li"><strong
+							class="price_span_label total_price_label">최종 결제 금액</strong> <strong
+							class="strong_red"> <span
+								class="total_price_red finalTotalPrice_span"> 1500000 </span>원
+						</strong></li>
+						<li class="point_li"><span class="price_span_label">적립예정
+								포인트</span> <span class="totalPoint_span">7960원</span></li>
+					</ul>
+				</div>
+				<!-- 버튼 영역 -->
+				<div class="total_info_btn_div">
+					<a class="order_btn">결제하기</a>
+				</div>
+			</div>
 		</div>
 	</div>
-
+	<!-- 주문 요청 form -->
+	<form class="order_form" action="/order" method="post">
+		<!-- 주문자 회원번호 -->
+		<input name="memberId" value="${memberInfo.memberId}" type="hidden">
+		<!-- 주소록 & 받는이-->
+		<input name="addressee" type="hidden"> <input
+			name="memberAddr1" type="hidden"> <input name="memberAddr2"
+			type="hidden"> <input name="memberAddr3" type="hidden">
+		<!-- 사용 포인트 -->
+		<input name="usePoint" type="hidden">
+		<!-- 상품 정보 -->
+	</form>
+	<%@ include file="includes/footer.jsp"%>
 
 </body>
 <script>

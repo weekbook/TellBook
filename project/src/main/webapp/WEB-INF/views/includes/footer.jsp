@@ -6,11 +6,11 @@
 	<div class="container">
 		<footer class="py-3 my-4">
 			<ul class="nav justify-content-center border-bottom pb-3 mb-3">
-				<li class="nav-item"><a href="#"
+				<li class="nav-item"><a href="/introduce"
 					class="nav-link px-2 text-muted">회사소개</a></li>
-				<li class="nav-item"><a href="#"
+				<li class="nav-item"><a href="/terms"
 					class="nav-link px-2 text-muted">이용약관</a></li>
-				<li class="nav-item"><a href="#"
+				<li class="nav-item"><a href="/support/support"
 					class="nav-link px-2 text-muted">고객센터</a></li>
 				<li class="nav-item"><a href="#"
 					class="nav-link px-2 text-muted">광고문의</a></li>
