@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>작가선택 - 관리자페이지</title>
+<!-- 파비콘 -->
+<link rel="shortcut icon" type="image/x-icon" href="/resources/img/pavicon.png">
 <link rel="stylesheet" href="../resources/css/admin/authorPop.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 

@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원상세 - 관리자페이지</title>
+<!-- 파비콘 -->
+<link rel="shortcut icon" type="image/x-icon" href="/resources/img/pavicon.png">
 <link rel="stylesheet" href="../resources/css/admin/memberDetail.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>

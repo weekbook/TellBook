@@ -43,6 +43,11 @@ public class QnaServiceImpl implements QnaService {
 	public boolean answerQna(QnaVO board) {
 		return qnaMapper.answerQna(board) == 1;
 	}
+
+	@Override
+	public List<QnaVO> getListAll(Criteria cri) {
+		return qnaMapper.getListAll(cri);
+	}
 	
 	
 	

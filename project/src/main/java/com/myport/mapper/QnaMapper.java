@@ -15,6 +15,9 @@ public interface QnaMapper {
 	// 글 조회
 	public List<QnaVO> getList(Criteria cri);
 	
+	// 글 조회(Admin)
+	public List<QnaVO> getListAll(Criteria cri);
+	
 	// 게시물 수
 	public int getQnaTotal(Criteria cri);
 	

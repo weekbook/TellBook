@@ -9,9 +9,44 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
+
+<!-- 템플릿 -->
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="/resources/template/assets/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+
 <div class="wrapper">
 	<div class="wrap">
-		<div class="top_gnb_area">
+		<!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="padding-top: 0.5rem; padding-bottom: 0.5rem; background-color: #5e6b9e">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top" style="display: none;"><img src="/resources/template/assets/img/navbar-logo.svg" alt="..." /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    	<c:if test="${member == null }">
+							<li class="nav-item"><a class="nav-link" href="/member/login" style="color: white">로그인</a></li>
+							<li class="nav-item"><a class="nav-link" href="/member/join" style="color: white">회원가입</a></li>
+						</c:if>
+						<c:if test="${member != null }">
+							<c:if test="${member.adminCk == 1 }">
+								<li class="nav-item"><a class="nav-link" href="/admin/main" style="color: white">관리자 페이지</a></li>
+							</c:if>
+							<li class="nav-item"><a class="nav-link" id="gnb_logout_button" style="color: white">로그아웃</a></li>
+							<li class="nav-item"><a class="nav-link" href="/mypage/myPage" style="color: white">마이페이지</a></li>
+							<li class="nav-item"><a class="nav-link" href="/cart/${member.memberId }" style="color: white">장바구니</a></li>
+						</c:if>
+						<li class="nav-item"><a class="nav-link" href="/support/support" style="color: white">고객센터</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+		<%-- <div class="top_gnb_area">
 			<ul class="list">
 				<c:if test="${member == null }">
 					<li><a href="/member/login">로그인</a></li>
@@ -27,7 +62,7 @@
 				</c:if>
 				<li><a href="/support/support">고객센터</a></li>
 			</ul>
-		</div>
+		</div> --%>
 
 		<div class="top_area">
 			<div class="logo_area">

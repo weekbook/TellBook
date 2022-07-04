@@ -10,7 +10,9 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<title>Insert title here</title>
+<title>비밀번호 변경 - TellBook</title>
+<!-- 파비콘 -->
+<link rel="shortcut icon" type="image/x-icon" href="/resources/img/pavicon.png">
 </head>
 <body>
 	<form method="post" id="modify_form">

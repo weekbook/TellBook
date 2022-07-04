@@ -28,4 +28,13 @@ public class MainController {
 		model.addAttribute("bs", bookService.bestSelect());
 	}
 	
+	@GetMapping("/introduce")
+	public void introduceGET(Model model) {
+		log.info("introduce page");
+	}
+	
+	@GetMapping("/terms")
+	public void termsGET(Model model) {
+		log.info("terms page");
+	}
 }

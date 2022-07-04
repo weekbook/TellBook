@@ -19,7 +19,7 @@
 /* 홈페이지 메인 제품 목록  */
 .content_area {
 	width: 100%;
-	min-height: 1000px;
+	min-height: 525px;
 }
 
 /* 장바구니 */
@@ -45,7 +45,7 @@ caption {
 	height: 110px;
 	line-height: 110px;
 	background-color: #5080bd;
-	margin-bottom: 60px;
+	margin-bottom: 20px;
 }
 
 .content_subject span {
@@ -70,13 +70,13 @@ caption {
 	background-color: #365fdd;
 	min-width: 125px;
 	padding: 17px 25px;
-	display: inline-block;
 	height: 39px;
 	font-size: 23px;
 	font-weight: bold;
 	text-align: center;
 	margin-right: 14px;
 	line-height: 39px;
+	text-decoration: none;
 }
 
 .subject_table {

@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>작가수정 - 관리자페이지</title>
+<!-- 파비콘 -->
+<link rel="shortcut icon" type="image/x-icon" href="/resources/img/pavicon.png">
 <link rel="stylesheet" href="../resources/css/admin/authorModify.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -14,7 +16,7 @@
 	<%@include file="../includes/adminLayout.jsp"%>
 	<div class="admin_content_wrap">
 		<div class="admin_content_subject">
-			<span>작가 상세</span>
+			<span>작가 수정</span>
 		</div>
 		<div class="admin_content_main">
 			<form id="modifyForm" action="/admin/authorModify" method="post">

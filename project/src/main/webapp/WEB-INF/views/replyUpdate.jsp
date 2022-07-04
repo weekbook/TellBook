@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<title>Insert title here</title>
+<title>리뷰수정 - TellBook</title>
+<!-- 파비콘 -->
+<link rel="shortcut icon" type="image/x-icon" href="/resources/img/pavicon.png">
 <style type="text/css">
 /* 창 여분 없애기 */
 body {

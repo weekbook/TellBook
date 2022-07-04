@@ -42,6 +42,10 @@
 			<mapping path="/mypage/**"/>
 			<beans:bean id="MyPageInterceptor" class="com.myport.interceptor.MyPageInterceptor"></beans:bean>
 		</interceptor>
+		<interceptor>
+			<mapping path="/support/register"/>
+			<beans:bean id="QnAInterceptor" class="com.myport.interceptor.QnAInterceptor"></beans:bean>
+		</interceptor>
 	</interceptors>
 	
 	<beans:bean id="multipartResolver"

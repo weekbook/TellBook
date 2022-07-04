@@ -60,8 +60,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="content_area" style="border: 1px solid;">
-			<hr style="">
+		<div class="content_area">
 			<h3 class="conten_h3"
 				style="display: inline-block; margin-left: 36px;">1:1 문의내역</h3>
 			<button id="regBtn" class="btn btn-primary"
@@ -109,6 +108,7 @@
 					<div class="table_empty">문의 내용이 없습니다.</div>
 				</c:if>
 			</div>
+
 
 			<!-- 페이지 이동 인터페이스 영역 -->
 			<div class="pageMaker_wrap">

@@ -213,7 +213,8 @@ label {
 										<label for="staticEmail" class="col-sm-2 col-form-label">상담구분</label>
 										<div class="">
 											<input type="text" readonly class="form-control-plaintext"
-												id="board_type" name="bType" value="${board.BType }" placeholder="위에서 상담유형을 체크해주세요.">
+												id="board_type" name="bType" value="${board.BType }"
+												placeholder="위에서 상담유형을 체크해주세요.">
 										</div>
 									</div>
 								</th>
@@ -261,11 +262,13 @@ label {
 							<div class="panel panel -default">
 								<div class="panel-body">
 									<div class="form-group">
-										<label>제목</label> <input class="form-control" readonly name='bTitle' value="${board.BTitle }">
+										<label>제목</label> <input class="form-control" readonly
+											name='bTitle' value="${board.BTitle }">
 									</div>
 									<div class="form-group">
 										<label>내용</label>
-										<textarea class="form-control" rows="5" readonly name='bContent'>${board.BContent }</textarea>
+										<textarea class="form-control" rows="5" readonly
+											name='bContent'>${board.BContent }</textarea>
 									</div>
 									<div class="btn_area"
 										style="margin-top: 10px; margin-bottom: 10px; text-align: right;">
@@ -276,34 +279,43 @@ label {
 						</div>
 					</div>
 				</div>
-				
+
 				<hr style="height: 7px; width: 80%; margin: auto; margin-top: 10px;">
-				
-				<c:if test="${member.adminCk == 1 }">
-						<div id="personal_area">
-							<input type="hidden" name="bId" value="${board.BId }">
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="panel panel -default">
-										<div class="panel-body">
-											<div class="form-group">
-												<label>답변</label>
-												<textarea class="form-control" rows="5" name='bAnswer'>${board.BAnswer }</textarea>
-											</div>
+
+
+				<div id="personal_area">
+					<input type="hidden" name="bId" value="${board.BId }">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="panel panel -default">
+								<div class="panel-body">
+									<div class="form-group">
+										<label>답변</label>
+										<c:if test="${member.adminCk == 1 }">
+											<textarea class="form-control" rows="5" name='bAnswer'>${board.BAnswer }</textarea>
 											<div class="btn_area"
 												style="margin-top: 10px; margin-bottom: 10px; text-align: right;">
 												<button type="submit" class="btn btn-primary update_btn">답변완료</button>
-												<button type="reset" class="btn btn-warning cancel_btn">취소</button>
+												<button type="reset" class="btn btn-warning cancel_btn">목록</button>
 											</div>
-		
-										</div>
+										</c:if>
+										<c:if test="${member.adminCk == 0 }">
+											<textarea class="form-control" readonly rows="5"
+												name='bAnswer'>${board.BAnswer }</textarea>
+											<div class="btn_area"
+												style="margin-top: 10px; margin-bottom: 10px; text-align: right;">
+												<button type="reset" class="btn btn-warning cancel_btn">목록</button>
+											</div>
+										</c:if>
 									</div>
 								</div>
 							</div>
 						</div>
-				</c:if>
+					</div>
+				</div>
+
 			</form>
-			
+
 
 		</div>
 	</div>
