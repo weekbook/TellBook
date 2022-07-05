@@ -19,7 +19,7 @@ a:not([class]):hover {
 }
 /* content 랩 */
 .wrap {
-	width: 1150px;
+	width: 1100px;
 	margin: auto;
 }
 /* 홈페이지 기능 네비 */
@@ -167,4 +167,44 @@ a:not([class]):hover {
 	line-height: 22px;
 	border-radius: 25px;
 	color: #606267;
+}
+
+/* 사이드바 */
+#sidebox {
+	background-color: #F0F0F0;
+	position: absolute;
+	width: 104px;
+	top: 300px;
+	left: 50%;
+	margin-left: 565px;
+	right: 420px;
+	padding: 3px 10px
+}
+
+#sidebox ul{
+	list-style: none;
+	padding-left: 12px;
+}
+
+.btn_quick_top a {
+    display: block;
+    height: 34px;
+    font-size: 0;
+    color: transparent;
+    border: 1px solid #d2d2d2;
+    background: #f9f9f9 url(http://image.kyobobook.co.kr/ink/images/gnb/nav6_btn_sprite.png) no-repeat 21px -108px;
+    transition: all 0.2s;
+    width: 75%;
+    margin: auto;
+}
+.btn_quick_down a {
+    display: block;
+    height: 34px;
+    font-size: 0;
+    color: transparent;
+    border: 1px solid #d2d2d2;
+    background: #f9f9f9 url(http://image.kyobobook.co.kr/ink/images/gnb/nav6_btn_sprite.png) no-repeat -19px -108px;
+    width: 75%;
+    margin: auto;
+    transition: all 0.2s;
 }

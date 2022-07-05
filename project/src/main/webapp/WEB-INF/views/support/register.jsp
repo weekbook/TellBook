@@ -156,8 +156,7 @@ label {
 						class="form-check-label">회원정보.서비스</label></li>
 					<li><input type="radio" name="adcDvsnCodeRdo"
 						class="radio form-check-input" id="radio21" value="008"
-						label="서양도서 검색.주문"> <label for="radio21">서양도서
-							검색.주문</label></li>
+						label="서양도서 검색.주문"> <label for="radio21">서양도서 검색.주문</label></li>
 					<li><input type="radio" name="adcDvsnCodeRdo"
 						class="radio form-check-input" id="radio12" value="002"
 						label="검색기능 관련"> <label for="radio12">검색기능 관련</label></li>
@@ -171,8 +170,7 @@ label {
 						label="도서.상품정보"> <label for="radio06">도서.상품정보</label></li>
 					<li><input type="radio" name="adcDvsnCodeRdo"
 						class="radio form-check-input" id="radio03" value="009"
-						label="일본도서 검색.주문"> <label for="radio03">일본도서
-							검색.주문</label></li>
+						label="일본도서 검색.주문"> <label for="radio03">일본도서 검색.주문</label></li>
 					<li><input type="radio" name="adcDvsnCodeRdo"
 						class="radio form-check-input" id="radio08" value="006"
 						label="웹사이트이용관련"> <label for="radio08">웹사이트이용관련</label></li>

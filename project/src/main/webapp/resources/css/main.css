@@ -176,40 +176,30 @@
 	opacity: 80%;
 }
 
-.sidebar {
-	position: absolute;
-	left: 56%;
-	top: 0;
-	margin-left: 500px;
-	width: 90px;
-}
-
-.ranking{
+.ranking {
 	font-size: 22px;
 	font-weight: 800;
 	color: #999;
 	margin-left: 15px;
 	position: relative;
-	
-}
-.remoTop{
-	display: block;
-    height: 34px;
-    line-height: 29px;
-    border-top: solid 1px #616161;
-    overflow: hidden;
-    letter-spacing: -1px;
-    font-size: 15px;
-    font-weight: normal;
-    background-color: #4e4e4e;
-    text-align: center;
 }
 
-h2.remoTit a{
+.remoTop {
+	display: block;
+	height: 34px;
+	line-height: 29px;
+	border-top: solid 1px #616161;
+	overflow: hidden;
+	letter-spacing: -1px;
+	font-size: 15px;
+	font-weight: normal;
+	background-color: #4e4e4e;
+	text-align: center;
+}
+
+h2.remoTit a {
 	color: #fff;
 }
-
-
 
 /* float 속성 해제 */
 .clearfix {
