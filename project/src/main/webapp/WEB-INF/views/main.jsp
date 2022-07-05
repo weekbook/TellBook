@@ -161,13 +161,6 @@
 	
 	</div>
 
-	<div class="sidebar"
-		style="position: fixed; top: 200px; background-color: blue; width: 130px; height: 500px;">
-		<h2 id="remoMy" class="remoTit remoTop">
-			<a href="javascript:void(0);" onclick="setWcode('003_002_001')">최근
-				본 상품</a>
-		</h2>
-	</div>
 	<%@ include file="includes/footer.jsp"%>
 
 </body>
@@ -231,6 +224,7 @@
 						if (deleteResult === '1') {
 							alert("회원탈퇴가 완료되었습니다.");
 						}
+						
 					});
 </script>
 </html>

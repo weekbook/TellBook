@@ -7,45 +7,57 @@
 <!-- 글꼴 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
+	rel="stylesheet">
 
 
 <!-- 템플릿 -->
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="/resources/template/assets/favicon.ico" />
-<!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+	crossorigin="anonymous"></script>
 
 
 <div class="wrapper">
 	<div class="wrap">
 		<!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="padding-top: 0.5rem; padding-bottom: 0.5rem; background-color: #5e6b9e">
-            <div class="container">
-                <a class="navbar-brand" href="#page-top" style="display: none;"><img src="/resources/template/assets/img/navbar-logo.svg" alt="..." /></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars ms-1"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    	<c:if test="${member == null }">
-							<li class="nav-item"><a class="nav-link" href="/member/login" style="color: white">로그인</a></li>
-							<li class="nav-item"><a class="nav-link" href="/member/join" style="color: white">회원가입</a></li>
+		<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
+			id="mainNav"
+			style="padding-top: 0.5rem; padding-bottom: 0.5rem; background-color: #5e6b9e">
+			<div class="container">
+				<a class="navbar-brand" href="#page-top" style="display: none;"><img
+					src="/resources/template/assets/img/navbar-logo.svg" alt="..." /></a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+					aria-controls="navbarResponsive" aria-expanded="false"
+					aria-label="Toggle navigation">
+					Menu <i class="fas fa-bars ms-1"></i>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+						<c:if test="${member == null }">
+							<li class="nav-item"><a class="nav-link"
+								href="/member/login" style="color: white">로그인</a></li>
+							<li class="nav-item"><a class="nav-link" href="/member/join"
+								style="color: white">회원가입</a></li>
 						</c:if>
 						<c:if test="${member != null }">
 							<c:if test="${member.adminCk == 1 }">
-								<li class="nav-item"><a class="nav-link" href="/admin/main" style="color: white">관리자 페이지</a></li>
+								<li class="nav-item"><a class="nav-link" href="/admin/main"
+									style="color: white">관리자 페이지</a></li>
 							</c:if>
-							<li class="nav-item"><a class="nav-link" id="gnb_logout_button" style="color: white">로그아웃</a></li>
-							<li class="nav-item"><a class="nav-link" href="/mypage/myPage" style="color: white">마이페이지</a></li>
-							<li class="nav-item"><a class="nav-link" href="/cart/${member.memberId }" style="color: white">장바구니</a></li>
+							<li class="nav-item"><a class="nav-link"
+								id="gnb_logout_button" style="color: white">로그아웃</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="/mypage/myPage" style="color: white">마이페이지</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="/cart/${member.memberId }" style="color: white">장바구니</a></li>
 						</c:if>
-						<li class="nav-item"><a class="nav-link" href="/support/support" style="color: white">고객센터</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+						<li class="nav-item"><a class="nav-link"
+							href="/support/support" style="color: white">고객센터</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 		<%-- <div class="top_gnb_area">
 			<ul class="list">
 				<c:if test="${member == null }">
@@ -82,10 +94,10 @@
 					</form>
 				</div>
 			</div>
-			
+
 			<div class="login_area">
-			
-				 <!-- 로그인 하지 않은 상태 -->
+
+				<!-- 로그인 하지 않은 상태 -->
 				<c:if test="${member == null }">
 					<div class="login_button">
 						<a href="/member/login">로그인</a>
@@ -96,29 +108,67 @@
 				<!-- 로그인한 상태 -->
 				<c:if test="${member != null }">
 					<div class="login_success_area">
-						<span>안녕하세요. TellBook 입니다.</span>
-						<span>회원ID : ${member.memberId}</span> <%-- <span>충전금액 : <fmt:formatNumber
+						<span>안녕하세요. TellBook 입니다.</span> <span>회원ID :
+							${member.memberId}</span>
+						<%-- <span>충전금액 : <fmt:formatNumber
 								value="${member.money}" pattern="\#,###.##" /></span> <span>포인트
 							: <fmt:formatNumber value="${member.point}" pattern="#,###" />
-						</span>  --%><!-- <a href="/member/logout.do">로그아웃</a> -->
+						</span>  --%>
+						<!-- <a href="/member/logout.do">로그아웃</a> -->
 					</div>
 				</c:if>
 			</div>
-			
+
 			<div class="clearfix"></div>
 		</div>
 
+		<div id="sidebox">
+			<ul class="quick_banner" id="quick_banner"
+				data-ga-category="교보문고_공통_PC" data-ga-action="퀵배너">
+				<li><a data-ga-label="우측 확장형 배너 2"
+					href="http://www.kyobobook.co.kr/member/kyobobenefit.jsp?orderClick=dot"
+					target="_blank"><img
+						src="https://simage.kyobobook.co.kr/ink/images/welcome/sample/sample_banner_15.jpg"
+						alt="우측 확장형 배너 2"></a></li>
+				<li><a data-ga-label="원데이_모나미"
+					href="http://gift.kyobobook.co.kr/ht/hot/eventDetail?eventId=80248&amp;orderClick=do7"><img
+						src="https://simage.kyobobook.co.kr/newimages/giftshop_new/work/1326/1656913328995_61_114_Wing-Banner.jpg"
+						alt="우측 확장형 배너 2"></a></li>
+			</ul>
+			<ul>
+				<li><a href="#">등급별혜택</a></li>
+				<li><a href="#">1:1문의</a></li>
+				<li><a href="#">후기</a></li>
+			</ul>
+			<div class="btn_quick_top">
+				<a data-ga-label="최상단" href="#Top">TOP</a>
+			</div>
+			<div class="btn_quick_down">
+				<a data-ga-label="최하단" href="#footer_area">DOWN</a>
+			</div>
+		</div>
+
 		<script>
-//gnb영역 로그아웃 버튼 작동
-$("#gnb_logout_button").click(function(){
-	// alert("버튼 작동");
-	$.ajax({
-		type : "post",
-		url : "/member/logout.do",
-		success : function(data){
-			alert("로그아웃 완료");
-			document.location.reload();
-		}
-	});
-});
-</script>
+			$(document).ready(function() {
+				var currentPosition = parseInt($("#sidebox").css("top"));
+				$(window).scroll(function() {
+					var position = $(window).scrollTop();
+					$("#sidebox").stop().animate({
+						"top" : position + currentPosition + "px"
+					}, 1000);
+				});
+			});
+
+			//gnb영역 로그아웃 버튼 작동
+			$("#gnb_logout_button").click(function() {
+				// alert("버튼 작동");
+				$.ajax({
+					type : "post",
+					url : "/member/logout.do",
+					success : function(data) {
+						alert("로그아웃 완료");
+						document.location.reload();
+					}
+				});
+			});
+		</script>
