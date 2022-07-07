@@ -8,20 +8,28 @@
 	<select id="getMyOrderList"
 		resultType="com.myport.domain.OrderDTO">
 		<![CDATA[
-			select * from( select rownum rn, o.orderId, o.memberId, o.orderstate, o.orderdate,g.bookName
-				from book_order o inner join book_orderitem d
-                on o.orderId = d.orderId
-                inner join book_product g
-                on d.bookId = g.bookId
-                where rownum <= #{pageNum} * #{amount}
+			select * from(
+				select rownum rn, orderId, memberId, orderstate, orderdate
+				from book_order
+				where rownum <= #{pageNum} * #{amount}
+				and memberId = #{memberId}
 		]]>
 		<if test="keyword != null">
-			and g.bookName like '%' || #{keyword} || '%'
+					and memberId like '%' || #{keyword} || '%'
 		</if>
 		<![CDATA[
-				order by o.orderdate desc)
-				where rn > (#{pageNum} -1) * #{amount}
+				order by orderdate desc)
+			where rn > (#{pageNum} -1) * #{amount}
 		]]>
+	</select>
+	
+	<!-- 주문상품 물품이름 출력 -->
+	<select id="getMyOrderProductName" resultType="com.myport.domain.BookVO">
+		select bookName from book_product a, book_order b, book_orderitem c
+		where b.orderid = c.orderid
+		and a.bookid = c.bookid
+		and b.memberId = #{memberId}
+		and b.orderid = #{orderId}
 	</select>
 
 	<!-- 상품 총 갯수 -->

@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.myport.domain.Criteria;
 import com.myport.domain.MemberVO;
+import com.myport.domain.OrderInfoDTO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -179,14 +180,24 @@ public class AdminMapperTests {
 //		System.out.println("total : " + result);
 //	}
 	
+//	@Test
+//	public void memberDetail() {
+//		MemberVO member = new MemberVO();
+//		member.setMemberId("admin");
+//		
+//		MemberVO list = mapper.memberDetail(member.getMemberId());
+//		
+//		System.out.println(list);
+//	}
+	
+	
 	@Test
-	public void memberDetail() {
-		MemberVO member = new MemberVO();
-		member.setMemberId("admin");
+	public void orderInfo() {
 		
-		MemberVO list = mapper.memberDetail(member.getMemberId());
+		List<OrderInfoDTO> list = mapper.gerOrderInfo("admin_2022070746");
 		
 		System.out.println(list);
+		
 	}
 }
 

@@ -36,7 +36,7 @@ label {
 	float: left;
 	width: 170px;
 	padding: inherit;
-	margin-left: 35px;
+	margin-left: 32px;
 }
 
 .select_area ul li {
@@ -44,7 +44,7 @@ label {
 }
 
 #personal_area {
-	width: 900px;
+	width: 855px;
 	margin: auto;
 }
 
@@ -147,7 +147,7 @@ label {
 				style="display: inline-block; margin-left: 36px;">1:1 문의작성</h3>
 
 			<div class="select_area form-check form-check-inline"
-				style="width: 900px;">
+				style="width: 858px;">
 
 				<ul class="num01">
 					<li><input type="radio" name="adcDvsnCodeRdo"
@@ -259,12 +259,12 @@ label {
 							<div class="panel panel -default">
 								<div class="panel-body">
 									<div class="form-group">
-										<label>제목</label> <input class="form-control" name='bTitle'>
+										<label>제목</label> <input class="form-control" name='bTitle' style="width: 95%; margin-left: 20px;">
 									</div>
 									<div class="form-group">
 										<label>내용</label>
-										<textarea class="form-control" rows="5" name='bContent'></textarea>
-										<p>
+										<textarea class="form-control" rows="5" name='bContent' style="width: 95%; margin-left: 20px;"></textarea>
+										<p style="margin-left: 20px;">
 											문의내용 답변 안내<br> - 17시 이후 문의건과 공휴일 1:1 상담문의는 다음 운영시간(평일
 											09시~ 17시)에 메일 답변드리겠습니다.<br> - 정상근무일 기준이며, 통지예정일이 휴일인 경우
 											다음 정상 근무 일에 진행 됩니다.<br> - 설/추석 연휴 기간 동안 고객센터 휴무로 인해 1:1

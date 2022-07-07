@@ -78,13 +78,13 @@
 												class="quantity_input">
 											<button class="quantity_btn plus_btn">+</button>
 											<button class="quantity_btn minus_btn">-</button>
-										</div> <a class="quantity_modify_btn" data-cartId="${ci.cartId }">변경</a>
+										</div> <a class="quantity_modify_btn btn btn-primary" data-cartId="${ci.cartId }">변경</a>
 									</td>
 									<td class="td_width_4 table_text_align_center"><fmt:formatNumber
 											value="${ci.salePrice * ci.bookCount}" pattern="#,### 원" />
 									</td>
 									<td class="td_width_4 table_text_align_center">
-										<button class="btn-warning delete_btn" data-cartid="${ci.cartId }">삭제</button>
+										<button class="btn-warning delete_btn btn btn-warning" data-cartid="${ci.cartId }">삭제</button>
 									</td>
 								</tr>
 							</c:forEach>

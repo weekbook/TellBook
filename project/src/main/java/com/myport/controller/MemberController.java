@@ -142,6 +142,8 @@ public class MemberController {
 		
 		MemberVO lvo = service.memberLogin(member);
 		
+		log.info(lvo);
+		
 		if(lvo != null) {
 			rawPw = member.getMemberPw(); // 사용자가 제출한 비밀번호
 			encodePw = lvo.getMemberPw(); // 데이터베이스에 저장한 인코딩된 비밀번호

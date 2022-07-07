@@ -11,6 +11,7 @@ import com.myport.domain.CateVO;
 import com.myport.domain.Criteria;
 import com.myport.domain.MemberVO;
 import com.myport.domain.OrderDTO;
+import com.myport.domain.OrderInfoDTO;
 import com.myport.mapper.AdminMapper;
 
 import lombok.AllArgsConstructor;
@@ -119,6 +120,11 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public MemberVO memberDetail(String memberId) {
 		return adminmapper.memberDetail(memberId);
+	}
+
+	@Override
+	public List<OrderInfoDTO> gerOrderInfo(String orderId) {
+		return adminmapper.gerOrderInfo(orderId);
 	}
 	
 	
