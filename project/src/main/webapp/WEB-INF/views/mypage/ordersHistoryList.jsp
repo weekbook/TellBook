@@ -72,30 +72,30 @@
 										<td class="th_column_2">주문 아이디</td>
 										<td class="th_column_3">주문 날짜</td>
 										<td class="th_column_4">주문 상태</td>
-										<td class="th_column_5">상품 이름</td>
-										<td class="th_column_6">취소</td>
+										<!-- <td class="th_column_5">상품 이름</td> -->
+										<td class="th_column_5">취소</td>
 									</tr>
 								</thead>
 								<c:forEach items="${list}" var="list">
-									<c:if test="${member.memberId == list.memberId}">
 										<tr>
 											<td><c:out value="${list.orderId}"></c:out></td>
 											<td><c:out value="${list.memberId}"></c:out></td>
 											<td><fmt:formatDate value="${list.orderDate}"
 													pattern="yyyy-MM-dd" /></td>
 											<td><c:out value="${list.orderState}" /></td>
-											<td><c:out value="${list.bookName }"></c:out></td>
+											<%-- <td><c:forEach items="${nameList}" var="nameList">
+											<c:out value="${nameList.bookName }"></c:out>
+											</c:forEach></td> --%>
 											<td><c:if test="${list.orderState =='배송준비' }">
 													<button class="btn delete_btn btn-danger"
 														data-orderid="${list.orderId}">취소</button>
 												</c:if></td>
 										</tr>
-									</c:if>
 								</c:forEach>
 							</table>
 						</c:if>
 
-						<!-- 게시물 o -->
+						<!-- 게시물 x -->
 						<c:if test="${listCheck == 'empty' }">
 							<div class="table_empty">등록된 주문이 없습니다.</div>
 						</c:if>

@@ -36,7 +36,7 @@ label {
 	float: left;
 	width: 170px;
 	padding: inherit;
-	margin-left: 35px;
+	margin-left: 32px;
 }
 
 .select_area ul li {
@@ -44,7 +44,7 @@ label {
 }
 
 #personal_area {
-	width: 900px;
+	width: 855px;
 	margin: auto;
 }
 
@@ -147,7 +147,7 @@ label {
 				style="display: inline-block; margin-left: 36px;">1:1 문의작성</h3>
 
 			<div class="select_area form-check form-check-inline"
-				style="width: 900px;">
+				style="width: 858px;">
 
 				<ul class="num01">
 					<li><input type="radio" name="adcDvsnCodeRdo"

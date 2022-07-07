@@ -222,7 +222,6 @@
 			type="hidden"> <input name="memberAddr3" type="hidden">
 		<!-- 사용 포인트 -->
 		<input name="usePoint" type="hidden">
-		<!-- 상품 정보 -->
 	</form>
 	<%@ include file="includes/footer.jsp"%>
 

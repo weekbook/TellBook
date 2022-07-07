@@ -183,11 +183,11 @@ th {
 
 .quantity_modify_btn {
 	border: 1px solid #d0d0d0;
-	height: 13px;
+	height: 34px;
 	line-height: 13px;
 	background-color: #fff;
 	text-align: center;
-	width: 28px;
+	width: 51px;
 	display: inline-block;
 	padding: 3px 6px 2px;
 	margin-top: 3px;
@@ -198,7 +198,7 @@ th {
 }
 
 .delete_btn {
-	width: 40px;
+	width: 52px;
 }
 
 .content_total_section {

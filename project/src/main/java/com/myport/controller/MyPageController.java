@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.myport.domain.BookVO;
 import com.myport.domain.Criteria;
 import com.myport.domain.MemberVO;
 import com.myport.domain.OrderCancleDTO;
@@ -53,17 +54,29 @@ public class MyPageController {
 	}
 
 	@GetMapping("/ordersHistoryList")
-	public String OrderHistoryGET(Criteria cri, Model model) {
+	public String OrderHistoryGET(Criteria cri, Model model, HttpServletRequest request) {
 		log.info("주문리스트");
 		model.addAttribute("cate1", bookService.getCateCode1());
 		model.addAttribute("cate2", bookService.getCateCode2());
+		
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("member");
+		log.info("멤버세션" + vo);
+		
 
-		List<OrderDTO> list = mypageService.getMyOrderList(cri);
-
-		if (!list.isEmpty()) {
-			model.addAttribute("list", list);
-			model.addAttribute("pageMaker", new PageDTO(cri, mypageService.getMyOrderTotal(cri)));
-		} else {
+		if (vo != null) {
+			String memberId = vo.getMemberId();
+			cri.setMemberId(memberId);
+			
+			List<OrderDTO> list = mypageService.getMyOrderList(cri);
+			
+			
+			if (!list.isEmpty()) {
+				model.addAttribute("list", list);
+				model.addAttribute("pageMaker", new PageDTO(cri, mypageService.getMyOrderTotal(cri)));
+			}
+		}else {
+			log.info("세션이 없습니다." + vo);
 			model.addAttribute("listCheck", "empty");
 		}
 

@@ -31,6 +31,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -426,6 +427,21 @@ public class AdminController {
 		}
 		
 		return "/admin/orderList";
+	}
+	
+	// 주문 상세 페이지
+	@GetMapping({ "/orderInfo"})
+	public String orderInfoGET(String orderId, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+		log.info("orderInfoGET..." + orderId);
+
+		// 페이지 정보
+//		model.addAttribute("cri" + cri);
+
+		// 선택 작가 정보
+		model.addAttribute("orderInfo", adminService.gerOrderInfo(orderId));
+		
+		return "/admin/orderInfo";
+
 	}
 	
 	// 주문삭제

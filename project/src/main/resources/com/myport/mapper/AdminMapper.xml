@@ -106,6 +106,16 @@
 		]]>
 	</select>
 	
+	<select id="gerOrderInfo" resultType="com.myport.domain.OrderInfoDTO">
+	<![CDATA[
+		select a.orderid, a.addressee, a.memberaddr1, a.memberaddr2, a.memberaddr3,
+		a.usepoint, b.savepoint, c.bookname, b.bookCount,b.bookPrice, b.bookDiscount ,a.deliverycost,a.orderstate, a.orderdate
+		from book_order a, book_orderitem b, book_product c
+		where a.orderid = b.orderid and b.bookid = c.bookid
+		and a.orderId = #{orderId}
+		]]>
+	</select>
+	
 	<!-- 상품 총 갯수 -->
 	<select id="getOrderTotal" resultType="int">
 		select count(*) from book_order

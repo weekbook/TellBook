@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.myport.domain.BookVO;
 import com.myport.domain.Criteria;
 import com.myport.domain.MemberVO;
 import com.myport.domain.OrderDTO;
@@ -21,6 +22,11 @@ public class MyPageServiceImpl implements MypageService {
 	public List<OrderDTO> getMyOrderList(Criteria cri) {
 		return mypageMapper.getMyOrderList(cri);
 	}
+	
+//	@Override
+//	public List<BookVO> getMyOrderProductName(String memberId, String orderId) {
+//		return mypageMapper.getMyOrderProductName(memberId, orderId);
+//	}
 
 	@Override
 	public int getMyOrderTotal(Criteria cri) {
