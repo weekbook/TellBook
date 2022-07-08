@@ -109,6 +109,9 @@ public class OrderServiceImpl implements OrderService{
 		// point 변경
 		int calPoint = member.getPoint();
 		calPoint = calPoint - od.getUsePoint() + od.getOrderSavePoint();
+		
+		log.info("저장포인트" + od.getOrderSavePoint());
+		log.info("사용포인트" + od.getUsePoint());
 		member.setPoint(calPoint);
 		
 		// 변동 db 적용

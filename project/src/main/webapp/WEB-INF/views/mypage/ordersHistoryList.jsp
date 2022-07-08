@@ -78,7 +78,7 @@
 								</thead>
 								<c:forEach items="${list}" var="list">
 										<tr>
-											<td><c:out value="${list.orderId}"></c:out></td>
+											<td><a href="${list.orderId }" class="move"><c:out value="${list.orderId}"></c:out></a></td>
 											<td><c:out value="${list.memberId}"></c:out></td>
 											<td><fmt:formatDate value="${list.orderDate}"
 													pattern="yyyy-MM-dd" /></td>
@@ -211,20 +211,19 @@
 		$("#deleteForm").submit();
 	});
 	
-	$(".move").on("click", function(e){
-		e.preventDefault();
-		
-		var memberId = moveForm.find("input[name='memberId']").val();
+//  주문 상세 페이지 이동
+ 	$(".move").on("click", function(e){
+ 		e.preventDefault();
+ 		
+ 		var orderId = moveForm.find("input[name='authorId']").val();
 		// 게시물 읽고 뒤로가기 버튼했을때 같은 게시물에 들어가지는 오류 해결
-		if(memberId != ''){
-			moveForm.find("input[name='memberId']").remove();
+		if(orderId != ''){
+			moveForm.find("input[name='orderId']").remove();
 		}
-		
-		moveForm.append("<input type='hidden' name='memberId' value='"+$(this).attr("href") + "'>");
-		moveForm.attr("action", "/mypage/memberDetail");
-		moveForm.submit();
-		
-		
-	});
+ 		
+ 		moveForm.append("<input type='hidden' name='orderId' value='" + $(this).attr("href") + "'>");
+ 		moveForm.attr("action", "/mypage/orderInfo");
+ 		moveForm.submit();
+ 	});
 </script>
 </html>

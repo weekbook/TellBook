@@ -49,10 +49,12 @@ import com.myport.domain.Criteria;
 import com.myport.domain.MemberVO;
 import com.myport.domain.OrderCancleDTO;
 import com.myport.domain.OrderDTO;
+import com.myport.domain.OrderInfoDTO;
 import com.myport.domain.PageDTO;
 import com.myport.service.AdminService;
 import com.myport.service.AuthorService;
 import com.myport.service.MemberService;
+import com.myport.service.MypageService;
 import com.myport.service.OrderService;
 
 import lombok.AllArgsConstructor;
@@ -72,6 +74,8 @@ public class AdminController {
 	private OrderService orderService;
 	
 	private MemberService memberService;
+	
+	private MypageService mypageService;
 
 	// 관리자 메인 페이지 이동
 	@GetMapping("/main")
@@ -438,7 +442,17 @@ public class AdminController {
 //		model.addAttribute("cri" + cri);
 
 		// 선택 작가 정보
-		model.addAttribute("orderInfo", adminService.gerOrderInfo(orderId));
+		model.addAttribute("orderInfo", mypageService.gerOrderInfo(orderId));
+		
+//		List<OrderInfoDTO> list = adminService.gerOrderInfo(orderId);
+//		List<AttachImageVO> imageList = new ArrayList<AttachImageVO>();
+//		
+//		for(OrderInfoDTO ig : list) {
+//			imageList.addAll(adminService.getAttachInfo(ig.getBookId())); 
+//		}
+		
+//		model.addAttribute("imageList", imageList);
+		
 		
 		return "/admin/orderInfo";
 

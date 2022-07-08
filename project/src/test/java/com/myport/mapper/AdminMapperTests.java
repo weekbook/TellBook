@@ -190,15 +190,6 @@ public class AdminMapperTests {
 //		System.out.println(list);
 //	}
 	
-	
-	@Test
-	public void orderInfo() {
-		
-		List<OrderInfoDTO> list = mapper.gerOrderInfo("admin_2022070746");
-		
-		System.out.println(list);
-		
-	}
 }
 
 

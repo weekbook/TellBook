@@ -122,10 +122,4 @@ public class AdminServiceImpl implements AdminService{
 		return adminmapper.memberDetail(memberId);
 	}
 
-	@Override
-	public List<OrderInfoDTO> gerOrderInfo(String orderId) {
-		return adminmapper.gerOrderInfo(orderId);
-	}
-	
-	
 }

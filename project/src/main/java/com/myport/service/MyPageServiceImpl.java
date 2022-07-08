@@ -8,6 +8,7 @@ import com.myport.domain.BookVO;
 import com.myport.domain.Criteria;
 import com.myport.domain.MemberVO;
 import com.myport.domain.OrderDTO;
+import com.myport.domain.OrderInfoDTO;
 import com.myport.mapper.MyPageMapper;
 
 import lombok.AllArgsConstructor;
@@ -58,5 +59,9 @@ public class MyPageServiceImpl implements MypageService {
 		return mypageMapper.memberDelete(memberId);
 	}
 
+	@Override
+	public List<OrderInfoDTO> gerOrderInfo(String orderId) {
+		return mypageMapper.gerOrderInfo(orderId);
+	}
 	
 }
