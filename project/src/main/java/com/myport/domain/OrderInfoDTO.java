@@ -54,5 +54,6 @@ public class OrderInfoDTO {
 	// 주문 수량
 	private int bookCount;
 	
-	
+	// 책 ID
+	private int bookId;
 }

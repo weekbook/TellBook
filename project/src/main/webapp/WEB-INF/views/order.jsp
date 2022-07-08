@@ -339,12 +339,17 @@ $(".order_point_input").on("propertychange change keyup paste input", function()
 	
 	let inputValue = parseInt($(this).val());
 	
+	let totalArr = setTotalInfo();
+	
+	let total = totalArr[1]+totalArr[2];
+	
 	if(inputValue < 0){
 		$(this).val(0);
+	} else if(inputValue > total){
+		$(this).val(total);
 	} else if(inputValue > maxPoint){
 		$(this).val(maxPoint);
 	}
-	
 	// 주문 정보 최신화
 	setTotalInfo()
 });
@@ -362,8 +367,8 @@ $(".order_point_input_btn").on("click", function(){
 		console.log("n동작");
 		// 값 변경
 		$(".order_point_input").val(maxPoint);
-		if(maxPoint >= totalPrice){
-			$(".order_point_input").val(totalPrice);
+		if(maxPoint >= totalPrice[0]){
+			$(".order_point_input").val(totalPrice[0]);
 		}else{
 			$(".order_point_input").val(maxPoint);
 		} 
@@ -420,7 +425,7 @@ function setTotalInfo(){
 	
 	finalTotalPrice = totalPrice + deliveryPrice - usePoint;
 	
-	totalPoint = (finalTotalPrice - deliveryPrice) * 0.05;
+	// totalPoint = (finalTotalPrice - deliveryPrice) * 0.05;
 	if(totalPoint < 0){
 		totalPoint = 0;
 	}
@@ -441,7 +446,7 @@ function setTotalInfo(){
 	// 할인가(사용 포인트)
 	$(".usePoint_span").text(usePoint.toLocaleString());
 	
-	return finalTotalPrice;
+	return [finalTotalPrice, totalPrice, deliveryPrice];
 }
 
 /* 주문 요청 */
