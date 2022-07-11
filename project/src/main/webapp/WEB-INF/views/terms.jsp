@@ -60,7 +60,7 @@
 					<div class="user_account_box02 margin_top30">
 						<h3 class="title">
 						<span>이용약관</span>
-							<div style="margin-left: 85%; display: inline-block;">
+							<div style="margin-left: 84%; display: inline-block;">
 								 <a href="javascript:window.print();"
 								class="btn btn-secondary">프린트</a>
 							</div>
@@ -886,13 +886,6 @@
 
 	</div>
 
-	<div class="sidebar"
-		style="position: fixed; top: 200px; background-color: blue; width: 130px; height: 500px;">
-		<h2 id="remoMy" class="remoTit remoTop">
-			<a href="javascript:void(0);" onclick="setWcode('003_002_001')">최근
-				본 상품</a>
-		</h2>
-	</div>
 	<%@ include file="includes/footer.jsp"%>
 
 </body>
