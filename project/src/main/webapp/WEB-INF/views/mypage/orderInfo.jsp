@@ -14,6 +14,12 @@
 <link rel="stylesheet"
 	href="/resources/css/mypage/ordersHistoryList.css">
 </head>
+<style>
+.product_info td{
+	vertical-align: middle;
+}
+
+</style>
 <body>
 	<div class="wrapper">
 		<div class="wrap">
@@ -47,7 +53,7 @@
 				<div class="admin_navi_wrap">
 					<ul>
 						<li><a class="admin_list_01" href="/mypage/ordersHistoryList">주문조회/취소</a></li>
-						<li><a class="admin_list_02 move"
+						<li><a class="admin_list_02 member_move"
 							href='<c:out value="${member.memberId }"/>'> 개인정보 수정</a></li>
 						<li><a class="admin_list_03" href="/mypage/memberDelete">회원탈퇴</a></li>
 					</ul>
@@ -57,7 +63,7 @@
 						<span>주문상세</span>
 					</div>
 					<h4 style="margin-top: 20px;">기본 배송정보</h4>
-					<table class="table table-bordered">
+					<table class="table table-bordered border border-2 border-secondary">
 						<tbody>
 							<tr>
 								<td style="width: 13%">주문번호</td>
@@ -80,7 +86,7 @@
 						</tbody>
 					</table>
 
-					<table class="table table-bordered">
+					<table class="table table-bordered border border-2 border-secondary">
 						<tbody>
 							<tr>
 								<td style="width: 13%">받으시는 분</td>
@@ -95,7 +101,7 @@
 					</table>
 
 					<h4 style="margin-top: 20px;">주문 상품 정보</h4>
-					<table class="table table-bordered" style="text-align: center">
+					<table class="table table-bordered product_info border border-2 border-secondary" style="text-align: center">
 						<thead>
 							<tr>
 								<th>Num</th>
@@ -123,12 +129,12 @@
 
 					</table>
 
-					<table class="table table-bordered">
+					<table class="table table-bordered border border-2 border-secondary">
 						<tbody>
 							<tr>
 								<c:set var="priceTotal" value="0" />
 								<c:set var="pointSaveTotal" value="0" />
-								<td>총 주문 금액</td>
+								<td width="140px">총 주문 금액</td>
 								<c:forEach var="list" items="${orderInfo}" varStatus="status">
 									<c:set var="priceTotal"
 										value="${priceTotal + (list.bookPrice - (list.bookPrice * list.bookDiscount)) * list.bookCount}" />
@@ -207,22 +213,22 @@
 		$("#deleteForm").submit();
 	});
 
-	//  주문 상세 페이지 이동
-	$(".move").on(
-			"click",
-			function(e) {
-				e.preventDefault();
-
-				var orderId = moveForm.find("input[name='authorId']").val();
-				// 게시물 읽고 뒤로가기 버튼했을때 같은 게시물에 들어가지는 오류 해결
-				if (orderId != '') {
-					moveForm.find("input[name='orderId']").remove();
-				}
-
-				moveForm.append("<input type='hidden' name='orderId' value='"
-						+ $(this).attr("href") + "'>");
-				moveForm.attr("action", "/mypage/orderInfo");
-				moveForm.submit();
-			});
+	$(".member_move").on("click", function(e){
+		
+		e.preventDefault();
+		
+		var memberId = moveForm.find("input[name='memberId']").val();
+		// 게시물 읽고 뒤로가기 버튼했을때 같은 게시물에 들어가지는 오류 해결
+		if(memberId != ''){
+			moveForm.find("input[name='memberId']").remove();
+		}
+		
+		moveForm.append("<input type='hidden' name='memberId' value='"+$(this).attr("href") + "'>");
+		moveForm.attr("action", "/mypage/memberDetail");
+		moveForm.submit();
+		
+		
+	});
+	
 </script>
 </html>
