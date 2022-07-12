@@ -174,7 +174,7 @@ a:not([class]):hover {
 	background-color: #F0F0F0;
 	position: absolute;
 	width: 104px;
-	top: 300px;
+	top: 200px;
 	left: 50%;
 	margin-left: 565px;
 	right: 420px;
@@ -207,4 +207,19 @@ a:not([class]):hover {
     width: 75%;
     margin: auto;
     transition: all 0.2s;
+}
+
+.side_p {
+	display: block;
+    width: 86px;
+    height: 30px;
+    _height: 30px;
+    line-height: 29px;
+    border-top: solid 1px #616161;
+    overflow: hidden;
+    letter-spacing: -1px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #fff;
+    background-color: #4e4e4e;
 }

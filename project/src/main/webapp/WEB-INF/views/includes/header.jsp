@@ -1,6 +1,10 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.myport.domain.SelectDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="/resources/css/header.css">
 
@@ -123,7 +127,7 @@
 		</div>
 
 		<div id="sidebox">
-			<ul class="quick_banner" id="quick_banner"
+			<!-- <ul class="quick_banner" id="quick_banner"
 				data-ga-category="교보문고_공통_PC" data-ga-action="퀵배너">
 				<li><a data-ga-label="우측 확장형 배너 2"
 					href="http://www.kyobobook.co.kr/member/kyobobenefit.jsp?orderClick=dot"
@@ -134,12 +138,27 @@
 					href="http://gift.kyobobook.co.kr/ht/hot/eventDetail?eventId=80248&amp;orderClick=do7"><img
 						src="https://simage.kyobobook.co.kr/newimages/giftshop_new/work/1326/1656913328995_61_114_Wing-Banner.jpg"
 						alt="우측 확장형 배너 2"></a></li>
-			</ul>
-			<ul>
-				<li><a href="#">등급별혜택</a></li>
-				<li><a href="#">1:1문의</a></li>
-				<li><a href="#">후기</a></li>
-			</ul>
+			</ul> -->
+			<div style="margin-bottom: 20px; text-align: center;">
+				<p class="side_p">추천도서</p>
+				<c:forEach items="${rl}" var="rl" varStatus="loop">
+					<c:if test="${loop.index < 3}">
+						<a href="/goodsDetail/${rl.bookId}" style="text-decoration: none;">
+							<div class="content_wrap">
+								<div>
+									<div class="" data-bookid="${rl.imageList[0].bookId}"
+										data-path="${rl.imageList[0].uploadPath}"
+										data-uuid="${rl.imageList[0].uuid}"
+										data-filename="${rl.imageList[0].fileName}">
+										<img style="width: -webkit-fill-available;">
+									</div>
+									<div class="ls_bookName">${rl.bookName}</div>
+								</div>
+							</div>
+						</a>
+					</c:if>
+				</c:forEach>
+			</div>
 			<div class="btn_quick_top">
 				<a data-ga-label="최상단" href="#Top">TOP</a>
 			</div>
@@ -157,6 +176,41 @@
 						"top" : position + currentPosition + "px"
 					}, 1000);
 				});
+				
+				
+				
+				/* 이미지 삽입 */
+				$(".image_wrap")
+						.each(
+								function(i, obj) {
+
+									const bobj = $(obj);
+
+									if (bobj.data("bookid")) {
+										const uploadPath = bobj
+												.data("path");
+										const uuid = bobj.data("uuid");
+										const fileName = bobj
+												.data("filename");
+
+										const fileCallPath = encodeURIComponent(uploadPath
+												+ "/s_"
+												+ uuid
+												+ "_"
+												+ fileName);
+
+										$(this).find("img").attr(
+												'src',
+												'/display?fileName='
+														+ fileCallPath);
+									} else {
+										$(this)
+												.find("img")
+												.attr('src',
+														'/resources/img/goodsNoImage.png');
+									}
+
+								});
 			});
 
 			//gnb영역 로그아웃 버튼 작동

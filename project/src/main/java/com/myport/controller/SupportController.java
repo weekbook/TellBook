@@ -1,5 +1,6 @@
 package com.myport.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import com.myport.domain.MemberVO;
 import com.myport.domain.OrderDTO;
 import com.myport.domain.PageDTO;
 import com.myport.domain.QnaVO;
+import com.myport.domain.SelectDTO;
 import com.myport.mapper.QnaMapper;
 import com.myport.service.BookService;
 import com.myport.service.QnaService;
@@ -33,51 +35,81 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @RequestMapping("/support/*")
 public class SupportController {
-	
+
 	private BookService bookService;
-	
+
 	private QnaService qnaService;
-	
+
 	@GetMapping("/support")
 	public void supportGET(Model model) {
 		log.info("고객센터");
 		model.addAttribute("cate1", bookService.getCateCode1());
 		model.addAttribute("cate2", bookService.getCateCode2());
+
+		// 랜덤 리스트 출력
+		List<SelectDTO> random_list = bookService.bestSelect();
+		Collections.shuffle(random_list);
+		model.addAttribute("rl", random_list);
 	}
-	
+
 	@GetMapping("/supportLi1")
 	public void supportLi1GET(Model model) {
 		log.info("반품/환불/교환");
 		model.addAttribute("cate1", bookService.getCateCode1());
 		model.addAttribute("cate2", bookService.getCateCode2());
+
+		// 랜덤 리스트 출력
+		List<SelectDTO> random_list = bookService.bestSelect();
+		Collections.shuffle(random_list);
+		model.addAttribute("rl", random_list);
 	}
-	
+
 	@GetMapping("/supportLi2")
 	public void supportLi2GET(Model model) {
 		log.info("주문/결제");
 		model.addAttribute("cate1", bookService.getCateCode1());
 		model.addAttribute("cate2", bookService.getCateCode2());
+
+		// 랜덤 리스트 출력
+		List<SelectDTO> random_list = bookService.bestSelect();
+		Collections.shuffle(random_list);
+		model.addAttribute("rl", random_list);
 	}
-	
+
 	@GetMapping("/supportLi3")
 	public void supportLi3GET(Model model) {
 		log.info("회원");
 		model.addAttribute("cate1", bookService.getCateCode1());
 		model.addAttribute("cate2", bookService.getCateCode2());
+
+		// 랜덤 리스트 출력
+		List<SelectDTO> random_list = bookService.bestSelect();
+		Collections.shuffle(random_list);
+		model.addAttribute("rl", random_list);
 	}
-	
+
 	@GetMapping("/supportLi4")
 	public void supportLi4GET(Model model) {
 		log.info("도서/상품정보/교과서");
 		model.addAttribute("cate1", bookService.getCateCode1());
 		model.addAttribute("cate2", bookService.getCateCode2());
+
+		// 랜덤 리스트 출력
+		List<SelectDTO> random_list = bookService.bestSelect();
+		Collections.shuffle(random_list);
+		model.addAttribute("rl", random_list);
 	}
-	
+
 	@GetMapping("/supportLi5")
 	public void supportLi5GET(Model model) {
 		log.info("배송/수령일안내");
 		model.addAttribute("cate1", bookService.getCateCode1());
 		model.addAttribute("cate2", bookService.getCateCode2());
+
+		// 랜덤 리스트 출력
+		List<SelectDTO> random_list = bookService.bestSelect();
+		Collections.shuffle(random_list);
+		model.addAttribute("rl", random_list);
 	}
 
 	@GetMapping("/inquirie")
@@ -85,25 +117,30 @@ public class SupportController {
 		log.info("1:1상담접수/내역확인");
 		model.addAttribute("cate1", bookService.getCateCode1());
 		model.addAttribute("cate2", bookService.getCateCode2());
-		
+
+		// 랜덤 리스트 출력
+		List<SelectDTO> random_list = bookService.bestSelect();
+		Collections.shuffle(random_list);
+		model.addAttribute("rl", random_list);
+
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("member");
 		log.info("멤버세션" + vo);
-		
+
 		List<QnaVO> list = null;
-		
-		if(vo != null) {
+
+		if (vo != null) {
 			String memberId = vo.getMemberId();
 			cri.setMemberId(memberId);
-			
+
 			if (vo.getAdminCk() == 1) {
 				// 어드민 계정은 모든 문의내역을 볼 수 있게.
 				list = qnaService.getListAll(cri);
-			}else {
+			} else {
 				// 아니라면 해당 세션 memberId의 게시물만 볼 수 있게
 				list = qnaService.getList(cri);
 			}
-			
+
 			if (!list.isEmpty()) {
 				model.addAttribute("list", list);
 				model.addAttribute("pageMaker", new PageDTO(cri, qnaService.getQnaTotal(cri)));
@@ -114,12 +151,18 @@ public class SupportController {
 		}
 
 	}
-	
-	@GetMapping("/register")
-	public void registerGET() {
 
+	@GetMapping("/register")
+	public void registerGET(Model model) {
+		model.addAttribute("cate1", bookService.getCateCode1());
+		model.addAttribute("cate2", bookService.getCateCode2());
+
+		// 랜덤 리스트 출력
+		List<SelectDTO> random_list = bookService.bestSelect();
+		Collections.shuffle(random_list);
+		model.addAttribute("rl", random_list);
 	}
-	
+
 	@PostMapping("/register")
 	public String register(QnaVO board, RedirectAttributes rttr) {
 		log.info("등록" + board);
@@ -128,13 +171,22 @@ public class SupportController {
 		rttr.addFlashAttribute("result", board.getBId());
 		return "redirect:/support/inquirie";
 	}
-	
+
 	@GetMapping("/inquirieDetail")
-	public void inquirieDetailGET(@RequestParam("bId") Long bId, Model model, @ModelAttribute("cri") Criteria cri) throws Exception {
+	public void inquirieDetailGET(@RequestParam("bId") Long bId, Model model, @ModelAttribute("cri") Criteria cri)
+			throws Exception {
 		log.info("detailGet...");
 		model.addAttribute("board", qnaService.readQna(bId));
+		
+		model.addAttribute("cate1", bookService.getCateCode1());
+		model.addAttribute("cate2", bookService.getCateCode2());
+
+		// 랜덤 리스트 출력
+		List<SelectDTO> random_list = bookService.bestSelect();
+		Collections.shuffle(random_list);
+		model.addAttribute("rl", random_list);
 	}
-	
+
 	@PostMapping("/answer")
 	public String answer(QnaVO board, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 		log.info("modify:" + board);

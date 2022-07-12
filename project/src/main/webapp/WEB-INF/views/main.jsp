@@ -142,23 +142,6 @@
 			</div>
 		</div>
 		
-		
-		<%
-		request.setCharacterEncoding("utf-8");
-		// 쿠키 정보를 얻기
-		Cookie[] cookies = request.getCookies();
-		// 쿠키에 값이 있다면
-		for(int i = 0; i<cookies.length; i++){
-			String name = cookies[i].getName(); // 쿠키 이름
-			String value = cookies[i].getValue(); // 쿠키 값
-			if(name.equals("abc")){
-				out.println("cokies[" + i + "] name : " + name);
-				out.println("<br/>");
-				out.println("cokies[" + i + "] value : " + value);
-			}
-		}
-		%>
-	
 	</div>
 
 	<%@ include file="includes/footer.jsp"%>

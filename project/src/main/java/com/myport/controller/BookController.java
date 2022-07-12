@@ -3,6 +3,7 @@ package com.myport.controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.http.HttpHeaders;
@@ -23,6 +24,7 @@ import com.myport.domain.Criteria;
 import com.myport.domain.MemberVO;
 import com.myport.domain.PageDTO;
 import com.myport.domain.ReplyDTO;
+import com.myport.domain.SelectDTO;
 import com.myport.mapper.AttachMapper;
 import com.myport.service.BookService;
 import com.myport.service.MemberService;
@@ -39,10 +41,9 @@ public class BookController {
 	private AttachMapper attachMapper;
 
 	private BookService bookService;
-	
+
 	private ReplyService replyService;
-	
-	
+
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getImage(String fileName) {
 		log.info("getImage.." + fileName);
@@ -76,8 +77,13 @@ public class BookController {
 	public String searchGoodsGET(Criteria cri, Model model) {
 		log.info("cri : " + cri);
 
+		// 랜덤 리스트 출력
+		List<SelectDTO> random_list = bookService.bestSelect();
+		Collections.shuffle(random_list);
+		model.addAttribute("rl", random_list);
+
 		List<BookVO> list = bookService.getGoodsList(cri);
-		
+
 		log.info("pre list : " + list);
 		if (!list.isEmpty()) {
 			model.addAttribute("list", list);
@@ -108,6 +114,11 @@ public class BookController {
 
 		model.addAttribute("goodsInfo", bookService.getGoodsInfo(bookId));
 
+		// 랜덤 리스트 출력
+		List<SelectDTO> random_list = bookService.bestSelect();
+		Collections.shuffle(random_list);
+		model.addAttribute("rl", random_list);
+
 		return "/goodsDetail";
 	}
 
@@ -120,7 +131,7 @@ public class BookController {
 
 		return "/replyEnroll";
 	}
-	
+
 	// 리뷰 수정 팝업창
 	@GetMapping("/replyUpdate")
 	public String replyUpdateWindowGET(ReplyDTO dto, Model model) {
@@ -128,9 +139,8 @@ public class BookController {
 		model.addAttribute("bookInfo", book);
 		model.addAttribute("replyInfo", replyService.getUpdateReply(dto.getReplyId()));
 		model.addAttribute("memberId", dto.getMemberId());
-		
+
 		return "/replyUpdate";
 	}
 
-	
 }
