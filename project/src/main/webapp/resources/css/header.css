@@ -48,7 +48,7 @@ a:not([class]):hover {
 	width: 100%;
 	height: 150px;
 	/* background-color: #f7f0b9; */
-	margin-top: 80px;
+	margin-top: 50px;
 }
 /* 로고 영역 */
 .logo_area {
@@ -222,4 +222,20 @@ a:not([class]):hover {
     font-weight: normal;
     color: #fff;
     background-color: #4e4e4e;
+}
+
+.image_wrap2 {
+	width: 80%;
+	height: 60%;
+	margin: auto;
+	padding: 5% 0 5% 0;
+	display: flex;
+	align-items: center;
+}
+
+.image_wrap2 img {
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+	margin: auto;
 }

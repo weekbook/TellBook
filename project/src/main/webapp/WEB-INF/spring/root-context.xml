@@ -16,8 +16,7 @@
 			</property> <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"></property> -->
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<!-- <property name="jdbcUrl"
-			value="jdbc:log4jdbc:oracle:thin:@192.168.0.83:1521:XE"></property> -->
+		<!-- <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@192.168.0.83:1521:XE"></property> -->
 		<property name="jdbcUrl"
 			value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
 		<property name="username" value="weekbook"></property>
@@ -27,38 +26,41 @@
 		destroy-method="close">
 		<constructor-arg ref="hikariConfig"></constructor-arg>
 	</bean>
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
+		<property name="configLocation"
+			value="classpath:/mybatis-config.xml"></property>
 	</bean>
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-    	<property name="dataSource" ref="dataSource"></property>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	
-	<tx:annotation-driven/>
-	
-	<task:annotation-driven/>
-	
+
+	<tx:annotation-driven />
+
+	<task:annotation-driven />
+
 	<!-- gmail설정 (네이버는 차단해서 안됨 구글도 5월30일부터 보안 낮은 액세스 막혀서 안됨..) -->
-    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
-     <property name="host" value="smtp.gmail.com"/> <!-- 메이서버 호스트 -->
-     <property name="port" value="587"/> <!-- 메이서버 포트번호 -->
-     <property name="username" value="weekbook@naver.com"/> <!-- 자신의 이메일 아이디 -->
-     <property name="password" value="6530Akwk!"/> <!-- 자신의 비밀번호 -->
-       <!-- 보안연결 SSL과 관련된 설정 -->
-     <property name="javaMailProperties">
-      <props>
-	      <prop key="mail.smtp.auth">true</prop>
-	      <prop key="mail.smtp.starttls.enable">true</prop>
-	      <prop key="mail.smtps.checkserveridentity">true</prop>
-	      <prop key="mail.smtps.ssl.trust">*</prop>
-	      <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
-	      <prop key="mail.debug">true</prop>
-	      <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
-      </props>
-     </property>
-    </bean>
-	
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="sdc55518@gmail.com" /> <!-- 자신의 이메일 아이디 -->
+		<property name="password" value="ffwjblccmvldvhdj" /> <!-- 자신의 비밀번호 -->
+		<!-- 보안연결 TLS과 관련된 설정 -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.auth">true    </prop>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+			</props>
+		</property>
+	</bean>
+
 	<mybatis-spring:scan
 		base-package="com.myport.mapper" />
 	<!-- 특정 패키지를 스캔하여 필용한 내용은 메모리에 업로드 -->
@@ -67,7 +69,8 @@
 		base-package="com.myport.service">
 
 	</context:component-scan>
-	
-	<context:component-scan base-package="com.myport.task"></context:component-scan>
+
+	<context:component-scan
+		base-package="com.myport.task"></context:component-scan>
 
 </beans>

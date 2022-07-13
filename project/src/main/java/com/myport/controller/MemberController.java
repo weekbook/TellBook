@@ -31,7 +31,7 @@ public class MemberController {
 
 	private MemberService service;
 	private JavaMailSender mailSender;
-	
+
 	private BCryptPasswordEncoder pwEncoder;
 
 	@GetMapping("/join")
@@ -46,14 +46,14 @@ public class MemberController {
 
 	@PostMapping("/join")
 	public String joinPOST(MemberVO member) throws Exception {
-		
+
 		String rawPw = ""; // 인코딩 전 비밀번호
 		String encodePw = ""; // 인코딩 후 비밀번호
-		
+
 		rawPw = member.getMemberPw(); // 비밀번호 데이터 얻음
 		encodePw = pwEncoder.encode(rawPw); // 비밀번호 인코딩
 		member.setMemberPw(encodePw); // 인코딩된 비밀번호 member객체에 다시 저장.
-		
+
 		service.memberJoin(member);
 
 		return "redirect:/main";
@@ -74,12 +74,12 @@ public class MemberController {
 			return "success";
 		}
 	}
-	
+
 	// 이메일 중복 검사
 	@PostMapping("/memberMailChk")
 	@ResponseBody
-	public String mailOverlabPOST(String memberMail) throws Exception{
-		
+	public String mailOverlabPOST(String memberMail) throws Exception {
+
 		int result = service.mailCheck(memberMail);
 
 		log.info("결과값 = " + result);
@@ -88,7 +88,7 @@ public class MemberController {
 		} else {
 			return "success";
 		}
-		
+
 	}
 
 	/* 이메일 인증 */
@@ -106,54 +106,54 @@ public class MemberController {
 		log.info("인증번호 " + checkNum);
 
 		/* 이메일 보내기 */
-		String setFrom = "weekbook@naver.com";
+		String setFrom = "sdc55518@gmail.com";
 		String toMail = email;
 		String title = "TellBook 인증 이메일 입니다.";
 		String content = "홈페이지를 방문해주셔서 감사합니다." + "<br><br>" + "인증 번호는 " + checkNum + "입니다." + "<br>"
 				+ "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
 
-//		try {
-//
-//			MimeMessage message = mailSender.createMimeMessage();
-//			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-//			helper.setFrom(setFrom);
-//			helper.setTo(toMail);
-//			helper.setSubject(title);
-//			helper.setText(content, true);
-//			mailSender.send(message);
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		
+		try {
+
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+			helper.setFrom(setFrom);
+			helper.setTo(toMail);
+			helper.setSubject(title);
+			helper.setText(content, true);
+			mailSender.send(message);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		String num = Integer.toString(checkNum);
 		return num;
 	}
-	
+
 	// 로그인
 	@PostMapping("/login.do")
-	public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
+	public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception {
 //		log.info("login 메서드 ");
 //		log.info("전달된 데이터 : " + member);
-		
+
 		HttpSession session = request.getSession();
 		String rawPw = "";
 		String encodePw = "";
-		
+
 		MemberVO lvo = service.memberLogin(member);
-		
+
 		log.info(lvo);
-		
-		if(lvo != null) {
+
+		if (lvo != null) {
 			rawPw = member.getMemberPw(); // 사용자가 제출한 비밀번호
 			encodePw = lvo.getMemberPw(); // 데이터베이스에 저장한 인코딩된 비밀번호
-			
-			if(true == pwEncoder.matches(rawPw, encodePw)) { // 비밀번호 일치여부 판단
-				
+
+			if (true == pwEncoder.matches(rawPw, encodePw)) { // 비밀번호 일치여부 판단
+
 				lvo.setMemberPw(""); // 인코딩된 비밀번호 정보 지움
 				session.setAttribute("member", lvo); // session에 사용자의 정보 저장
 				return "redirect:/main";
-				
+
 			} else {
 				rttr.addFlashAttribute("result", 0);
 				return "redirect:/member/login";
@@ -163,67 +163,67 @@ public class MemberController {
 			return "redirect:/member/login";
 		}
 	}
-	
+
 	@GetMapping("/logout.do")
-	public String logoutMainGET(HttpServletRequest request) throws Exception{
+	public String logoutMainGET(HttpServletRequest request) throws Exception {
 		log.info("logout 메서드");
-		
+
 		HttpSession session = request.getSession();
-		
+
 		session.invalidate();
-		
+
 		return "redirect:/main";
 	}
-	
+
 	@PostMapping("/logout.do")
 	@ResponseBody
-	public void logoutPOST(HttpServletRequest reqeust) throws Exception{
+	public void logoutPOST(HttpServletRequest reqeust) throws Exception {
 		log.info("비동기 로그아웃 메서드 진입");
-		
+
 		HttpSession session = reqeust.getSession();
-		
+
 		session.invalidate();
 	}
-	
+
 	@GetMapping("/findMember")
 	public String findMemberGET(Model model) {
-		
+
 		return "/member/findMember";
 	}
-	
+
 	@PostMapping("/findMemberID")
 	@ResponseBody
 	public String findIdPOST(MemberVO vo) {
-		
+
 		String result = service.getMemberID(vo.getMemberName(), vo.getMemberMail());
-		
+
 		return result;
 	}
-	
+
 	@PostMapping("/findMemberPw")
 	@ResponseBody
 	public String findPwPOST(MemberVO vo) {
-		
+
 		String result = service.accountCheck(vo.getMemberId(), vo.getMemberMail());
-		
+
 		return result;
 	}
-	
+
 	@PostMapping("/resetPassword")
 	@ResponseBody
 	public String resetPwPOST(MemberVO vo, RedirectAttributes rttr) {
-		
+
 		String rawPw = ""; // 인코딩 전 비밀번호
 		String encodePw = ""; // 인코딩 후 비밀번호
-		
+
 		rawPw = vo.getMemberPw(); // 비밀번호 데이터 얻음
 		encodePw = pwEncoder.encode(rawPw); // 비밀번호 인코딩
 		vo.setMemberPw(encodePw); // 인코딩된 비밀번호 member객체에 다시 저장.
-		
+
 		service.resetPassword(vo.getMemberId(), encodePw);
 
 		rttr.addFlashAttribute("pwChange", 1);
 		return "redirect:/main";
-		
+
 	}
 }

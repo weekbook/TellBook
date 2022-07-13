@@ -48,6 +48,9 @@ public class MainController {
 
 	@GetMapping("/terms")
 	public void termsGET(Model model) {
+		model.addAttribute("cate1", bookService.getCateCode1());
+		model.addAttribute("cate2", bookService.getCateCode2());
+		
 		log.info("terms page");
 		// 랜덤 리스트 출력
 		List<SelectDTO> random_list = bookService.bestSelect();

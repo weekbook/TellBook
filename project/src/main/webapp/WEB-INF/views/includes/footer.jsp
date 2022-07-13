@@ -21,8 +21,6 @@
 			<p class="text-center text-muted">© 2022 Company, Inc</p>
 		</footer>
 	</div>
-</div>
-</div>
-</div>
+	
 </body>
 </html>
