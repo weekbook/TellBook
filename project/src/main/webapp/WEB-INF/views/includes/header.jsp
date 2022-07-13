@@ -146,12 +146,12 @@
 						<a href="/goodsDetail/${rl.bookId}" style="text-decoration: none;">
 							<div class="content_wrap">
 								<div>
-									<div class="" data-bookid="${rl.imageList[0].bookId}"
-										data-path="${rl.imageList[0].uploadPath}"
-										data-uuid="${rl.imageList[0].uuid}"
-										data-filename="${rl.imageList[0].fileName}">
-										<img style="width: -webkit-fill-available;">
-									</div>
+									<div class="image_wrap" data-bookid="${rl.imageList[0].bookId}"
+									data-path="${rl.imageList[0].uploadPath}"
+									data-uuid="${rl.imageList[0].uuid}"
+									data-filename="${rl.imageList[0].fileName}">
+									<img style="width: -webkit-fill-available;">
+								</div>
 									<div class="ls_bookName">${rl.bookName}</div>
 								</div>
 							</div>
@@ -176,8 +176,6 @@
 						"top" : position + currentPosition + "px"
 					}, 1000);
 				});
-				
-				
 				
 				/* 이미지 삽입 */
 				$(".image_wrap")
