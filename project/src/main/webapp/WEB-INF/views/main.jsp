@@ -62,21 +62,33 @@
 		</div>
 		
 		<div class="ls_wrap border-bottom pb-3 mb-3">
-			<div class="ls_div_subject">평점순 상품</div>
+			<div class="ls_div_subject">베스트셀러</div>
 			<div class="ls_div">
-				<c:forEach items="${ls}" var="ls">
-					<a href="/goodsDetail/${ls.bookId}" style="text-decoration: none;">
+				<c:forEach items="${bs}" var="bs" varStatus="status">
+					<a href="/goodsDetail/${bs.bookId}" style="text-decoration: none;">
 						<div class="ls_div_content_wrap">
 							<div class="ls_div_content">
-								<div class="image_wrap" data-bookid="${ls.imageList[0].bookId}"
-									data-path="${ls.imageList[0].uploadPath}"
-									data-uuid="${ls.imageList[0].uuid}"
-									data-filename="${ls.imageList[0].fileName}">
+								<c:choose>
+									<c:when test="${status.index == 0 }">
+										<strong class="ranking" style="color: red;"><c:out value="${status.index + 1 }" /></strong>
+									</c:when>
+									<c:when test="${status.index == 1 }">
+										<strong class="ranking" style="color: blue;"><c:out value="${status.index + 1 }" /></strong>
+									</c:when>
+									<c:otherwise>
+										<strong class="ranking"><c:out value="${status.index + 1 }" /></strong>
+									</c:otherwise>
+								</c:choose>
+								
+								<div class="image_wrap" data-bookid="${bs.imageList[0].bookId}"
+									data-path="${bs.imageList[0].uploadPath}"
+									data-uuid="${bs.imageList[0].uuid}"
+									data-filename="${bs.imageList[0].fileName}">
 									<img>
 								</div>
-								<div class="ls_category">${ls.cateName}</div>
-								<div class="ls_rating">${ls.ratingAvg}</div>
-								<div class="ls_bookName">${ls.bookName}</div>
+								<div class="ls_category">${bs.cateName}</div>
+								<div class="ls_rating best">셀러포인트 : ${bs.ratingAvg * bs.purchaseCount }</div>
+								<div class="ls_bookName">${bs.bookName}</div>
 							</div>
 						</div>
 					</a>
@@ -108,33 +120,21 @@
 		</div>
 		
 		<div class="ls_wrap border-bottom pb-3 mb-3">
-			<div class="ls_div_subject">베스트셀러</div>
+			<div class="ls_div_subject">평점TOP</div>
 			<div class="ls_div">
-				<c:forEach items="${bs}" var="bs" varStatus="status">
-					<a href="/goodsDetail/${bs.bookId}" style="text-decoration: none;">
+				<c:forEach items="${ls}" var="ls">
+					<a href="/goodsDetail/${ls.bookId}" style="text-decoration: none;">
 						<div class="ls_div_content_wrap">
 							<div class="ls_div_content">
-								<c:choose>
-									<c:when test="${status.index == 0 }">
-										<strong class="ranking" style="color: red;"><c:out value="${status.index + 1 }" /></strong>
-									</c:when>
-									<c:when test="${status.index == 1 }">
-										<strong class="ranking" style="color: blue;"><c:out value="${status.index + 1 }" /></strong>
-									</c:when>
-									<c:otherwise>
-										<strong class="ranking"><c:out value="${status.index + 1 }" /></strong>
-									</c:otherwise>
-								</c:choose>
-								
-								<div class="image_wrap" data-bookid="${bs.imageList[0].bookId}"
-									data-path="${bs.imageList[0].uploadPath}"
-									data-uuid="${bs.imageList[0].uuid}"
-									data-filename="${bs.imageList[0].fileName}">
+								<div class="image_wrap" data-bookid="${ls.imageList[0].bookId}"
+									data-path="${ls.imageList[0].uploadPath}"
+									data-uuid="${ls.imageList[0].uuid}"
+									data-filename="${ls.imageList[0].fileName}">
 									<img>
 								</div>
-								<div class="ls_category">${bs.cateName}</div>
-								<div class="ls_rating best">셀러포인트 : ${bs.ratingAvg * bs.purchaseCount }</div>
-								<div class="ls_bookName">${bs.bookName}</div>
+								<div class="ls_category">${ls.cateName}</div>
+								<div class="ls_rating">${ls.ratingAvg}</div>
+								<div class="ls_bookName">${ls.bookName}</div>
 							</div>
 						</div>
 					</a>
