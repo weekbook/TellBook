@@ -10,14 +10,26 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="resources/img/pavicon.png">
 <link rel="stylesheet" href="/resources/css/main.css">
-<link rel="stylesheet" type="text/css"
-	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-<link rel="stylesheet" type="text/css"
-	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript"
-	src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<style>
+.box_policy_global blockquote {
+    border: 1px solid #dadada;
+    margin: 5px 0 10px;
+    padding: 10px;
+    background-color: #fcfcfc;
+}
+.box_policy_global ol[id="article0"] {
+    column-width: 300px;
+    column-gap: 15px;
+}
+.box_policy_global p {
+    margin-top: 10px;
+}
+.box_policy_global ol, .box_policy_global ul {
+    list-style: none;
+}
+</style>
 
 </head>
 <body>
@@ -55,8 +67,6 @@
 			<!-- // 경로 표시 -->
 			<div class="content_middle">
 				<div class="user_account_box">
-					<!-- <div><img src="http://image.kyobobook.co.kr/ink/images/style/del01.gif" alt="지식과 문화가 어우러진 아름다운 공간 인터넷 TellBook, TellBook 서비스의 이용과 관련하여 필요한 사항을 규정합니다."/></div> -->
-					<!-- <div class="user_account_list_box" id="article0"></div> -->
 					<div class="user_account_box02 margin_top30">
 						<h3 class="title">
 						<span>이용약관</span>
@@ -67,9 +77,9 @@
 						</h3>
 
 						<div class="margin_top10">
-							<script type="text/javascript"
+							<!-- <script type="text/javascript"
 								src="http://image.kyobobook.co.kr/ink/js/policy/provision.js"
-								charset="utf-8"></script>
+								charset="utf-8"></script> -->
 							<div class="box_policy_global" id="boxPolicyProvision">
 
 								<blockquote>
@@ -140,7 +150,7 @@
 										수 있도록 설정한 가상의 매장을 말하며 아울러 오프라인 매장과 사이버몰을 운영하는 사업자의 의미로도 사용합니다.</li>
 									<li>2. 이용자란 매장에 방문하거나 사이트에 접속하여 이 약관에 따라 회사가 제공하는 정보 및 기타
 										서비스를 제공받는 회원 및 비회원을 말합니다.</li>
-									<li>3. 회원이라 함은 교보북클럽 서비스 혜택적용을 위해 회사에 개인정보를 제공하여 회원등록을 한
+									<li>3. 회원이라 함은 TellBook북클럽 서비스 혜택적용을 위해 회사에 개인정보를 제공하여 회원등록을 한
 										자로서, 계속적으로 회사가 제공하는 서비스를 이용할 수 있는 자를 말하며 아래와 같이 구분될 수 있습니다.
 										<ol>
 											<li>① 일반회원 : 상품구매 및 구매와 관련하여 제공되는 서비스를 이용할 수 있는 만 14세
@@ -150,12 +160,12 @@
 											<li>④ 해외거주회원 : 해외거주 주소로 가입한 회원</li>
 										</ol>
 									</li>
-									<li>4. 교보북클럽 서비스란 당사와 TellBook 계열사 및 제휴사가 회원에게 제공하는 회원등급 산정,
+									<li>4. TellBook북클럽 서비스란 당사와 TellBook 계열사 및 제휴사가 회원에게 제공하는 회원등급 산정,
 										마일리지 및 통합포인트 적립, 사용, 할인, 이벤트 참여 등의 전반적인 고객 서비스 프로그램을 말하며 구체적인
 										내용은 당사와 TellBook 계열사 또는 제휴사와의 관계 및 당사 정책에 의해 달라질 수 있습니다.</li>
-									<li>5. TellBook 계열사란 당사와 교보북클럽 서비스 운영과 관련하여 위탁 운영 계약을 맺고 교보북클럽
-										서비스를 동시 제공하는 회사를 말합니다.<br> * 교보북클럽 서비스 제공사 : 교보핫트랙스㈜,
-										교보라이프플래닛생명보험㈜
+									<li>5. TellBook 계열사란 당사와 TellBook북클럽 서비스 운영과 관련하여 위탁 운영 계약을 맺고 TellBook북클럽
+										서비스를 동시 제공하는 회사를 말합니다.<br> * TellBook북클럽 서비스 제공사 : TellBook핫트랙스㈜,
+										TellBook라이프플래닛생명보험㈜
 									</li>
 									<li>6. 아이디(ID)라 함은 회원의 식별과 서비스이용을 위하여 회원이 정하고 회사가 승인하는 문자
 										또는 숫자의 조합을 의미합니다.</li>
@@ -290,7 +300,7 @@
 										없습니다.</li>
 									<li>3. 회원가입은 반드시 실명 또는 실명인증으로 해야 합니다. 실명으로 가입하지 않은 회원에 대해
 										회사는 실명확인 조치를 할 수 있으며, 실명미인증 가입에 따른 서비스 제한에 대한 책임은 회원에게 있습니다.</li>
-									<li>4. 교보북클럽 가입 시 이용자의 동의하에 TellBook 및 TellBook 계열사의 매장, 온라인 상의
+									<li>4. TellBook북클럽 가입 시 이용자의 동의하에 TellBook 및 TellBook 계열사의 매장, 온라인 상의
 										인터넷 서비스 회원으로 동시에 가입되며, 하나의 통합 ID로 편리하고 안전하게 이용하실 수 있습니다.</li>
 									<li>5. 회사는 제1항과 같이 회원으로 가입할 것을 신청한 이용자 중 다음 각호에 해당되지 않는 한
 										회원으로 등록합니다.
@@ -810,7 +820,7 @@
 								<h4 id="article35">제35조 (통합포인트의 취득 및 소멸)</h4>
 								<ol>
 									<li>1. 통합포인트란 회사 및 회사의 계열사에서 상품을 구매할 경우 각 상품별로 설정되어 누적되는
-										점수로써, 회사가 교보북클럽 회원에게 제공하는 회원보상체계의 일종으로 구매시 현금처럼 사용할 수 있는
+										점수로써, 회사가 TellBook북클럽 회원에게 제공하는 회원보상체계의 일종으로 구매시 현금처럼 사용할 수 있는
 										화폐개념입니다. 단, 현금으로 환불되지 않습니다</li>
 									<li>2. 회사의 회원이 TellBook 및 TellBook 계열사의 상품을 구매할 경우 각 상품별로 해당 적립률에
 										따른 일정금액을 통합포인트로 적립해 드립니다.</li>
@@ -869,7 +879,7 @@
 								</ol>
 
 								<h4>부칙</h4>
-								<p>본 이용약관은 2020년 9월 1일부터 시행하며 종전의 약관내용은 본 약관으로 대체합니다.</p>
+								<p>본 이용약관은 2022년 6월 1일부터 시행하며 종전의 약관내용은 본 약관으로 대체합니다.</p>
 
 							</div>
 							<!-- //이용약관 -->
