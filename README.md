@@ -37,9 +37,6 @@
     
   - 사용 환경
     운영체제 및 사용환경 : Window11 / CPU : AMD Rygen 3600X / RAM : 32GB 
-  
-  - 외부리소스 정보
-    달력, 글쓰기 form을 가져와서 썻으니 그거쓰면될듯
     
 
 # Getting Started
