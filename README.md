@@ -43,29 +43,30 @@
  1. JAVA 설치
   STS에 내장 JRE가 포함되어 있기는 하지만 원하는 버전의 JaVa를 사용하기 위해 여기서는 OpenJDK 11 버전을 설치합니다.
   https://jdk.java.net/java-se-ri/11
-    <img width="471" alt="image" src="https://user-images.githubusercontent.com/67256177/179122447-1b3a5cbe-f37a-419a-b636-6b1e527c48c0.png">
+  <img width="471" alt="image" src="https://user-images.githubusercontent.com/67256177/179122447-1b3a5cbe-f37a-419a-b636-6b1e527c48c0.png">
 
   환경 변수 설정은 https://kjchoi.co.kr/16 링크를 따라해주세요.
   
 2. STS 4 다운로드
  자신의 운영체제에 맞는 버전을 선택하여 설치해주세요.
  https://spring.io/tools
-   <img width="912" alt="image" src="https://user-images.githubusercontent.com/67256177/179122405-faa47a22-e6cd-4394-92dd-8cc853a8cc02.png">
+ <img width="912" alt="image" src="https://user-images.githubusercontent.com/67256177/179122405-faa47a22-e6cd-4394-92dd-8cc853a8cc02.png">
 
 3. STS4 설정
  1. JRE 설정 - 설치한 JDK 11 버전을 적용합니다.
-   ![image](https://user-images.githubusercontent.com/67256177/179122703-ed276e17-e8d4-4627-943a-d87c774eca58.png)
+ ![image](https://user-images.githubusercontent.com/67256177/179122703-ed276e17-e8d4-4627-943a-d87c774eca58.png)
  
  2. Compiler 설정 - JRE에서 설정한 버전과 동일하게 변경합니다.
-   ![image](https://user-images.githubusercontent.com/67256177/179123074-451a5bb9-669d-455a-9861-851690036740.png)
+ ![image](https://user-images.githubusercontent.com/67256177/179123074-451a5bb9-669d-455a-9861-851690036740.png)
 
  3. Encoding 설정 - Preferences에서 UTF-8로 설정해줍니다. (Text -> Java properties File, Spring Properties File도 UTF-8로 설정)
-   <img width="532" alt="image" src="https://user-images.githubusercontent.com/67256177/179123406-bf3ac409-cc5c-4d64-bed9-3dcdc65c2731.png">
+ <img width="532" alt="image" src="https://user-images.githubusercontent.com/67256177/179123406-bf3ac409-cc5c-4d64-bed9-3dcdc65c2731.png">
  Worksspace의 Text file encoding도 UTF-8로 변경해줍니다.
  
  4. Spring Legacy Project 생성
-  주의! : STS4는 Legacy Project를 지원하지않습니다. 때문에 Eclipse Marketplace에서 STS3 모듈을 설치해줘야 프로젝트를 진행할 수 있습니다.
-   ![image](https://user-images.githubusercontent.com/67256177/179123742-89202b75-24da-479b-9854-dd80d7bfa71b.png)
+ 주의! : STS4는 Legacy Project를 지원하지않습니다. </br>
+ 때문에 Eclipse Marketplace에서 STS3 모듈을 설치해줘야 프로젝트를 진행할 수 있습니다.
+ ![image](https://user-images.githubusercontent.com/67256177/179123742-89202b75-24da-479b-9854-dd80d7bfa71b.png)
 
  
 # Views
