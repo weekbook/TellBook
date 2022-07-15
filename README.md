@@ -1,5 +1,5 @@
 # 도서 전자상거래 사이트 프로젝트 (TellBook)
-서적상품을 구매하거나 리뷰를 작성할 수 있는 도서 전자상거래 사이트입니다.
+도서를 구매할 수 있는 웹 사이트 입니다. 관리자는 작가 및 상품을 등록할 수 있으며, 사용자는 구매 및 리뷰를 남길 수 있습니다.
 ![image](https://user-images.githubusercontent.com/67256177/179124920-bbb7fd7c-4c63-4c6a-9f18-210b3ffef37a.png)
 
 # Description
