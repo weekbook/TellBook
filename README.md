@@ -1,5 +1,6 @@
 # 도서 전자상거래 사이트 프로젝트 (TellBook)
 서적상품을 구매하거나 리뷰를 작성할 수 있는 도서 전자상거래 사이트입니다.
+![image](https://user-images.githubusercontent.com/67256177/179124920-bbb7fd7c-4c63-4c6a-9f18-210b3ffef37a.png)
 
 # Description
  - 개발 기간 : 2022.05.24 ~ 2022.07.15
@@ -71,7 +72,37 @@
 
  
 # Views
-시연 및 구동 사진 올리기
+1. Main화면
+![image](https://user-images.githubusercontent.com/67256177/179126250-464387f6-1860-464f-8aef-49ade2e27d61.png)
+
+2. 검색 후 화면
+![image](https://user-images.githubusercontent.com/67256177/179126393-aa0d4f64-3542-4ac7-979f-6b2ab53958d7.png)
+
+3. 도서 상세 화면
+![image](https://user-images.githubusercontent.com/67256177/179126451-53f54070-79be-4768-a501-05f946d3236f.png)
+
+4. 댓글 기능 (페이징처리 / AJAX 비동기 방식)
+![image](https://user-images.githubusercontent.com/67256177/179126531-d08649f2-98e5-49d8-8dcd-67dd4f34dc8e.png)
+
+5. 장바구니
+![image](https://user-images.githubusercontent.com/67256177/179126606-295d5bc9-b79b-48d9-ad68-8c8921e6484f.png)
+
+6. 주문화면
+![image](https://user-images.githubusercontent.com/67256177/179126794-54ba8593-9304-423f-b817-283cdbc16512.png)
+
+7. 고객센터 -> 1:1 문의 (Admin계정) 모든 글을 볼 수 있고, 답변이 가능
+![image](https://user-images.githubusercontent.com/67256177/179127519-55d9ed8f-94b7-4304-8c05-b94e35af8272.png)
+ 7-1 1:1문의 (일반계정) 자신의 글만 볼 수 있음
+ ![image](https://user-images.githubusercontent.com/67256177/179127644-c28e6c80-a451-4aea-a44c-b37308f8e92a.png)
+
+8. 고객센터 메인
+![image](https://user-images.githubusercontent.com/67256177/179127754-daebe069-acd4-4326-b888-278f8387f085.png)
+
+9. 마이페이지
+![image](https://user-images.githubusercontent.com/67256177/179127820-d9ef640f-4cd5-4219-83cf-ac3582af6297.png)
+
+10. 관리자페이지
+![image](https://user-images.githubusercontent.com/67256177/179127925-886bdef0-927e-42c7-870d-6b258fe58252.png)
 
 # Trouble Shooting
 문제점을 해결해 나가는 과정
@@ -80,5 +111,6 @@
 일정 
 
 # 저작권, 라이선스 정보
-참고한 사이트 및 이미지 출처    
+UI배치, 디자인 및 책 정보는 교보문고를 벤치마킹 하였음.
+초기 기반 틀을 https://kimvampa.tistory.com/188 를 참고하여 진행함
     
