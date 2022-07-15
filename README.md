@@ -3,7 +3,7 @@
 ![image](https://user-images.githubusercontent.com/67256177/179124920-bbb7fd7c-4c63-4c6a-9f18-210b3ffef37a.png)
 
 # Description
- - 개발 기간 : 2022.05.24 ~ 2022.07.15
+ - 개발 기간 : 2022.05.20 ~ 2022.07.15
  - 참여 인원 : 2명
  - 사용 기술
     - BackEnd
@@ -105,10 +105,8 @@
 ![image](https://user-images.githubusercontent.com/67256177/179127925-886bdef0-927e-42c7-870d-6b258fe58252.png)
 
 # Trouble Shooting
-문제점을 해결해 나가는 과정
-
-# Schedule / Usecase
-일정 
+프로젝트를 하다 생긴 오류들은 블로그에 올려놓았다.
+https://weekbook.tistory.com/category/%EC%98%A4%EB%A5%98%20%EB%B0%8F%20%ED%8E%B8%EC%9D%98%EC%84%B1%20%EB%AA%A8%EC%9D%8C
 
 # 저작권, 라이선스 정보
 UI배치, 디자인 및 책 정보는 교보문고를 벤치마킹 하였음.
