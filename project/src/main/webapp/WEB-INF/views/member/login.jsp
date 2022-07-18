@@ -62,7 +62,7 @@
 		<form id="login_form" method="post">
 			<a href="/main"><img class="mb-4" src="/resources/img/mLogo.png"
 				alt="" width="200" height="210"></a>
-			<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+			<h1 class="h3 mb-3 fw-normal">회원로그인</h1>
 
 			<div class="form-floating">
 				<input type="id_input" class="form-control" name="memberId"
@@ -88,8 +88,8 @@
 			</div>
 
 			<button class="w-100 btn btn-lg btn-primary login_button"
-				type="submit" value="로그인">Sign in</button>
-			<p class="mt-5 mb-3 text-muted">&copy; 2022.05 - 07</p>
+				type="submit" value="로그인">로그인</button>
+			<p class="mt-5 mb-3 text-muted">&copy; TellBook 2022.05 - 07</p>
 		</form>
 	</main>
 	</div>
