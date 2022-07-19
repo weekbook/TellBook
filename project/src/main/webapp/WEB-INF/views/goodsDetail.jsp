@@ -84,7 +84,9 @@
 				</div>
 				<div class="line"></div>
 				<div class="content_middle">
+					<h3 class="book_intro">책소개</h3>
 					<div class="book_intro">${goodsInfo.bookIntro}</div>
+					<h3 class="book_content">목차</h3>
 					<div class="book_content">${goodsInfo.bookContents }</div>
 				</div>
 				<div class="line"></div>
