@@ -170,7 +170,7 @@
 		from book_product
 		order by ratingAvg desc nulls last)
 		<![CDATA[
-		where rn < 9
+		where rn < 11
 		]]>	
 	
 	</select>
@@ -183,7 +183,7 @@
 		from book_product
 		order by regDate desc nulls last)
 		<![CDATA[
-		where rn < 9
+		where rn < 11
 		]]>	
 	
 	</select>
@@ -196,7 +196,7 @@
 		from book_product
 		order by ratingAvg * purchasecount desc nulls last)
 		<![CDATA[
-		where rn < 9
+		where rn < 11
 		]]>	
 	
 	</select>

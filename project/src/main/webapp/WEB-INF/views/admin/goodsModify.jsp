@@ -363,6 +363,16 @@
 			
 		});
 		
+		/* 작가 선택 버튼 */
+		$('.authorId_btn').on("click",function(e){
+			e.preventDefault();
+			
+			let popUrl = "/admin/authorPop";
+			let popOption = "width = 650px, height=550px, top=300px, left=300px, scrollbars=yes";
+			
+			window.open(popUrl,"작가 찾기", popOption);
+		});
+		
 		
 		/* 기존 이미지 출력 */
 		let bookId = '<c:out value="${goodsInfo.bookId}"/>';
