@@ -40,10 +40,6 @@ public class MainController {
 	@GetMapping("/introduce")
 	public void introduceGET(Model model) {
 		log.info("introduce page");
-		// 랜덤 리스트 출력
-		List<SelectDTO> random_list = bookService.bestSelect();
-		Collections.shuffle(random_list);
-		model.addAttribute("rl", random_list);
 	}
 
 	@GetMapping("/terms")

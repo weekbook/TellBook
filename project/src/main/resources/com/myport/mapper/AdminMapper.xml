@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myport.mapper.AdminMapper">
 	
-	<!-- 작가 등록 -->
+	<!-- 상품 등록 -->
   	<insert id="bookEnroll">
   		
   		<!-- 등록 메서드 수행 후 등록한 bookID 컬럼 값을 파라미터로 전달된 BookVO객체의 bookId 뱐수에 반환하기 위해 사용 -->
