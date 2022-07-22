@@ -108,5 +108,4 @@ https://weekbook.tistory.com/category/%EC%98%A4%EB%A5%98%20%EB%B0%8F%20%ED%8E%B8
 
 # 저작권, 라이선스 정보
 UI배치, 디자인 및 책 정보는 교보문고를 벤치마킹 하였음.
-초기 기반 틀을 https://kimvampa.tistory.com/188 를 참고하여 진행함
     
